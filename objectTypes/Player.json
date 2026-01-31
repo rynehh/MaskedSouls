@@ -1,0 +1,85 @@
+{
+	"name": "Player",
+	"plugin-id": "Sprite",
+	"sid": 870458069433483,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [
+		{
+			"name": "CurrentMask",
+			"type": "string",
+			"desc": "",
+			"show": true,
+			"sid": 506321233756395
+		},
+		{
+			"name": "AttackSpeed",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 739748781674413
+		},
+		{
+			"name": "Damage",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 941767661413699
+		},
+		{
+			"name": "HP",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 715736983777403
+		}
+	],
+	"behaviorTypes": [
+		{
+			"behaviorId": "EightDir",
+			"name": "8Direction",
+			"sid": 957456166937427
+		},
+		{
+			"behaviorId": "bound",
+			"name": "RestringidoALaEscena",
+			"sid": 122861478674117
+		},
+		{
+			"behaviorId": "Timer",
+			"name": "Timer",
+			"sid": 264863174007023
+		}
+	],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 250,
+						"height": 250,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 8448135,
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 492842461095721,
+				"name": "Animation 1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			}
+		],
+		"subfolders": []
+	}
+}

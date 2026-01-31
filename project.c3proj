@@ -5,10 +5,83 @@
 	"runtime": "c3",
 	"useWorker": "auto",
 	"bundleAddons": false,
-	"usedAddons": [],
+	"usedAddons": [
+		{
+			"type": "plugin",
+			"id": "Keyboard",
+			"name": "Keyboard",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "Mouse",
+			"name": "Mouse",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "Sprite",
+			"name": "Sprite",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "Bullet",
+			"name": "Bullet",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "EightDir",
+			"name": "8 Direction",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "Timer",
+			"name": "Timer",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "bound",
+			"name": "Bound to layout",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "destroy",
+			"name": "Destroy outside layout",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "wrap",
+			"name": "Wrap",
+			"author": "Scirra",
+			"bundled": false
+		}
+	],
 	"uniqueId": "52c1exxmk5p",
 	"objectTypes": {
-		"items": [],
+		"items": [
+			"Player",
+			"Bullet_Type",
+			"Mask",
+			"Mouse",
+			"Enemy",
+			"Keyboard",
+			"Enemy_Bullet",
+			"VenomPool"
+		],
 		"subfolders": []
 	},
 	"functionsName": "Funciones",
@@ -20,7 +93,8 @@
 	},
 	"layouts": {
 		"items": [
-			"Escena 1"
+			"Escena 1",
+			"Template_Objects"
 		],
 		"subfolders": []
 	},
@@ -32,7 +106,16 @@
 	},
 	"rootFileFolders": {
 		"script": {
-			"items": [],
+			"items": [
+				{
+					"name": "main.ts",
+					"type": "application/typescript",
+					"sid": 462665028540381,
+					"script-info": {
+						"purpose": "main"
+					}
+				}
+			],
 			"subfolders": []
 		},
 		"sound": {
@@ -190,5 +273,5 @@
 	},
 	"viewportWidth": 1920,
 	"viewportHeight": 1080,
-	"firstLayout": null
+	"firstLayout": "Escena 1"
 }
