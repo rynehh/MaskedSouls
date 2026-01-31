@@ -1,0 +1,88 @@
+{
+	"name": "Enemy",
+	"plugin-id": "Sprite",
+	"sid": 573855648378097,
+	"isGlobal": true,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [
+		{
+			"name": "HP",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 696767632751653
+		},
+		{
+			"name": "IsFrozen",
+			"type": "boolean",
+			"desc": "",
+			"show": true,
+			"sid": 713509602246096
+		},
+		{
+			"name": "BurnTicks",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 846041239822569
+		}
+	],
+	"behaviorTypes": [
+		{
+			"behaviorId": "EightDir",
+			"name": "8Direction",
+			"sid": 677936443654639
+		},
+		{
+			"behaviorId": "bound",
+			"name": "BoundToLayout",
+			"sid": 159908110191496
+		},
+		{
+			"behaviorId": "destroy",
+			"name": "DestroyOutsideLayout",
+			"sid": 194637900537389
+		},
+		{
+			"behaviorId": "wrap",
+			"name": "Wrap",
+			"sid": 905635834639081
+		},
+		{
+			"behaviorId": "Timer",
+			"name": "Timer",
+			"sid": 174368786548550
+		}
+	],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 250,
+						"height": 250,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 4037301,
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 821287944188185,
+				"name": "Animation 1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			}
+		],
+		"subfolders": []
+	}
+}

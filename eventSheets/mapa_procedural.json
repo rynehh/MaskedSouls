@@ -56,7 +56,7 @@
 						"function generarMapaFinal() {",
 						"    const tilemap = runtime.objects.MapaDeTeselas.getFirstInstance();",
 						"    // Asegúrate de que este sea el nombre real de tu jugador en la barra de proyectos",
-						"    const Jugador = runtime.objects.Sprite.getFirstInstance(); ",
+						"    const Jugador = runtime.objects.Player.getFirstInstance(); ",
 						"",
 						"    if (!tilemap) return;",
 						"",
