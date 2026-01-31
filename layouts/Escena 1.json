@@ -71,61 +71,6 @@
 					}
 				},
 				{
-					"type": "Sprite",
-					"properties": {
-						"initially-visible": true,
-						"initial-animation": "Animation 1",
-						"initial-frame": 0,
-						"enable-collisions": true,
-						"live-preview": false
-					},
-					"uid": 14,
-					"sid": 506953632376757,
-					"tags": "",
-					"instanceVariables": {},
-					"behaviors": {
-						"DesplazarHasta": {
-							"properties": {
-								"enabled": true
-							}
-						},
-						"8Direcciones": {
-							"properties": {
-								"max-speed": 200,
-								"acceleration": 600,
-								"deceleration": 500,
-								"directions": "dir-8",
-								"set-angle": "smooth",
-								"allow-sliding": false,
-								"default-controls": true,
-								"enabled": true
-							}
-						}
-					},
-					"instanceFolderItem": {
-						"sid": 506953632376757,
-						"expanded": true
-					},
-					"showing": true,
-					"locked": false,
-					"world": {
-						"x": 2198,
-						"y": -255,
-						"width": 32,
-						"height": 32,
-						"originX": 0.5,
-						"originY": 0.6875,
-						"color": [
-							1,
-							1,
-							1,
-							1
-						],
-						"angle": 0,
-						"zElevation": 0
-					}
-				},
-				{
 					"type": "Sprite3",
 					"properties": {
 						"initially-visible": true,
@@ -419,6 +364,74 @@
 						"y": 866,
 						"width": 110,
 						"height": 115,
+						"originX": 0.5,
+						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "Player",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "Animation 1",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 2,
+					"sid": 942704505865983,
+					"tags": "",
+					"instanceVariables": {
+						"CurrentMask": "default",
+						"AttackSpeed": 0.8,
+						"Damage": 10,
+						"HP": 100
+					},
+					"behaviors": {
+						"8Direction": {
+							"properties": {
+								"max-speed": 200,
+								"acceleration": 600,
+								"deceleration": 500,
+								"directions": "dir-8",
+								"set-angle": "smooth",
+								"allow-sliding": false,
+								"default-controls": true,
+								"enabled": true
+							}
+						},
+						"RestringidoALaEscena": {
+							"properties": {
+								"bound-by": "edge"
+							}
+						},
+						"Timer": {
+							"properties": {}
+						},
+						"ScrollTo": {
+							"properties": {
+								"enabled": true
+							}
+						}
+					},
+					"instanceFolderItem": {
+						"sid": 942704505865983,
+						"expanded": true
+					},
+					"showing": true,
+					"locked": false,
+					"world": {
+						"x": 2285,
+						"y": -255,
+						"width": 28,
+						"height": 28,
 						"originX": 0.5,
 						"originY": 0.5,
 						"color": [
