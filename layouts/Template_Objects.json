@@ -21,7 +21,10 @@
 					"instanceVariables": {
 						"Damage": 0,
 						"SourceUID": -1,
-						"Bounces": 1
+						"Bounces": 1,
+						"ActiveMask": "",
+						"OwnerUID": 0,
+						"IgnoreUID": -1
 					},
 					"behaviors": {
 						"Bullet": {

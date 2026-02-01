@@ -69,43 +69,6 @@
 						],
 						"zElevation": 0
 					}
-				},
-				{
-					"type": "Sprite3",
-					"properties": {
-						"initially-visible": true,
-						"initial-animation": "Animation 1",
-						"initial-frame": 0,
-						"enable-collisions": true,
-						"live-preview": false
-					},
-					"uid": 15,
-					"sid": 852573848685969,
-					"tags": "",
-					"instanceVariables": {},
-					"behaviors": {},
-					"instanceFolderItem": {
-						"sid": 852573848685969,
-						"expanded": true
-					},
-					"showing": true,
-					"locked": false,
-					"world": {
-						"x": 4235,
-						"y": 602,
-						"width": 250,
-						"height": 250,
-						"originX": 0.5,
-						"originY": 0.5,
-						"color": [
-							1,
-							1,
-							1,
-							1
-						],
-						"angle": 0,
-						"zElevation": 0
-					}
 				}
 			],
 			"sid": 270235331806762,
@@ -392,7 +355,10 @@
 						"CurrentMask": "default",
 						"AttackSpeed": 0.8,
 						"Damage": 10,
-						"HP": 100
+						"HP": 100,
+						"PlayerID": 2,
+						"ControlScheme": "",
+						"IsLocal": true
 					},
 					"behaviors": {
 						"8Direction": {
@@ -403,7 +369,7 @@
 								"directions": "dir-8",
 								"set-angle": "smooth",
 								"allow-sliding": false,
-								"default-controls": true,
+								"default-controls": false,
 								"enabled": true
 							}
 						},
@@ -428,8 +394,79 @@
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 2285,
-						"y": -255,
+						"x": 1943,
+						"y": -124,
+						"width": 28,
+						"height": 28,
+						"originX": 0.5,
+						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "Player",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "Animation 1",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 14,
+					"sid": 896160532170395,
+					"tags": "",
+					"instanceVariables": {
+						"CurrentMask": "default",
+						"AttackSpeed": 0.8,
+						"Damage": 10,
+						"HP": 100,
+						"PlayerID": 1,
+						"ControlScheme": "",
+						"IsLocal": true
+					},
+					"behaviors": {
+						"8Direction": {
+							"properties": {
+								"max-speed": 200,
+								"acceleration": 600,
+								"deceleration": 500,
+								"directions": "dir-8",
+								"set-angle": "smooth",
+								"allow-sliding": false,
+								"default-controls": false,
+								"enabled": true
+							}
+						},
+						"RestringidoALaEscena": {
+							"properties": {
+								"bound-by": "edge"
+							}
+						},
+						"Timer": {
+							"properties": {}
+						},
+						"ScrollTo": {
+							"properties": {
+								"enabled": true
+							}
+						}
+					},
+					"instanceFolderItem": {
+						"sid": 896160532170395,
+						"expanded": true
+					},
+					"showing": true,
+					"locked": false,
+					"world": {
+						"x": 1993,
+						"y": -196,
 						"width": 28,
 						"height": 28,
 						"originX": 0.5,

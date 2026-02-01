@@ -25,6 +25,27 @@
 			"desc": "",
 			"show": true,
 			"sid": 931573895167499
+		},
+		{
+			"name": "ActiveMask",
+			"type": "string",
+			"desc": "",
+			"show": true,
+			"sid": 131202670182292
+		},
+		{
+			"name": "OwnerUID",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 182094110710648
+		},
+		{
+			"name": "IgnoreUID",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 648313630638991
 		}
 	],
 	"behaviorTypes": [
