@@ -211,6 +211,14 @@
 					"parameters": {
 						"control": "left"
 					}
+				},
+				{
+					"id": "set-mirrored",
+					"objectClass": "Player",
+					"sid": 872224401272711,
+					"parameters": {
+						"state": "not-mirrored"
+					}
 				}
 			],
 			"sid": 477944807872733
@@ -280,6 +288,14 @@
 					"behaviorType": "8Direction",
 					"parameters": {
 						"control": "right"
+					}
+				},
+				{
+					"id": "set-mirrored",
+					"objectClass": "Player",
+					"sid": 676447761383528,
+					"parameters": {
+						"state": "mirrored"
 					}
 				}
 			],
