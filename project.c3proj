@@ -9,7 +9,7 @@
 		{
 			"type": "plugin",
 			"id": "Keyboard",
-			"name": "Teclado",
+			"name": "Keyboard",
 			"author": "Scirra",
 			"bundled": false
 		},
@@ -29,78 +29,99 @@
 		},
 		{
 			"type": "plugin",
+			"id": "Text",
+			"name": "Text",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
 			"id": "Tilemap",
-			"name": "Mapa de teselas",
+			"name": "Tilemap",
 			"author": "Scirra",
 			"bundled": false
 		},
 		{
 			"type": "behavior",
 			"id": "Bullet",
-			"name": "Bala",
+			"name": "Bullet",
 			"author": "Scirra",
 			"bundled": false
 		},
 		{
 			"type": "behavior",
 			"id": "EightDir",
-			"name": "8 Direcciones",
+			"name": "8 Direction",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "Fade",
+			"name": "Fade",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "Sin",
+			"name": "Sine",
 			"author": "Scirra",
 			"bundled": false
 		},
 		{
 			"type": "behavior",
 			"id": "Timer",
-			"name": "Temporizador",
+			"name": "Timer",
 			"author": "Scirra",
 			"bundled": false
 		},
 		{
 			"type": "behavior",
 			"id": "bound",
-			"name": "Restringido a la escena",
+			"name": "Bound to layout",
 			"author": "Scirra",
 			"bundled": false
 		},
 		{
 			"type": "behavior",
 			"id": "destroy",
-			"name": "Destruir fuera de la escena",
+			"name": "Destroy outside layout",
 			"author": "Scirra",
 			"bundled": false
 		},
 		{
 			"type": "behavior",
 			"id": "scrollto",
-			"name": "Desplazar hasta",
+			"name": "Scroll To",
 			"author": "Scirra",
 			"bundled": false
 		},
 		{
 			"type": "behavior",
 			"id": "solid",
-			"name": "Sólido",
+			"name": "Solid",
 			"author": "Scirra",
 			"bundled": false
 		},
 		{
 			"type": "behavior",
 			"id": "wrap",
-			"name": "Rodear",
+			"name": "Wrap",
 			"author": "Scirra",
 			"bundled": false
 		},
 		{
 			"type": "effect",
 			"id": "emboss",
-			"name": "Relieve",
+			"name": "Emboss",
 			"author": "Scirra",
 			"bundled": false
 		},
 		{
 			"type": "effect",
 			"id": "vignette",
-			"name": "Viñeta",
+			"name": "Vignette",
 			"author": "Brad Larson",
 			"bundled": false
 		}
@@ -135,6 +156,31 @@
 				],
 				"subfolders": [],
 				"name": "Sprites Mapa"
+			},
+			{
+				"items": [
+					"ClicktoS",
+					"Marco",
+					"Button_SP",
+					"Button_MP",
+					"Button_OPC",
+					"Exit",
+					"SingleP",
+					"MultiP",
+					"Options"
+				],
+				"subfolders": [],
+				"name": "Menu P"
+			},
+			{
+				"items": [
+					"Pausa_Player",
+					"Exit_P",
+					"Text",
+					"Play_P"
+				],
+				"subfolders": [],
+				"name": "Pause"
 			}
 		]
 	},
@@ -148,14 +194,18 @@
 	"layouts": {
 		"items": [
 			"Escena 1",
-			"Template_Objects"
+			"Template_Objects",
+			"L_MainMenu",
+			"L_Pause"
 		],
 		"subfolders": []
 	},
 	"eventSheets": {
 		"items": [
 			"Hoja de eventos 1",
-			"mapa_procedural"
+			"mapa_procedural",
+			"ES_MainMenu",
+			"ES_Pause"
 		],
 		"subfolders": []
 	},

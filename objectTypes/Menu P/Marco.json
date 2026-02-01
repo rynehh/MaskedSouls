@@ -1,0 +1,70 @@
+{
+	"name": "Marco",
+	"plugin-id": "Sprite",
+	"sid": 986894774410077,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Fade",
+			"name": "Fade",
+			"sid": 589316576271667
+		}
+	],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 98,
+						"height": 98,
+						"originX": 2.520408163265306,
+						"originY": 1.142857142857143,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 7391316,
+						"collisionPoly": {
+							"points": [
+								0.1326530612244898,
+								0.01020408163265306,
+								1,
+								0.05102040816326531,
+								1,
+								0.08163265306122448,
+								1,
+								0.8571428571428571,
+								1,
+								1,
+								1,
+								1,
+								1,
+								1,
+								1,
+								1,
+								0.020408163265306117,
+								1,
+								0.010204081632653059,
+								0.17346938775510204
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 887876263314947,
+				"name": "Animation 1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			}
+		],
+		"subfolders": []
+	}
+}

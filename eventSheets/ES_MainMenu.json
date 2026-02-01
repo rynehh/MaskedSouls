@@ -1,0 +1,462 @@
+{
+	"name": "ES_MainMenu",
+	"events": [
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-any-click",
+					"objectClass": "Mouse",
+					"sid": 734953475786788
+				},
+				{
+					"id": "layer-is-visible",
+					"objectClass": "System",
+					"sid": 490553009488508,
+					"parameters": {
+						"layer": "1"
+					},
+					"isInverted": true
+				}
+			],
+			"actions": [
+				{
+					"id": "set-layer-visible",
+					"objectClass": "System",
+					"sid": 856770496564532,
+					"parameters": {
+						"layer": "1",
+						"visibility": "visible"
+					}
+				},
+				{
+					"id": "destroy",
+					"objectClass": "ClicktoS",
+					"sid": 710727831159122
+				},
+				{
+					"id": "start-fade",
+					"objectClass": "Marco",
+					"sid": 112564762661969,
+					"behaviorType": "Fade"
+				},
+				{
+					"id": "start-fade",
+					"objectClass": "Button_SP",
+					"sid": 220016766851276,
+					"behaviorType": "Fade"
+				},
+				{
+					"id": "start-fade",
+					"objectClass": "Button_OPC",
+					"sid": 341156858688384,
+					"behaviorType": "Fade"
+				},
+				{
+					"id": "start-fade",
+					"objectClass": "Button_MP",
+					"sid": 977617313744657,
+					"behaviorType": "Fade"
+				},
+				{
+					"id": "start-fade",
+					"objectClass": "Exit",
+					"sid": 963662734124246,
+					"behaviorType": "Fade"
+				}
+			],
+			"sid": 631215806070642
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "cursor-is-over-object",
+					"objectClass": "Mouse",
+					"sid": 539041683397982,
+					"parameters": {
+						"object": "Button_SP"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-animation",
+					"objectClass": "Button_SP",
+					"sid": 851073262667986,
+					"parameters": {
+						"animation": "\"Hover\"",
+						"from": "current-frame"
+					}
+				}
+			],
+			"sid": 915010159846318
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "cursor-is-over-object",
+					"objectClass": "Mouse",
+					"sid": 419974314584476,
+					"parameters": {
+						"object": "Button_SP"
+					},
+					"isInverted": true
+				}
+			],
+			"actions": [
+				{
+					"id": "set-animation",
+					"objectClass": "Button_SP",
+					"sid": 564130258596199,
+					"parameters": {
+						"animation": "\"Idle\"",
+						"from": "current-frame"
+					}
+				}
+			],
+			"sid": 619594942762291
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "mouse-button-is-down",
+					"objectClass": "Mouse",
+					"sid": 106765134076936,
+					"parameters": {
+						"mouse-button": "left"
+					}
+				},
+				{
+					"id": "cursor-is-over-object",
+					"objectClass": "Mouse",
+					"sid": 816702109673271,
+					"parameters": {
+						"object": "Button_SP"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-animation",
+					"objectClass": "Button_SP",
+					"sid": 309706633694367,
+					"parameters": {
+						"animation": "\"Pressed\"",
+						"from": "current-frame"
+					}
+				}
+			],
+			"sid": 941416538646975
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-button-released",
+					"objectClass": "Mouse",
+					"sid": 588673428747265,
+					"parameters": {
+						"mouse-button": "left"
+					}
+				},
+				{
+					"id": "cursor-is-over-object",
+					"objectClass": "Mouse",
+					"sid": 621913803033455,
+					"parameters": {
+						"object": "Button_SP"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-animation",
+					"objectClass": "Button_SP",
+					"sid": 959851831501951,
+					"parameters": {
+						"animation": "\"Idle\"",
+						"from": "current-frame"
+					}
+				},
+				{
+					"id": "start-timer",
+					"objectClass": "Button_SP",
+					"sid": 380678647516985,
+					"behaviorType": "Timer",
+					"parameters": {
+						"duration": "3.0",
+						"type": "once",
+						"tag": "\"Start\""
+					}
+				}
+			],
+			"sid": 336683368868978
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "is-timer-running",
+					"objectClass": "Button_SP",
+					"sid": 365849933291594,
+					"behaviorType": "Timer",
+					"parameters": {
+						"tag": "\"Start\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "go-to-layout",
+					"objectClass": "System",
+					"sid": 405190342271782,
+					"parameters": {
+						"layout": "Escena 1"
+					}
+				}
+			],
+			"sid": 448147586176160
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "cursor-is-over-object",
+					"objectClass": "Mouse",
+					"sid": 943055898408402,
+					"parameters": {
+						"object": "Exit"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-animation",
+					"objectClass": "Exit",
+					"sid": 360151951971794,
+					"parameters": {
+						"animation": "\"Hover\"",
+						"from": "current-frame"
+					}
+				}
+			],
+			"sid": 712977186479167
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "cursor-is-over-object",
+					"objectClass": "Mouse",
+					"sid": 606477048587815,
+					"parameters": {
+						"object": "Exit"
+					},
+					"isInverted": true
+				}
+			],
+			"actions": [
+				{
+					"id": "set-animation",
+					"objectClass": "Exit",
+					"sid": 761583595820080,
+					"parameters": {
+						"animation": "\"Idle\"",
+						"from": "current-frame"
+					}
+				}
+			],
+			"sid": 540996133959569
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-button-released",
+					"objectClass": "Mouse",
+					"sid": 195684556136955,
+					"parameters": {
+						"mouse-button": "left"
+					}
+				},
+				{
+					"id": "cursor-is-over-object",
+					"objectClass": "Mouse",
+					"sid": 519195508489739,
+					"parameters": {
+						"object": "Exit"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-layer-visible",
+					"objectClass": "System",
+					"sid": 901086461315577,
+					"parameters": {
+						"layer": "1",
+						"visibility": "invisible"
+					}
+				}
+			],
+			"sid": 224861473370300
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "cursor-is-over-object",
+					"objectClass": "Mouse",
+					"sid": 881155547079697,
+					"parameters": {
+						"object": "Button_MP"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-animation",
+					"objectClass": "Button_MP",
+					"sid": 989940566229555,
+					"parameters": {
+						"animation": "\"Hover\"",
+						"from": "current-frame"
+					}
+				}
+			],
+			"sid": 353808301663017
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "cursor-is-over-object",
+					"objectClass": "Mouse",
+					"sid": 393215328062358,
+					"parameters": {
+						"object": "Button_MP"
+					},
+					"isInverted": true
+				}
+			],
+			"actions": [
+				{
+					"id": "set-animation",
+					"objectClass": "Button_MP",
+					"sid": 903313846133854,
+					"parameters": {
+						"animation": "\"Idle\"",
+						"from": "current-frame"
+					}
+				}
+			],
+			"sid": 381514887410595
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "mouse-button-is-down",
+					"objectClass": "Mouse",
+					"sid": 124340484249742,
+					"parameters": {
+						"mouse-button": "left"
+					}
+				},
+				{
+					"id": "cursor-is-over-object",
+					"objectClass": "Mouse",
+					"sid": 509918766782623,
+					"parameters": {
+						"object": "Button_MP"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-animation",
+					"objectClass": "Button_MP",
+					"sid": 827985403316822,
+					"parameters": {
+						"animation": "\"Pressed\"",
+						"from": "current-frame"
+					}
+				}
+			],
+			"sid": 430080320030739
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-button-released",
+					"objectClass": "Mouse",
+					"sid": 132975995595362,
+					"parameters": {
+						"mouse-button": "left"
+					}
+				},
+				{
+					"id": "cursor-is-over-object",
+					"objectClass": "Mouse",
+					"sid": 585599376768975,
+					"parameters": {
+						"object": "Button_MP"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-animation",
+					"objectClass": "Button_MP",
+					"sid": 732042711464184,
+					"parameters": {
+						"animation": "\"Idle\"",
+						"from": "current-frame"
+					}
+				},
+				{
+					"id": "start-timer",
+					"objectClass": "Button_MP",
+					"sid": 479821044336958,
+					"behaviorType": "Timer",
+					"parameters": {
+						"duration": "3.0",
+						"type": "once",
+						"tag": "\"Start\""
+					}
+				}
+			],
+			"sid": 646616310539469
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "is-timer-running",
+					"objectClass": "Button_MP",
+					"sid": 498367603768188,
+					"behaviorType": "Timer",
+					"parameters": {
+						"tag": "\"Start\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "go-to-layout",
+					"objectClass": "System",
+					"sid": 448878104723208,
+					"parameters": {
+						"layout": "Escena 1"
+					}
+				}
+			],
+			"sid": 840922765908351
+		}
+	],
+	"sid": 787861920460954
+}
