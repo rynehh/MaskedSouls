@@ -120,8 +120,8 @@
 					"instanceVariables": {
 						"CurrentMask": "default",
 						"AttackSpeed": 0.8,
-						"Damage": 1000,
-						"HP": 10000,
+						"Damage": 10,
+						"HP": 100,
 						"PlayerID": 2,
 						"ControlScheme": "",
 						"IsLocal": true,
@@ -130,11 +130,11 @@
 					"behaviors": {
 						"8Direction": {
 							"properties": {
-								"max-speed": 250,
-								"acceleration": 600,
+								"max-speed": 60,
+								"acceleration": 60,
 								"deceleration": 500,
 								"directions": "dir-8",
-								"set-angle": "smooth",
+								"set-angle": "no",
 								"allow-sliding": false,
 								"default-controls": false,
 								"enabled": true
@@ -163,10 +163,10 @@
 					"world": {
 						"x": 1943,
 						"y": -124,
-						"width": 28,
-						"height": 27.999999999999996,
-						"originX": 1.0869565217391304,
-						"originY": 1.0303030303030303,
+						"width": 14,
+						"height": 20,
+						"originX": 0.5,
+						"originY": 0.5,
 						"color": [
 							1,
 							1,
@@ -202,11 +202,11 @@
 					"behaviors": {
 						"8Direction": {
 							"properties": {
-								"max-speed": 200,
-								"acceleration": 600,
+								"max-speed": 60,
+								"acceleration": 60,
 								"deceleration": 500,
 								"directions": "dir-8",
-								"set-angle": "smooth",
+								"set-angle": "no",
 								"allow-sliding": false,
 								"default-controls": false,
 								"enabled": true
@@ -235,10 +235,10 @@
 					"world": {
 						"x": 1993,
 						"y": -196,
-						"width": 28,
-						"height": 27.999999999999996,
-						"originX": 1.0869565217391304,
-						"originY": 1.0303030303030303,
+						"width": 14,
+						"height": 20,
+						"originX": 0.5,
+						"originY": 0.5,
 						"color": [
 							1,
 							1,
