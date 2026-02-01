@@ -30,7 +30,14 @@
 		{
 			"type": "plugin",
 			"id": "Text",
-			"name": "Text",
+			"name": "Texto",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "TextBox",
+			"name": "Entrada de texto",
 			"author": "Scirra",
 			"bundled": false
 		},
@@ -137,7 +144,8 @@
 			"Enemy",
 			"Keyboard",
 			"Enemy_Bullet",
-			"VenomPool"
+			"VenomPool",
+			"EntradaDeTexto"
 		],
 		"subfolders": [
 			{
@@ -181,6 +189,19 @@
 				],
 				"subfolders": [],
 				"name": "Pause"
+			},
+			{
+				"items": [
+					"MarcoUI",
+					"TxtTime",
+					"UI_Icono",
+					"TxtNombreMascara",
+					"CorazonUI",
+					"TxtAnuncio",
+					"TxtPuntaje"
+				],
+				"subfolders": [],
+				"name": "UI"
 			}
 		]
 	},

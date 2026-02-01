@@ -1,0 +1,18 @@
+{
+	"name": "TxtPuntaje",
+	"plugin-id": "Text",
+	"sid": 189178599879672,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [
+		{
+			"name": "PlayerID",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 537400512247168
+		}
+	],
+	"behaviorTypes": [],
+	"effectTypes": []
+}

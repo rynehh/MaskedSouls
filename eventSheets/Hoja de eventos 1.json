@@ -15,6 +15,16 @@
 					"parameters": {
 						"key": 87
 					}
+				},
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "Player",
+					"sid": 585942710914032,
+					"parameters": {
+						"instance-variable": "PlayerID",
+						"comparison": 0,
+						"value": "1"
+					}
 				}
 			],
 			"actions": [
@@ -39,6 +49,16 @@
 					"sid": 625391674897602,
 					"parameters": {
 						"key": 65
+					}
+				},
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "Player",
+					"sid": 685529486985779,
+					"parameters": {
+						"instance-variable": "PlayerID",
+						"comparison": 0,
+						"value": "1"
 					}
 				}
 			],
@@ -65,6 +85,16 @@
 					"parameters": {
 						"key": 83
 					}
+				},
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "Player",
+					"sid": 297145991868213,
+					"parameters": {
+						"instance-variable": "PlayerID",
+						"comparison": 0,
+						"value": "1"
+					}
 				}
 			],
 			"actions": [
@@ -90,6 +120,16 @@
 					"parameters": {
 						"key": 68
 					}
+				},
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "Player",
+					"sid": 137087122870033,
+					"parameters": {
+						"instance-variable": "PlayerID",
+						"comparison": 0,
+						"value": "1"
+					}
 				}
 			],
 			"actions": [
@@ -104,6 +144,146 @@
 				}
 			],
 			"sid": 147990751973091
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "key-is-down",
+					"objectClass": "Keyboard",
+					"sid": 801019670032594,
+					"parameters": {
+						"key": 73
+					}
+				},
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "Player",
+					"sid": 154513709704431,
+					"parameters": {
+						"instance-variable": "PlayerID",
+						"comparison": 0,
+						"value": "2"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "simulate-control",
+					"objectClass": "Player",
+					"sid": 124710212966456,
+					"behaviorType": "8Direction",
+					"parameters": {
+						"control": "up"
+					}
+				}
+			],
+			"sid": 550125894356056
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "key-is-down",
+					"objectClass": "Keyboard",
+					"sid": 611236707289966,
+					"parameters": {
+						"key": 74
+					}
+				},
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "Player",
+					"sid": 403921383956661,
+					"parameters": {
+						"instance-variable": "PlayerID",
+						"comparison": 0,
+						"value": "2"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "simulate-control",
+					"objectClass": "Player",
+					"sid": 591176899941734,
+					"behaviorType": "8Direction",
+					"parameters": {
+						"control": "left"
+					}
+				}
+			],
+			"sid": 477944807872733
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "key-is-down",
+					"objectClass": "Keyboard",
+					"sid": 275116082828731,
+					"parameters": {
+						"key": 75
+					}
+				},
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "Player",
+					"sid": 705517234380491,
+					"parameters": {
+						"instance-variable": "PlayerID",
+						"comparison": 0,
+						"value": "2"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "simulate-control",
+					"objectClass": "Player",
+					"sid": 163976272844672,
+					"behaviorType": "8Direction",
+					"parameters": {
+						"control": "down"
+					}
+				}
+			],
+			"sid": 114825730640813
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "key-is-down",
+					"objectClass": "Keyboard",
+					"sid": 694277674009766,
+					"parameters": {
+						"key": 76
+					}
+				},
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "Player",
+					"sid": 141598752916381,
+					"parameters": {
+						"instance-variable": "PlayerID",
+						"comparison": 0,
+						"value": "2"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "simulate-control",
+					"objectClass": "Player",
+					"sid": 848081288019850,
+					"behaviorType": "8Direction",
+					"parameters": {
+						"control": "right"
+					}
+				}
+			],
+			"sid": 439964318600490
 		},
 		{
 			"eventType": "block",
@@ -124,19 +304,17 @@
 					"script": [
 						"const { updatePlayerStats } = await import(\"./main.js\");",
 						"",
-						"const player: any = runtime.objects.Player.getFirstInstance();",
+						"const players = runtime.objects.Player.getAllInstances();",
+						"const masks = runtime.objects.Mask.getAllInstances();",
 						"",
-						"let mask: any = null;",
-						"if (player) {",
-						"    mask = runtime.objects.Mask.getAllInstances().find(m => player.testOverlap(m));",
-						"}",
-						"",
-						"if (player && mask) {",
-						"    updatePlayerStats(player, mask.instVars.MaskID);",
-						"    mask.destroy();",
-						"    console.log(\"si jalo.\");",
-						"} else {",
-						"    console.error(\"me chingue\");",
+						"for (const p of players) {",
+						"    const mask = masks.find(m => p.testOverlap(m));",
+						"    ",
+						"    if (mask) {",
+						"        updatePlayerStats(p, mask.instVars.MaskID);",
+						"        mask.destroy();",
+						"        console.log(`Jugador ${p.instVars.PlayerID} agarró mascara: ${mask.instVars.MaskID}`);",
+						"    }",
 						"}"
 					]
 				}
@@ -160,54 +338,56 @@
 					"type": "script",
 					"language": "typescript",
 					"script": [
-						"const player = runtime.objects.Player.getFirstInstance() as any;",
-						"const bullet = runtime.objects.Bullet_Type.getAllInstances().find(b => ",
-						"    runtime.objects.Enemy.getAllInstances().some(e => b.testOverlap(e))",
-						") as any;",
+						"const bullets = runtime.objects.Bullet_Type.getAllInstances();",
+						"const enemies = runtime.objects.Enemy.getAllInstances();",
 						"",
-						"const enemy = runtime.objects.Enemy.getAllInstances().find(e => bullet && e.testOverlap(bullet)) as any;",
+						"for (const b of bullets) {",
+						"    const enemy = enemies.find(e => b.testOverlap(e));",
 						"",
-						"if (bullet.instVars.IgnoreUID === enemy.uid) return;",
+						"    if (!enemy || b.instVars.IgnoreUID === enemy.uid) continue;",
 						"",
-						"if (bullet && enemy && player) {",
-						"    const mask = player.instVars.ActiveMask;",
-						"    ",
-						"    enemy.instVars.HP -= bullet.instVars.Damage;",
-						"    console.log(`[${mask}] HPEnemy`, enemy.instVars.HP);",
-						"    bullet.destroy();",
+						"    const maskType = b.instVars.ActiveMask || \"Normal\"; ",
 						"",
-						"    if (mask === \"Fuego\") {",
+						"    enemy.instVars.HP -= b.instVars.Damage;",
+						"    console.log(`[${maskType}] HPEnemy`, enemy.instVars.HP);",
+						"    b.destroy();",
+						"",
+						"    if (maskType === \"Fuego\") {",
 						"        enemy.behaviors.Timer.startTimer(3, \"burn\", \"regular\"); ",
-						"        enemy.instVars.BurnDuration = 6;",
+						"        enemy.instVars.BurnTicks = 6;",
 						"    } ",
-						"    else if (mask === \"Hielo\") {",
+						"    else if (maskType === \"Hielo\") {",
 						"        enemy.instVars.IsFrozen = true;",
 						"        enemy.colorRgb = [100, 100, 255];",
 						"        enemy.behaviors.Timer.startTimer(3, \"Thaw\");",
-						"        console.log(\"¡Enemigo congelado!\");",
 						"    }",
-						"   else if (mask === \"Rayo\" && bullet.instVars.Bounces > 0) {",
-						"    const target = runtime.objects.Enemy.getAllInstances()",
-						"        .filter(e => e !== enemy)",
-						"        .sort((a, b) => Math.hypot(a.x - enemy.x, a.y - enemy.y) - Math.hypot(b.x - enemy.x, b.y - enemy.y))[0];",
-						"    ",
-						"    if (target && Math.hypot(target.x - enemy.x, target.y - enemy.y) < 1000) {",
-						"        const angleToTarget = Math.atan2(target.y - enemy.y, target.x - enemy.x);",
-						"        const chain = runtime.objects.Bullet_Type.createInstance(\"Layer 0\", enemy.x, enemy.y) as any;",
-						"        chain.angle = angleToTarget;",
-						"        if (chain.behaviors.Bullet) {",
-						"            chain.behaviors.Bullet.angle = angleToTarget;",
+						"    else if (maskType === \"Rayo\" && b.instVars.Bounces > 0) {",
+						"        const target = enemies",
+						"            .filter(e => e !== enemy) ",
+						"            .sort((a, bDist) => Math.hypot(a.x - enemy.x, a.y - enemy.y) - Math.hypot(bDist.x - enemy.x, bDist.y - enemy.y))[0];",
+						"        ",
+						"        if (target && Math.hypot(target.x - enemy.x, target.y - enemy.y) < 1000) {",
+						"            const angleToTarget = Math.atan2(target.y - enemy.y, target.x - enemy.x);",
+						"            const chain = runtime.objects.Bullet_Type.createInstance(\"Layer 0\", enemy.x, enemy.y) as any;",
+						"            ",
+						"            chain.angle = angleToTarget;",
+						"            if (chain.behaviors.Bullet) chain.behaviors.Bullet.angle = angleToTarget;",
+						"            ",
+						"            chain.instVars.IgnoreUID = enemy.uid;      ",
+						"            chain.instVars.Bounces = b.instVars.Bounces - 1; ",
+						"            chain.instVars.Damage = b.instVars.Damage;",
+						"            chain.instVars.ActiveMask = maskType; ",
+						"            chain.instVars.OwnerUID = b.instVars.OwnerUID; ",
 						"        }",
-						"        chain.instVars.IgnoreUID = enemy.uid;      ",
-						"        chain.instVars.Bounces = bullet.instVars.Bounces - 1; ",
-						"        chain.instVars.Damage = bullet.instVars.Damage;",
 						"    }",
-						"}",
-						"    else if (mask === \"Peste\") {",
+						"    else if (maskType === \"Peste\") {",
 						"        runtime.objects.VenomPool.createInstance(\"Layer 0\", enemy.x, enemy.y);",
 						"    }",
-						"    else if (mask === \"Luz\") {",
-						"        player.instVars.HP = Math.min(1000, player.instVars.HP + 5);",
+						"    else if (maskType === \"Luz\") {",
+						"        const owner = runtime.objects.Player.getAllInstances().find(p => p.uid === b.instVars.OwnerUID);",
+						"        if (owner) {",
+						"             owner.instVars.HP = Math.min(1000, owner.instVars.HP + 5);",
+						"        }",
 						"    }",
 						"",
 						"    if (enemy.instVars.HP <= 0) enemy.destroy();",
@@ -234,19 +414,23 @@
 					"type": "script",
 					"language": "typescript",
 					"script": [
-						"const bullet = runtime.objects.Enemy_Bullet.getAllInstances().find(b => ",
-						"    runtime.objects.Player.getAllInstances().some(e => b.testOverlap(e))",
-						");",
+						"const bullets = runtime.objects.Enemy_Bullet.getAllInstances();",
+						"const players = runtime.objects.Player.getAllInstances();",
 						"",
-						"const player = runtime.objects.Player.getAllInstances().find(e => bullet && e.testOverlap(bullet)) as any;",
+						"for (const b of bullets) {",
+						"    const victim = players.find(p => b.testOverlap(p));",
 						"",
-						"if (bullet && player) {",
-						"    player.instVars.HP -= (bullet as any).instVars.Damage;",
-						"    bullet.destroy();",
-						"    console.log(\"HPPlayer\", player.instVars.HP);",
-						"    if (player.instVars.HP <= 0) {",
-						"        player.destroy();",
-						"        console.log(\"fin del juego\");",
+						"    if (victim) {",
+						"        victim.instVars.HP -= b.instVars.Damage;",
+						"        b.destroy();",
+						"        console.log(`HP Player ${victim.instVars.PlayerID}:`, victim.instVars.HP);",
+						"",
+						"        if (victim.instVars.HP <= 0) {",
+						"            victim.destroy();",
+						"            if (runtime.objects.Player.getAllInstances().length === 0) {",
+						"                console.log(\"GAME OVER - Todos murieron\");",
+						"            }",
+						"        }",
 						"    }",
 						"}"
 					]

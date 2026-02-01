@@ -1,0 +1,10 @@
+{
+	"name": "TxtTime",
+	"plugin-id": "Text",
+	"sid": 206993637028780,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": []
+}
