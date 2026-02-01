@@ -124,6 +124,69 @@ function Tick(runtime: IRuntime) {
         }
     }
 
+// =================================================
+    // E. EFECTO "MORAS DE MINECRAFT" (SPRITE 3)
+    // =================================================
+    
+    // 1. CONSTANTES DE VELOCIDAD
+    // Ajusta estos números según la velocidad real de tu juego
+    const VELOCIDAD_NORMAL = 200; 
+    const VELOCIDAD_LENTA = 150;   // Qué tan lento se pone (efecto trabarse)
+
+    // 2. RECORREMOS JUGADORES PRIMERO
+    for (const p of players) {
+        const player = p as any;
+        const movement = player.behaviors["8Direction"]; // Asegúrate que se llame así tu behavior
+
+        // A. RESETEAR VELOCIDAD (Por defecto asumimos que es libre)
+        if (movement) {
+            movement.maxSpeed = VELOCIDAD_NORMAL;
+        }
+
+        // 3. RECORREMOS LAS TRAMPAS PARA VER SI CHOCAMOS
+        // (Asegúrate que el objeto se llame 'Sprite3' o el nombre que tenga en tu proyecto)
+        for (const trap of runtime.objects.Sprite3.instances()) { 
+            const t = trap as any;
+
+            // Solo si la trampa está en frames peligrosos (2 al 6)
+            if (t.animationFrame >= 2 && t.animationFrame <= 6) {
+                
+                if (t.testOverlap(player)) {
+                    
+                    // --- EFECTO 1: TRABARSE (Ralentizar) ---
+                    if (movement) {
+                        movement.maxSpeed = VELOCIDAD_LENTA;
+                    }
+
+                    // --- EFECTO 2: DAÑO ---
+                    if (!player.instVars.IsHurt) {
+                        player.instVars.HP -= 10; // Daño un poco menor si es constante
+                        
+                        // Feedback visual
+                        player.colorRgb = [10, 0, 0];
+                        player.instVars.IsHurt = true;
+
+                        // Chequeo de muerte
+                        if (player.instVars.HP <= 0) {
+                            player.destroy();
+                        }
+
+                        // Reset del daño (Cooldown)
+                        setTimeout(() => {
+                            if (player) {
+                                player.colorRgb = [1, 1, 1];
+                                player.instVars.IsHurt = false;
+                            }
+                        }, 1000); 
+                    }
+                    
+                    // Si ya encontró una trampa que lo traba, no necesitamos checar las demás para este jugador
+                    // (Opcional: break; para optimizar)
+                }
+            }
+        }
+    }
+
     // C. CHEQUEO DE GAME OVER (Si mueren TODOS)
     if (players.length === 0 && waveState !== "GAMEOVER") {
         console.log("GAME OVER - TODOS MUERTOS");
