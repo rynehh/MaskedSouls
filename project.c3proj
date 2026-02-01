@@ -198,7 +198,9 @@
 					"TxtNombreMascara",
 					"CorazonUI",
 					"TxtAnuncio",
-					"TxtPuntaje"
+					"TxtPuntaje",
+					"txtTuto",
+					"Sprite_Tuto"
 				],
 				"subfolders": [],
 				"name": "UI"

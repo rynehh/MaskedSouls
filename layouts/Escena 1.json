@@ -906,6 +906,43 @@
 					}
 				},
 				{
+					"type": "Sprite_Tuto",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "Animation 1",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 48,
+					"sid": 320844707982485,
+					"tags": "",
+					"instanceVariables": {},
+					"behaviors": {},
+					"instanceFolderItem": {
+						"sid": 320844707982485,
+						"expanded": true
+					},
+					"showing": true,
+					"locked": false,
+					"world": {
+						"x": 214.5,
+						"y": 596.5,
+						"width": 359,
+						"height": 568,
+						"originX": 0.5,
+						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
 					"type": "UI_Icono",
 					"properties": {
 						"initially-visible": true,
@@ -1330,6 +1367,59 @@
 						],
 						"angle": 0,
 						"zElevation": 1
+					}
+				},
+				{
+					"type": "txtTuto",
+					"properties": {
+						"text": "Instrucciones",
+						"enable-bbcode": true,
+						"font": "alagard",
+						"size": 25,
+						"line-height": 0,
+						"bold": true,
+						"italic": false,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"horizontal-alignment": "left",
+						"vertical-alignment": "top",
+						"wrapping": "word",
+						"text-direction": "ltr",
+						"icon-set": -1,
+						"initially-visible": true,
+						"origin": "top-left",
+						"read-aloud": false
+					},
+					"uid": 47,
+					"sid": 563965387694837,
+					"tags": "",
+					"instanceVariables": {},
+					"behaviors": {},
+					"instanceFolderItem": {
+						"sid": 563965387694837,
+						"expanded": true
+					},
+					"showing": true,
+					"locked": false,
+					"world": {
+						"x": 83,
+						"y": 364,
+						"width": 479,
+						"height": 510,
+						"originX": 0,
+						"originY": 0,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 2
 					}
 				}
 			],

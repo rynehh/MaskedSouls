@@ -22,7 +22,14 @@ let enemiesAlive = 0;
 let timeBetweenWaves = 7;    
 let waveTimer = 0;          
 let spawnRateTimer = 0;      
-let waveCount = 1;           
+let waveCount = 1; 
+let tutoTimer = 0;
+let tutoActive = false;
+let tutoShown = false;
+
+
+const TUTO_VISIBLE = timeBetweenWaves + 10;
+const TUTO_FADE = 1.5;    
 
 const MAP_SIZE = 60; 
 
@@ -200,17 +207,78 @@ function Tick(runtime: IRuntime) {
     const currentEnemies = runtime.objects.Enemy.getAllInstances();
     enemiesAlive = currentEnemies.length;
     const txtAnuncio = runtime.objects.TxtAnuncio ? runtime.objects.TxtAnuncio.getFirstInstance() : null;
+    const txtTuto = runtime.objects.txtTuto ? runtime.objects.txtTuto.getFirstInstance() : null;
+
+    const sprTuto = runtime.objects.Sprite_Tuto ? runtime.objects.Sprite_Tuto.getFirstInstance() : null;
+
+    txtTuto!.isVisible = false;
+    sprTuto!.isVisible = false;
+
+
 
     if (waveState !== "GAMEOVER") {
         switch (waveState) {
             case "ESPERANDO":
                 waveTimer += runtime.dt;
-                if (txtAnuncio && players.length > 0) {
+
+                if (waveTimer < runtime.dt) {
+                    tutoTimer = 0;
+                }
+
+                if (txtAnuncio && txtTuto && players.length > 0) {
+                    txtTuto!.isVisible = true;
+                    sprTuto!.isVisible = true;
+
                     const timeLeft = Math.ceil(timeBetweenWaves - waveTimer);
                     txtAnuncio.text = "OLEADA " + waveCount + "\nCOMIENZA EN " + timeLeft;
-                    if (waveTimer < 1) txtAnuncio.opacity = waveTimer;
-                    else if (waveTimer > timeBetweenWaves - 1) txtAnuncio.opacity = timeBetweenWaves - waveTimer;
-                    else txtAnuncio.opacity = 1;
+                    
+                    if (waveCount === 1 && !tutoShown) {
+                        tutoShown = true;
+                        tutoActive = true;
+                        tutoTimer = 0;
+
+                        txtTuto.text = players.length > 1
+                            ? "CÓMO JUGAR\n\n" +
+                            "JUGADOR 1\n" +
+                            "Moverse: I J K L\n" +
+                            "Disparar: Mouse\n\n" +
+                            "JUGADOR 2\n" +
+                            "Moverse: W A S D\n" +
+                            "Disparar: Espacio\n\n"
+                            : "CÓMO JUGAR\n\n" +
+                            "Moverse: I J K L\n" +
+                            "Disparar: Mouse\n\n";
+                    }
+
+                    const fade = waveTimer < 1
+                        ? waveTimer
+                        : waveTimer > timeBetweenWaves - 1
+                            ? timeBetweenWaves - waveTimer
+                            : 1;
+
+                    txtAnuncio.opacity = fade;
+                    
+
+                    tutoTimer += runtime.dt;
+                    let tutoOpacity = 1;
+
+                    // fade in
+                    if (tutoTimer < TUTO_FADE) {
+                        tutoOpacity = tutoTimer / TUTO_FADE;
+                    }
+                    // fade out (DESPUÉS)
+                    else if (tutoTimer > TUTO_FADE + TUTO_VISIBLE) {
+                        tutoOpacity = 1 - (
+                            (tutoTimer - TUTO_FADE - TUTO_VISIBLE) / TUTO_FADE
+                        );
+                    }
+
+                    txtTuto.opacity = Math.max(0, Math.min(1, tutoOpacity));
+
+                     if (sprTuto) {
+                        sprTuto.opacity = txtTuto.opacity;
+                    }
+
                 }
                 if (waveTimer >= timeBetweenWaves) {
                     const playerCountMult = players.length > 1 ? 1.5 : 1; 
@@ -241,6 +309,35 @@ function Tick(runtime: IRuntime) {
                 }
                 break;
         }
+
+        if (tutoActive && txtTuto) {
+            tutoTimer += runtime.dt;
+
+            let tutoOpacity = 1;
+
+            if (tutoTimer < TUTO_FADE) {
+                tutoOpacity = tutoTimer / TUTO_FADE;
+            }
+            else if (tutoTimer > TUTO_FADE + TUTO_VISIBLE) {
+                tutoOpacity = 1 - (
+                    (tutoTimer - TUTO_FADE - TUTO_VISIBLE) / TUTO_FADE
+                );
+            }
+
+            txtTuto.opacity = Math.max(0, Math.min(1, tutoOpacity));
+
+            if (sprTuto) {
+                sprTuto.opacity = txtTuto.opacity;
+            }
+
+            // Cuando termina completamente
+            if (tutoTimer > TUTO_FADE * 2 + TUTO_VISIBLE) {
+                txtTuto.opacity = 0;
+                if (sprTuto) sprTuto.opacity = 0;
+                tutoActive = false;
+            }
+        }
+
     }
 
     // =================================================
