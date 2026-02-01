@@ -4,6 +4,410 @@
 		{
 			"eventType": "include",
 			"includeSheet": "mapa_procedural"
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "key-is-down",
+					"objectClass": "Keyboard",
+					"sid": 216739719348300,
+					"parameters": {
+						"key": 87
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "simulate-control",
+					"objectClass": "Player",
+					"sid": 582631077202931,
+					"behaviorType": "8Direction",
+					"parameters": {
+						"control": "up"
+					}
+				}
+			],
+			"sid": 487892527433425
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "key-is-down",
+					"objectClass": "Keyboard",
+					"sid": 625391674897602,
+					"parameters": {
+						"key": 65
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "simulate-control",
+					"objectClass": "Player",
+					"sid": 425316522829086,
+					"behaviorType": "8Direction",
+					"parameters": {
+						"control": "left"
+					}
+				}
+			],
+			"sid": 127490127698949
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "key-is-down",
+					"objectClass": "Keyboard",
+					"sid": 746657425834575,
+					"parameters": {
+						"key": 83
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "simulate-control",
+					"objectClass": "Player",
+					"sid": 460148642340406,
+					"behaviorType": "8Direction",
+					"parameters": {
+						"control": "down"
+					}
+				}
+			],
+			"sid": 558039808486429
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "key-is-down",
+					"objectClass": "Keyboard",
+					"sid": 559845587039818,
+					"parameters": {
+						"key": 68
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "simulate-control",
+					"objectClass": "Player",
+					"sid": 868284559643527,
+					"behaviorType": "8Direction",
+					"parameters": {
+						"control": "right"
+					}
+				}
+			],
+			"sid": 147990751973091
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-collision-with-another-object",
+					"objectClass": "Player",
+					"sid": 516745357689734,
+					"parameters": {
+						"object": "Mask"
+					}
+				}
+			],
+			"actions": [
+				{
+					"type": "script",
+					"language": "typescript",
+					"script": [
+						"const { updatePlayerStats } = await import(\"./main.js\");",
+						"",
+						"const player: any = runtime.objects.Player.getFirstInstance();",
+						"",
+						"let mask: any = null;",
+						"if (player) {",
+						"    mask = runtime.objects.Mask.getAllInstances().find(m => player.testOverlap(m));",
+						"}",
+						"",
+						"if (player && mask) {",
+						"    updatePlayerStats(player, mask.instVars.MaskID);",
+						"    mask.destroy();",
+						"    console.log(\"si jalo.\");",
+						"} else {",
+						"    console.error(\"me chingue\");",
+						"}"
+					]
+				}
+			],
+			"sid": 370288435426745
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-collision-with-another-object",
+					"objectClass": "Bullet_Type",
+					"sid": 785304042229788,
+					"parameters": {
+						"object": "Enemy"
+					}
+				}
+			],
+			"actions": [
+				{
+					"type": "script",
+					"language": "typescript",
+					"script": [
+						"const player = runtime.objects.Player.getFirstInstance() as any;",
+						"const bullet = runtime.objects.Bullet_Type.getAllInstances().find(b => ",
+						"    runtime.objects.Enemy.getAllInstances().some(e => b.testOverlap(e))",
+						") as any;",
+						"",
+						"const enemy = runtime.objects.Enemy.getAllInstances().find(e => bullet && e.testOverlap(bullet)) as any;",
+						"",
+						"if (bullet.instVars.IgnoreUID === enemy.uid) return;",
+						"",
+						"if (bullet && enemy && player) {",
+						"    const mask = player.instVars.ActiveMask;",
+						"    ",
+						"    enemy.instVars.HP -= bullet.instVars.Damage;",
+						"    console.log(`[${mask}] HPEnemy`, enemy.instVars.HP);",
+						"    bullet.destroy();",
+						"",
+						"    if (mask === \"Fuego\") {",
+						"        enemy.behaviors.Timer.startTimer(3, \"burn\", \"regular\"); ",
+						"        enemy.instVars.BurnDuration = 6;",
+						"    } ",
+						"    else if (mask === \"Hielo\") {",
+						"        enemy.instVars.IsFrozen = true;",
+						"        enemy.colorRgb = [100, 100, 255];",
+						"        enemy.behaviors.Timer.startTimer(3, \"Thaw\");",
+						"        console.log(\"¡Enemigo congelado!\");",
+						"    }",
+						"   else if (mask === \"Rayo\" && bullet.instVars.Bounces > 0) {",
+						"    const target = runtime.objects.Enemy.getAllInstances()",
+						"        .filter(e => e !== enemy)",
+						"        .sort((a, b) => Math.hypot(a.x - enemy.x, a.y - enemy.y) - Math.hypot(b.x - enemy.x, b.y - enemy.y))[0];",
+						"    ",
+						"    if (target && Math.hypot(target.x - enemy.x, target.y - enemy.y) < 1000) {",
+						"        const angleToTarget = Math.atan2(target.y - enemy.y, target.x - enemy.x);",
+						"        const chain = runtime.objects.Bullet_Type.createInstance(\"Layer 0\", enemy.x, enemy.y) as any;",
+						"        chain.angle = angleToTarget;",
+						"        if (chain.behaviors.Bullet) {",
+						"            chain.behaviors.Bullet.angle = angleToTarget;",
+						"        }",
+						"        chain.instVars.IgnoreUID = enemy.uid;      ",
+						"        chain.instVars.Bounces = bullet.instVars.Bounces - 1; ",
+						"        chain.instVars.Damage = bullet.instVars.Damage;",
+						"    }",
+						"}",
+						"    else if (mask === \"Peste\") {",
+						"        runtime.objects.VenomPool.createInstance(\"Layer 0\", enemy.x, enemy.y);",
+						"    }",
+						"    else if (mask === \"Luz\") {",
+						"        player.instVars.HP = Math.min(1000, player.instVars.HP + 5);",
+						"    }",
+						"",
+						"    if (enemy.instVars.HP <= 0) enemy.destroy();",
+						"}"
+					]
+				}
+			],
+			"sid": 949545479637660
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-collision-with-another-object",
+					"objectClass": "Enemy_Bullet",
+					"sid": 528499721185937,
+					"parameters": {
+						"object": "Player"
+					}
+				}
+			],
+			"actions": [
+				{
+					"type": "script",
+					"language": "typescript",
+					"script": [
+						"const bullet = runtime.objects.Enemy_Bullet.getAllInstances().find(b => ",
+						"    runtime.objects.Player.getAllInstances().some(e => b.testOverlap(e))",
+						");",
+						"",
+						"const player = runtime.objects.Player.getAllInstances().find(e => bullet && e.testOverlap(bullet)) as any;",
+						"",
+						"if (bullet && player) {",
+						"    player.instVars.HP -= (bullet as any).instVars.Damage;",
+						"    bullet.destroy();",
+						"    console.log(\"HPPlayer\", player.instVars.HP);",
+						"    if (player.instVars.HP <= 0) {",
+						"        player.destroy();",
+						"        console.log(\"fin del juego\");",
+						"    }",
+						"}"
+					]
+				}
+			],
+			"sid": 285350013533534
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-timer",
+					"objectClass": "Enemy",
+					"sid": 689037994954928,
+					"behaviorType": "Timer",
+					"parameters": {
+						"tag": "\"Thaw\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-enabled",
+					"objectClass": "Enemy",
+					"sid": 550391407629566,
+					"behaviorType": "8Direction",
+					"parameters": {
+						"state": "enabled"
+					}
+				},
+				{
+					"id": "set-boolean-instvar",
+					"objectClass": "Enemy",
+					"sid": 728602519853215,
+					"parameters": {
+						"instance-variable": "IsFrozen",
+						"value": "false"
+					}
+				}
+			],
+			"sid": 655156068806247
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-timer",
+					"objectClass": "Enemy",
+					"sid": 600089371788644,
+					"behaviorType": "Timer",
+					"parameters": {
+						"tag": "\"Burn\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "subtract-from-instvar",
+					"objectClass": "Enemy",
+					"sid": 194242153244390,
+					"parameters": {
+						"instance-variable": "HP",
+						"value": "3"
+					}
+				},
+				{
+					"id": "subtract-from-instvar",
+					"objectClass": "Enemy",
+					"sid": 252891812889862,
+					"parameters": {
+						"instance-variable": "BurnTicks",
+						"value": "1"
+					}
+				}
+			],
+			"sid": 266909098762248
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "Enemy",
+					"sid": 422212436681834,
+					"parameters": {
+						"instance-variable": "BurnTicks",
+						"comparison": 3,
+						"value": "0"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "stop-timer",
+					"objectClass": "Enemy",
+					"sid": 160127771833586,
+					"behaviorType": "Timer",
+					"parameters": {
+						"tag": "\"Burn\""
+					}
+				}
+			],
+			"sid": 636719864925108
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-collision-with-another-object",
+					"objectClass": "VenomPool",
+					"sid": 101317417509220,
+					"parameters": {
+						"object": "Enemy"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "start-timer",
+					"objectClass": "VenomPool",
+					"sid": 727810099351931,
+					"behaviorType": "Timer",
+					"parameters": {
+						"duration": "3",
+						"type": "once",
+						"tag": "\"Venom\""
+					}
+				}
+			],
+			"sid": 302203150977346
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-timer",
+					"objectClass": "VenomPool",
+					"sid": 589603572909845,
+					"behaviorType": "Timer",
+					"parameters": {
+						"tag": "\"Venom\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "subtract-from-instvar",
+					"objectClass": "Enemy",
+					"sid": 927723237119348,
+					"parameters": {
+						"instance-variable": "HP",
+						"value": "2"
+					}
+				},
+				{
+					"id": "destroy",
+					"objectClass": "VenomPool",
+					"sid": 559035869788748
+				}
+			],
+			"sid": 216880227836587
 		}
 	],
 	"sid": 570815279696549
