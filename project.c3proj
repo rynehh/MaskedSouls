@@ -109,7 +109,6 @@
 	"objectTypes": {
 		"items": [
 			"MapaDeTeselas",
-			"Sprite",
 			"Player",
 			"Bullet_Type",
 			"Mask",
@@ -187,7 +186,16 @@
 			"subfolders": []
 		},
 		"font": {
-			"items": [],
+			"items": [
+				{
+					"name": "alagard.woff",
+					"type": "application/font-woff",
+					"sid": 279701383352365,
+					"file-info": {
+						"purpose": "none"
+					}
+				}
+			],
 			"subfolders": []
 		},
 		"icon": {

@@ -354,8 +354,8 @@
 					"instanceVariables": {
 						"CurrentMask": "default",
 						"AttackSpeed": 0.8,
-						"Damage": 10,
-						"HP": 100,
+						"Damage": 100,
+						"HP": 1000,
 						"PlayerID": 2,
 						"ControlScheme": "",
 						"IsLocal": true
@@ -363,7 +363,7 @@
 					"behaviors": {
 						"8Direction": {
 							"properties": {
-								"max-speed": 200,
+								"max-speed": 150,
 								"acceleration": 600,
 								"deceleration": 500,
 								"directions": "dir-8",

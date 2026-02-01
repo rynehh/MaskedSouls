@@ -1,180 +1,239 @@
-
 // Import any other script files here, e.g.:
 // import * as myModule from "./mymodule.js";
 
 runOnStartup(async runtime => {
-	// Code to run on the loading screen.
-	// Note layouts, objects etc. are not yet available.
-
-	runtime.addEventListener("beforeprojectstart", () => OnBeforeProjectStart(runtime));
+    runtime.addEventListener("beforeprojectstart", () => OnBeforeProjectStart(runtime));
 });
 
 async function OnBeforeProjectStart(runtime: IRuntime) {
-	// Code to run just before 'On start of layout' on
-	// the first layout. Loading has finished and initial
-	// instances are created and available to use here.
-
-	runtime.addEventListener("tick", () => Tick(runtime));
+    runtime.addEventListener("tick", () => Tick(runtime));
 }
 
-let spawnTimer = 0;
+// ================================
+// VARIABLES GLOBALES DE JUEGO
+// ================================
+let gameTime = 0;
+let gameHour = 0;
+const HOUR_DURATION = 90; 
+
+// VARIABLES DE OLEADA (WAVE SYSTEM)
+let waveState = "ESPERANDO"; 
+let enemiesToSpawn = 0;      
+let enemiesAlive = 0;     
+let timeBetweenWaves = 3;    
+let waveTimer = 0;          
+let spawnRateTimer = 0;      
+
+const MAP_SIZE = 70;        
 
 function Tick(runtime: IRuntime) {
     const players = runtime.objects.Player.getAllInstances();
     const mouse = runtime.mouse;
     const keyboard = runtime.keyboard;
 
-    // --- 1. LÓGICA DE DISPARO DE LOS JUGADORES ---
+    // -------------------------------
+    // 1. DISPARO DE JUGADORES
+    // -------------------------------
     for (const p of players) {
         const player = p as any;
         const timer = player.behaviors.Timer;
-        
-        // Validación básica
         if (!player || !timer) continue;
 
-        // Función auxiliar para disparar (evita repetir código)
         const fireBullet = (angle: number) => {
             if (!timer.isTimerRunning("fire")) {
-                const bullet = runtime.objects.Bullet_Type.createInstance("Layer 0", player.x, player.y) as any;
-                
+                const bullet = runtime.objects.Bullet_Type.createInstance(
+                    "Layer 0",
+                    player.x,
+                    player.y
+                ) as any;
+
                 bullet.angle = angle;
                 if (bullet.behaviors.Bullet) {
                     bullet.behaviors.Bullet.angle = angle;
                 }
-                
-                // Heredar stats del jugador
+
                 bullet.instVars.Damage = player.instVars.Damage;
-                bullet.instVars.IgnoreUID = player.uid; // Importante para que no se disparen a sí mismos
-                
-				// NUEVO: Guardamos qué máscara traía y quién disparó
-                bullet.instVars.ActiveMask = player.instVars.ActiveMask || "Normal"; // Fallback a "Normal" por si es null
+                bullet.instVars.IgnoreUID = player.uid;
+                bullet.instVars.ActiveMask = player.instVars.ActiveMask || "Normal";
                 bullet.instVars.OwnerUID = player.uid;
 
-                // Iniciar cooldown
                 timer.startTimer(player.instVars.AttackSpeed, "fire");
             }
         };
 
-        // CONTROLES JUGADOR 1 (Mouse)
-        // Asumimos que PlayerID 1 es el del Mouse/WASD
-        if (player.instVars.PlayerID === 1 && mouse && mouse.isMouseButtonDown(0)) {
-            const mousePos = mouse.getMousePosition();
-            const angleToMouse = Math.atan2(mousePos[1] - player.y, mousePos[0] - player.x);
-            fireBullet(angleToMouse);
+        // Player 1 – Mouse
+        if (player.instVars.PlayerID === 1 && mouse?.isMouseButtonDown(0)) {
+            const [mx, my] = mouse.getMousePosition();
+            fireBullet(Math.atan2(my - player.y, mx - player.x));
         }
 
-        // CONTROLES JUGADOR 2 (Teclado)
-        // Asumimos que PlayerID 2 usa IJKL y dispara con 'O' o 'Espacio'
-        // Dispara hacia donde esté mirando el personaje (player.angle)
-        if (player.instVars.PlayerID === 2 && keyboard && keyboard.isKeyDown("KeyO")) { // Puedes cambiar "KeyO" por "Space"
+        // Player 2 – Teclado
+        if (player.instVars.PlayerID === 2 && keyboard?.isKeyDown("KeyO")) {
             fireBullet(player.angle);
         }
     }
 
-    // --- 2. SPAWN DE ENEMIGOS ---
-    spawnTimer += runtime.dt;
-    // He aumentado el límite de enemigos a 10 para probar, ajusta según necesites
-    if (spawnTimer >= 1 && runtime.objects.Enemy.getAllInstances().length < 10) {
-        const x = Math.random() * runtime.layout.width;
-        const y = Math.random() * runtime.layout.height;
-        // Evitar spawnear muy cerca de los jugadores (opcional, pero recomendado)
-        const enemy = runtime.objects.Enemy.createInstance("Layer 0", x, y) as any;
-        spawnTimer = 0;
+    // -------------------------------
+    // 2. TIEMPO / HORAS
+    // -------------------------------
+    gameTime += runtime.dt;
+    const currentHour = Math.floor(gameTime / HOUR_DURATION);
+
+    if (currentHour > gameHour) {
+        gameHour = currentHour;
+        console.log(`¡HA COMENZADO LA HORA ${gameHour}!`);
+        spawnMaskReward(runtime);
+
+        for (const p of players) {
+            (p as any).instVars.HP += 20;
+        }
     }
 
-    // --- 3. IA DE ENEMIGOS (BUSCAR AL JUGADOR MÁS CERCANO) ---
+    // -------------------------------
+    // 3. SISTEMA DE OLEADAS
+    // -------------------------------
+    const enemiesAlive = runtime.objects.Enemy.getAllInstances().length;
+
+    switch (waveState) {
+        case "ESPERANDO":
+            waveTimer += runtime.dt;
+            if (waveTimer >= timeBetweenWaves) {
+                enemiesToSpawn = 3 + gameHour * 2;
+                waveState = "SPAWNEANDO";
+                waveTimer = 0;
+            }
+            break;
+
+        case "SPAWNEANDO":
+            spawnRateTimer += runtime.dt;
+            if (spawnRateTimer >= 0.5 && enemiesToSpawn > 0) {
+                const spawnPoint = getValidSpawnPoint(runtime);
+                if (spawnPoint) {
+                    runtime.objects.Enemy.createInstance(
+                        "Layer 0",
+                        spawnPoint.x,
+                        spawnPoint.y
+                    );
+                    enemiesToSpawn--;
+                    spawnRateTimer = 0;
+                }
+            }
+            if (enemiesToSpawn <= 0) waveState = "PELEANDO";
+            break;
+
+        case "PELEANDO":
+            if (enemiesAlive === 0) {
+                waveState = "ESPERANDO";
+                waveTimer = 0;
+            }
+            break;
+    }
+
+    // -------------------------------
+    // 4. IA DE ENEMIGOS
+    // -------------------------------
     const DISTANCIA_IDEAL = 400;
     const RANGO_DISPARO = 600;
 
     for (const enemy of runtime.objects.Enemy.instances()) {
         const e = enemy as any;
-        
         if (!e || e.instVars.IsFrozen) continue;
 
-        // Encontrar al jugador más cercano
-        let targetPlayer: any = null;
-        let minDistance = Infinity;
+        let target: any = null;
+        let minDist = Infinity;
 
         for (const p of players) {
-            const pInst = p as any;
-            // Solo considerar jugadores vivos (HP > 0 si tienes esa lógica, o simplemente que existan)
-            const d = Math.hypot(pInst.x - e.x, pInst.y - e.y);
-            if (d < minDistance) {
-                minDistance = d;
-                targetPlayer = pInst;
+            const pl = p as any;
+            const d = Math.hypot(pl.x - e.x, pl.y - e.y);
+            if (d < minDist) {
+                minDist = d;
+                target = pl;
             }
         }
 
-        // Si encontramos un objetivo válido
-        if (targetPlayer) {
-            const angleToTarget = Math.atan2(targetPlayer.y - e.y, targetPlayer.x - e.x);
+        if (!target) continue;
 
-            // Movimiento
-            if (minDistance > DISTANCIA_IDEAL) {
-                e.angle = angleToTarget;
-            } else {
-                // Orbitar / Moverse lateralmente si está muy cerca
-                e.angle = angleToTarget + 1.57;
-            }
+        const angle = Math.atan2(target.y - e.y, target.x - e.x);
+        e.angle = minDist > DISTANCIA_IDEAL ? angle : angle + 1.57;
 
-            const behavior8Dir = e.behaviors["8Direction"];
-            if (behavior8Dir) {
-                const vx = Math.cos(e.angle);
-                const vy = Math.sin(e.angle);
+        const move = e.behaviors["8Direction"];
+        if (move) {
+            const vx = Math.cos(e.angle);
+            const vy = Math.sin(e.angle);
+            if (vx > 0.1) move.simulateControl("right");
+            if (vx < -0.1) move.simulateControl("left");
+            if (vy > 0.1) move.simulateControl("down");
+            if (vy < -0.1) move.simulateControl("up");
+        }
 
-                if (vx > 0.1) behavior8Dir.simulateControl("right");
-                if (vx < -0.1) behavior8Dir.simulateControl("left");
-                if (vy > 0.1) behavior8Dir.simulateControl("down");
-                if (vy < -0.1) behavior8Dir.simulateControl("up");
-            }
+        if (minDist < RANGO_DISPARO) {
+            const timer = e.behaviors.Timer;
+            if (timer && !timer.isTimerRunning("enemy_fire")) {
+                const eb = runtime.objects.Enemy_Bullet.createInstance(
+                    "Layer 0",
+                    e.x,
+                    e.y
+                ) as any;
 
-            if (minDistance < RANGO_DISPARO) {
-                const timer = e.behaviors.Timer;
-                if (timer && !timer.isTimerRunning("enemy_fire")) {
-                    const eb = runtime.objects.Enemy_Bullet.createInstance("Layer 0", e.x, e.y) as any;
-                    eb.angle = angleToTarget; 
-                    if (eb.behaviors && eb.behaviors.Bullet) {
-                         eb.behaviors.Bullet.angle = angleToTarget;
-                    }
-
-                    timer.startTimer(1.5, "enemy_fire");
+                eb.angle = angle;
+                if (eb.behaviors.Bullet) {
+                    eb.behaviors.Bullet.angle = angle;
                 }
+
+                timer.startTimer(1.5, "enemy_fire");
             }
         }
     }
 }
 
-export function updatePlayerStats(Player: any, maskId: string) {
-	Player.instVars.ActiveMask = maskId;
 
-	switch (maskId) {
-		case "Fuego":
-			Player.instVars.AttackSpeed = 0.2;
-			Player.instVars.Damage = 15;
-			break;
-		case "Hielo":
-			Player.instVars.AttackSpeed = 0.5;
-			Player.instVars.Damage = 30;
-			break;
-		case "Nube":
-			Player.instVars.AttackSpeed = 0.05;
-			Player.instVars.Damage = 5;
-			break;
-		case "Rayo":
-			Player.instVars.AttackSpeed = 0.4;
-			Player.instVars.Damage = 20;
-			break;
-		case "Peste":
-			Player.instVars.AttackSpeed = 0.6;
-			Player.instVars.Damage = 10;
-			break;
-		case "Luz":
-			Player.instVars.AttackSpeed = 0.8;
-			Player.instVars.Damage = 10;
-			break;
-		default:
-			Player.instVars.AttackSpeed = 0.8;
-			Player.instVars.Damage = 10;
-			Player.instVars.ActiveMask = "Normal";
-	}
+export function updatePlayerStats(Player: any, maskId: string) {
+    Player.instVars.ActiveMask = maskId;
+    switch (maskId) {
+        case "Fuego": Player.instVars.AttackSpeed = 0.2; Player.instVars.Damage = 15; break;
+        case "Hielo": Player.instVars.AttackSpeed = 0.5; Player.instVars.Damage = 30; break;
+        case "Nube": Player.instVars.AttackSpeed = 0.05; Player.instVars.Damage = 5; break;
+        case "Rayo": Player.instVars.AttackSpeed = 0.4; Player.instVars.Damage = 20; break;
+        case "Peste": Player.instVars.AttackSpeed = 0.6; Player.instVars.Damage = 10; break;
+        case "Luz": Player.instVars.AttackSpeed = 0.8; Player.instVars.Damage = 10; break;
+        default: Player.instVars.AttackSpeed = 0.8; Player.instVars.Damage = 10; Player.instVars.ActiveMask = "Normal";
+    }
+}
+
+function getValidSpawnPoint(runtime: IRuntime) {
+    const tilemap = runtime.objects.MapaDeTeselas.getFirstInstance() as any;
+    const player = runtime.objects.Player.getFirstInstance();
+    
+    if (!tilemap || !player) return null;
+    const MIN_DIST_SPAWN = 600; 
+
+    for (let i = 0; i < 15; i++) { 
+        const gridX = Math.floor(Math.random() * MAP_SIZE); 
+        const gridY = Math.floor(Math.random() * MAP_SIZE); 
+
+        const tileID = tilemap.getTileAt(gridX, gridY);
+
+        if (tileID === 2) { 
+            const realX = gridX * 32 + 16;
+            const realY = gridY * 32 + 16;
+
+            const dist = Math.hypot(realX - player.x, realY - player.y);
+
+            if (dist > MIN_DIST_SPAWN) {
+                return { x: realX, y: realY };
+            }
+        }
+    }
+    return null; 
+}
+
+function spawnMaskReward(runtime: IRuntime) {
+    const point = getValidSpawnPoint(runtime);
+    if (!point) return;
+    
+    const maskTypes = ["Fuego", "Hielo", "Rayo", "Peste", "Luz"];
+    const randomType = maskTypes[Math.floor(Math.random() * maskTypes.length)];
+
+    const mask = runtime.objects.Mask.createInstance("Layer 0", point.x, point.y) as any;
+    mask.instVars.MaskID = randomType;
 }
