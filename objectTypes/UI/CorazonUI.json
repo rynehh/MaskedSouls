@@ -1,47 +1,56 @@
 {
-	"name": "Sprite",
+	"name": "CorazonUI",
 	"plugin-id": "Sprite",
-	"sid": 677637631151438,
+	"sid": 498132517141456,
 	"isGlobal": false,
 	"editorNewInstanceIsReplica": true,
-	"instanceVariables": [],
-	"behaviorTypes": [
+	"instanceVariables": [
 		{
-			"behaviorId": "scrollto",
-			"name": "DesplazarHasta",
-			"sid": 526636379172270
-		},
-		{
-			"behaviorId": "EightDir",
-			"name": "8Direcciones",
-			"sid": 411971201385279
+			"name": "PlayerID",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 496501213853308
 		}
 	],
+	"behaviorTypes": [],
 	"effectTypes": [],
 	"animations": {
 		"items": [
 			{
 				"frames": [
 					{
-						"width": 32,
-						"height": 32,
+						"width": 22,
+						"height": 19,
 						"originX": 0.5,
-						"originY": 0.6875,
+						"originY": 0.47368421052631576,
 						"originalSource": "",
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 720182,
+						"imageSpriteId": 6893879,
 						"collisionPoly": {
 							"points": [
-								0.375,
-								0.619140625,
-								0.625,
-								0.625,
-								0.625,
-								0.75,
-								0.375,
-								0.74609375
+								0,
+								0,
+								1,
+								0,
+								1,
+								0,
+								1,
+								0,
+								1,
+								1,
+								0,
+								1,
+								0,
+								1,
+								0,
+								1,
+								0,
+								1,
+								0,
+								0
 							]
 						},
 						"useCollisionPoly": true,
@@ -49,7 +58,7 @@
 						"tag": ""
 					}
 				],
-				"sid": 276772049810870,
+				"sid": 402619010403037,
 				"name": "Animation 1",
 				"isLooping": false,
 				"isPingPong": false,

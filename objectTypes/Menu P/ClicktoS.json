@@ -1,0 +1,16 @@
+{
+	"name": "ClicktoS",
+	"plugin-id": "Text",
+	"sid": 756416146192649,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Sin",
+			"name": "Sine",
+			"sid": 220128189062328
+		}
+	],
+	"effectTypes": []
+}

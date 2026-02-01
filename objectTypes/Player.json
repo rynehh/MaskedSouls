@@ -32,6 +32,34 @@
 			"desc": "",
 			"show": true,
 			"sid": 715736983777403
+		},
+		{
+			"name": "PlayerID",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 667306444631879
+		},
+		{
+			"name": "ControlScheme",
+			"type": "string",
+			"desc": "",
+			"show": true,
+			"sid": 219254027011239
+		},
+		{
+			"name": "IsLocal",
+			"type": "boolean",
+			"desc": "",
+			"show": true,
+			"sid": 878568395793330
+		},
+		{
+			"name": "Score",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 318096277527485
 		}
 	],
 	"behaviorTypes": [
@@ -62,15 +90,31 @@
 			{
 				"frames": [
 					{
-						"width": 250,
-						"height": 250,
+						"width": 56,
+						"height": 84,
 						"originX": 0.5,
 						"originY": 0.5,
 						"originalSource": "",
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 8448135,
+						"imageSpriteId": 7678399,
+						"collisionPoly": {
+							"points": [
+								0.2833850931677019,
+								0,
+								1,
+								0.029220779220779227,
+								1,
+								0.09415584415584417,
+								1,
+								1,
+								0,
+								0.9707792207792207,
+								0.09083850931677019,
+								0.09415584415584417
+							]
+						},
 						"useCollisionPoly": true,
 						"duration": 1,
 						"tag": ""

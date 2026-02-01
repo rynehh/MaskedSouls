@@ -1,0 +1,72 @@
+{
+	"name": "MarcoUI",
+	"plugin-id": "Sprite",
+	"sid": 223368496204417,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [
+		{
+			"name": "PlayerID",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 696783297336390
+		}
+	],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 96,
+						"height": 97,
+						"originX": 2.5350877192982457,
+						"originY": 1.1443298969072164,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 7133368,
+						"collisionPoly": {
+							"points": [
+								0.6162280701754387,
+								0,
+								1,
+								0.03865979381443299,
+								1,
+								0.11404639175257732,
+								1,
+								1,
+								1,
+								1,
+								1,
+								1,
+								1,
+								1,
+								1,
+								1,
+								0.0131578947368421,
+								1,
+								0,
+								0.3402061855670103
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 252708256061016,
+				"name": "Animation 1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			}
+		],
+		"subfolders": []
+	}
+}
