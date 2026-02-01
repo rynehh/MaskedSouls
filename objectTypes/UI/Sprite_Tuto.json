@@ -1,48 +1,48 @@
 {
-	"name": "varios",
+	"name": "Sprite_Tuto",
 	"plugin-id": "Sprite",
-	"sid": 178480310071189,
+	"sid": 116322472475004,
 	"isGlobal": false,
 	"editorNewInstanceIsReplica": true,
 	"instanceVariables": [],
-	"behaviorTypes": [
-		{
-			"behaviorId": "solid",
-			"name": "Sólido",
-			"sid": 338064734990831
-		}
-	],
+	"behaviorTypes": [],
 	"effectTypes": [],
 	"animations": {
 		"items": [
 			{
 				"frames": [
 					{
-						"width": 29,
-						"height": 32,
+						"width": 48,
+						"height": 46,
 						"originX": 0.5,
 						"originY": 0.5,
 						"originalSource": "",
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 9082648,
+						"imageSpriteId": 960439,
 						"collisionPoly": {
 							"points": [
 								0,
 								0,
 								1,
+								0.043478260869565216,
+								1,
+								0.10869565217391304,
+								1,
+								1,
+								1,
+								1,
+								0,
+								1,
 								0,
 								1,
 								0,
 								1,
-								1,
-								0.8620689655172413,
-								1,
 								0,
 								1,
 								0,
-								1
+								0.30434782608695654
 							]
 						},
 						"useCollisionPoly": true,
@@ -50,7 +50,7 @@
 						"tag": ""
 					}
 				],
-				"sid": 178079821365164,
+				"sid": 492534225783866,
 				"name": "Animation 1",
 				"isLooping": false,
 				"isPingPong": false,

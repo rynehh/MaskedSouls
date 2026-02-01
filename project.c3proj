@@ -212,6 +212,8 @@
 					"TxtAnuncio",
 					"TxtPuntaje",
 					"Mask_Player"
+					"txtTuto",
+					"Sprite_Tuto"
 				],
 				"subfolders": [],
 				"name": "UI"

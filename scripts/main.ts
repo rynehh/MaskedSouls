@@ -11,19 +11,30 @@ async function OnBeforeProjectStart(runtime: IRuntime) {
 }
 
 // Variables Globales del Juego
+let debugTimer = 0; // Temporizador para el console.log
+
 let gameTime = 0;
 let gameHour = 0;
 const HOUR_DURATION = 60;
 let score = 0;
 
-// Configuración Oleadas
-let waveState = "ESPERANDO";
-let enemiesToSpawn = 0;
-let enemiesAlive = 0;
-let timeBetweenWaves = 7;
-let waveTimer = 0;
-let spawnRateTimer = 0;
-let waveCount = 1;
+// ================================
+// CONFIGURACIÓN DE OLEADAS
+// ================================
+let waveState = "ESPERANDO"; 
+let enemiesToSpawn = 0;      
+let enemiesAlive = 0;     
+let timeBetweenWaves = 7;    
+let waveTimer = 0;          
+let spawnRateTimer = 0;      
+let waveCount = 1; 
+let tutoTimer = 0;
+let tutoActive = false;
+let tutoShown = false;
+
+
+const TUTO_VISIBLE = timeBetweenWaves + 10;
+const TUTO_FADE = 1.5;    
 
 const MAP_SIZE = 60;
 
@@ -548,20 +559,78 @@ function Tick(runtime: IRuntime) {
 
     enemiesAlive = count1 + count2;
     const txtAnuncio = runtime.objects.TxtAnuncio ? runtime.objects.TxtAnuncio.getFirstInstance() : null;
+    const txtTuto = runtime.objects.txtTuto ? runtime.objects.txtTuto.getFirstInstance() : null;
+
+    const sprTuto = runtime.objects.Sprite_Tuto ? runtime.objects.Sprite_Tuto.getFirstInstance() : null;
+
+    txtTuto!.isVisible = false;
+    sprTuto!.isVisible = false;
+
+
 
     if (waveState !== "GAMEOVER") {
         switch (waveState) {
             case "ESPERANDO":
                 waveTimer += runtime.dt;
-                if (txtAnuncio && players.length > 0) {
-                    const timeLeft = Math.ceil(timeBetweenWaves - waveTimer);
-                    txtAnuncio.text = "Wave " + waveCount + "\nCOMIENZA EN " + timeLeft;
 
-                    if (waveTimer > timeBetweenWaves - 1) {
-                        txtAnuncio.opacity = timeBetweenWaves - waveTimer;
-                    } else {
-                        txtAnuncio.opacity = 1;
+                if (waveTimer < runtime.dt) {
+                    tutoTimer = 0;
+                }
+
+                if (txtAnuncio && txtTuto && players.length > 0) {
+                    txtTuto!.isVisible = true;
+                    sprTuto!.isVisible = true;
+
+                    const timeLeft = Math.ceil(timeBetweenWaves - waveTimer);
+                    txtAnuncio.text = "OLEADA " + waveCount + "\nCOMIENZA EN " + timeLeft;
+                    
+                    if (waveCount === 1 && !tutoShown) {
+                        tutoShown = true;
+                        tutoActive = true;
+                        tutoTimer = 0;
+
+                        txtTuto.text = players.length > 1
+                            ? "CÓMO JUGAR\n\n" +
+                            "JUGADOR 1\n" +
+                            "Moverse: I J K L\n" +
+                            "Disparar: Mouse\n\n" +
+                            "JUGADOR 2\n" +
+                            "Moverse: W A S D\n" +
+                            "Disparar: Espacio\n\n"
+                            : "CÓMO JUGAR\n\n" +
+                            "Moverse: I J K L\n" +
+                            "Disparar: Mouse\n\n";
                     }
+
+                    const fade = waveTimer < 1
+                        ? waveTimer
+                        : waveTimer > timeBetweenWaves - 1
+                            ? timeBetweenWaves - waveTimer
+                            : 1;
+
+                    txtAnuncio.opacity = fade;
+                    
+
+                    tutoTimer += runtime.dt;
+                    let tutoOpacity = 1;
+
+                    // fade in
+                    if (tutoTimer < TUTO_FADE) {
+                        tutoOpacity = tutoTimer / TUTO_FADE;
+                    }
+                    // fade out (DESPUÉS)
+                    else if (tutoTimer > TUTO_FADE + TUTO_VISIBLE) {
+                        tutoOpacity = 1 - (
+                            (tutoTimer - TUTO_FADE - TUTO_VISIBLE) / TUTO_FADE
+                        );
+                    }
+
+                    txtTuto.opacity = Math.max(0, Math.min(1, tutoOpacity));
+
+                     if (sprTuto) {
+                        sprTuto.opacity = txtTuto.opacity;
+                    }
+
                 }
 
                 if (waveTimer >= timeBetweenWaves) {
@@ -594,6 +663,35 @@ function Tick(runtime: IRuntime) {
                 }
                 break;
         }
+
+        if (tutoActive && txtTuto) {
+            tutoTimer += runtime.dt;
+
+            let tutoOpacity = 1;
+
+            if (tutoTimer < TUTO_FADE) {
+                tutoOpacity = tutoTimer / TUTO_FADE;
+            }
+            else if (tutoTimer > TUTO_FADE + TUTO_VISIBLE) {
+                tutoOpacity = 1 - (
+                    (tutoTimer - TUTO_FADE - TUTO_VISIBLE) / TUTO_FADE
+                );
+            }
+
+            txtTuto.opacity = Math.max(0, Math.min(1, tutoOpacity));
+
+            if (sprTuto) {
+                sprTuto.opacity = txtTuto.opacity;
+            }
+
+            // Cuando termina completamente
+            if (tutoTimer > TUTO_FADE * 2 + TUTO_VISIBLE) {
+                txtTuto.opacity = 0;
+                if (sprTuto) sprTuto.opacity = 0;
+                tutoActive = false;
+            }
+        }
+
     }
 
     // =================================================
@@ -698,6 +796,8 @@ function Tick(runtime: IRuntime) {
             }
         }
     }
+
+
     updateUI(runtime, gameTime, players);
 }
 
@@ -748,25 +848,39 @@ function updateUI(runtime: IRuntime, gameTime: number, players: any[]) {
     // 2. UI por Jugador
     for (const p of players) {
         const player = p as any;
+        
+        // PROTECCIÓN 1: Si el jugador no tiene ID, usamos 0
         const currentID = (player.instVars && player.instVars.PlayerID !== undefined) ? player.instVars.PlayerID : 0;
 
-        // --- A. PUNTAJE ---
+        // --- A. PUNTAJE (SCORE) ---
         const scoreTexts = runtime.objects.TxtPuntaje ? runtime.objects.TxtPuntaje.getAllInstances() : [];
+        
+        // PROTECCIÓN 2: Verificamos que 't.instVars' exista antes de leer el ID
+        // Esto evita el error rojo "Cannot read properties of undefined"
         const myScoreTxt = scoreTexts.find((t: any) => t.instVars && t.instVars.PlayerID === currentID);
-        if (myScoreTxt) myScoreTxt.text = "Pts: " + (player.instVars.Score || 0);
+        
+        if (myScoreTxt) {
+            myScoreTxt.text = "Pts: " + (player.instVars.Score || 0);
+        }
 
         // --- B. NOMBRE MÁSCARA ---
         const maskTexts = runtime.objects.TxtNombreMascara ? runtime.objects.TxtNombreMascara.getAllInstances() : [];
         const myMaskTxt = maskTexts.find((t: any) => t.instVars && t.instVars.PlayerID === currentID);
+        
         if (myMaskTxt) {
             const currentMask = String(player.instVars.ActiveMask || "Normal");
             myMaskTxt.text = currentMask;
+            
+            // Colores opcionales
             if (currentMask === "Fuego") myMaskTxt.fontColor = [1, 0.2, 0.2];
             else if (currentMask === "Hielo") myMaskTxt.fontColor = [0.2, 0.8, 1];
             else myMaskTxt.fontColor = [1, 1, 1];
         }
 
-        // --- C. ICONO (ACTUALIZADO) ---
+
+        
+
+        // --- C. ICONO (De Current/HEAD: Funciona con setAnimation) ---
         const iconMasks = runtime.objects.UI_Icono ? runtime.objects.UI_Icono.getAllInstances() : [];
         const myIconMask = iconMasks.find((i: any) => i.instVars && i.instVars.PlayerID === currentID);
 
@@ -779,50 +893,41 @@ function updateUI(runtime: IRuntime, gameTime: number, players: any[]) {
             }
         }
 
-        // ===============================================
-        // D. CORAZONES (DEBUG Y FIX)
-        // ===============================================
+        // --- D. CORAZONES (De Incoming/Pruebas: Lógica matemática probada) ---
         const allHearts = runtime.objects.CorazonUI ? runtime.objects.CorazonUI.getAllInstances() : [];
+        
+        // PROTECCIÓN 3: Filtramos solo corazones válidos con ID correcto
         const myHearts = allHearts.filter((h: any) => h.instVars && h.instVars.PlayerID === currentID);
-
+        
         if (myHearts.length > 0) {
-            // Ordenar de izquierda a derecha
-            myHearts.sort((a, b) => a.x - b.x);
-
-            const hp = player.instVars.HP || 0;
+            myHearts.sort((a, b) => a.x - b.x); 
+            
+            const hp = Number(player.instVars.HP || 100);
+            const maxHP = 100;
+            // Esta lógica es mejor porque se adapta si tienes 3, 4 o 5 corazones
+            const hpPerHeart = maxHP / myHearts.length;
 
             myHearts.forEach((heart, index) => {
                 const h = heart as any;
+                const thresholdHigh = (index + 1) * hpPerHeart;
+                const thresholdLow = index * hpPerHeart;
+                
+                // Forzamos modo normal para ver los gráficos claros
+                h.blendMode = "normal"; 
 
-                // 1. Aseguramos que se vea normal
-                h.blendMode = "normal";
-                h.isVisible = true;
-                h.opacity = 1;
-
-                // 2. DETENEMOS cualquier reproducción automática
-                // Si la animación se llama "Default", usa "Default". Si no, el nombre que tenga.
-                h.setAnimation("Default");
-                h.stopAnimation();
-
-                // 3. Lógica del Umbral
-                const threshold = index * 40;
-
-                if (hp > threshold) {
-                    // Vida suficiente: Corazón Lleno
-                    if (h.animationFrame !== 0) h.animationFrame = 0;
-                } else {
-                    // Poca vida: Corazón Vacío
-                    if (h.animationFrame !== 1) {
-                        h.animationFrame = 1;
-                        // Si no tienes frame 2, usa opacidad como plan B:
-                        // h.opacity = 0.3; 
-                    }
-                }
+                if (hp >= thresholdHigh) { 
+                    h.animationFrame = 0; // Lleno
+                } else if (hp <= thresholdLow) { 
+                    // Nota: En el incoming tenías 'frame = 2' y luego 'frame = 3'. 
+                    // He dejado el 3 asumiendo que es el gráfico de "Vacío".
+                    h.animationFrame = 3; 
+                } else { 
+                    h.animationFrame = 1; // Medio
+                }                         
             });
-        }
+
     }
 }
-
 export function updatePlayerStats(Player: any, maskId: string) {
     Player.instVars.ActiveMask = maskId;
     switch (maskId) {
