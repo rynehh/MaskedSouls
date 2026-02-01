@@ -19,11 +19,11 @@
 				{
 					"id": "compare-instance-variable",
 					"objectClass": "Player",
-					"sid": 585942710914032,
+					"sid": 751172362014604,
 					"parameters": {
 						"instance-variable": "PlayerID",
 						"comparison": 0,
-						"value": "1"
+						"value": "0"
 					}
 				}
 			],
@@ -54,11 +54,11 @@
 				{
 					"id": "compare-instance-variable",
 					"objectClass": "Player",
-					"sid": 685529486985779,
+					"sid": 709013238186356,
 					"parameters": {
 						"instance-variable": "PlayerID",
 						"comparison": 0,
-						"value": "1"
+						"value": "0"
 					}
 				}
 			],
@@ -89,11 +89,11 @@
 				{
 					"id": "compare-instance-variable",
 					"objectClass": "Player",
-					"sid": 297145991868213,
+					"sid": 114068586012866,
 					"parameters": {
 						"instance-variable": "PlayerID",
 						"comparison": 0,
-						"value": "1"
+						"value": "0"
 					}
 				}
 			],
@@ -124,11 +124,11 @@
 				{
 					"id": "compare-instance-variable",
 					"objectClass": "Player",
-					"sid": 137087122870033,
+					"sid": 291244283908271,
 					"parameters": {
 						"instance-variable": "PlayerID",
 						"comparison": 0,
-						"value": "1"
+						"value": "0"
 					}
 				}
 			],
@@ -159,11 +159,11 @@
 				{
 					"id": "compare-instance-variable",
 					"objectClass": "Player",
-					"sid": 154513709704431,
+					"sid": 775119249513466,
 					"parameters": {
 						"instance-variable": "PlayerID",
 						"comparison": 0,
-						"value": "2"
+						"value": "1"
 					}
 				}
 			],
@@ -194,11 +194,11 @@
 				{
 					"id": "compare-instance-variable",
 					"objectClass": "Player",
-					"sid": 403921383956661,
+					"sid": 826451824053001,
 					"parameters": {
 						"instance-variable": "PlayerID",
 						"comparison": 0,
-						"value": "2"
+						"value": "1"
 					}
 				}
 			],
@@ -229,11 +229,11 @@
 				{
 					"id": "compare-instance-variable",
 					"objectClass": "Player",
-					"sid": 705517234380491,
+					"sid": 100387786835092,
 					"parameters": {
 						"instance-variable": "PlayerID",
 						"comparison": 0,
-						"value": "2"
+						"value": "1"
 					}
 				}
 			],
@@ -264,11 +264,11 @@
 				{
 					"id": "compare-instance-variable",
 					"objectClass": "Player",
-					"sid": 141598752916381,
+					"sid": 575759959995582,
 					"parameters": {
 						"instance-variable": "PlayerID",
 						"comparison": 0,
-						"value": "2"
+						"value": "1"
 					}
 				}
 			],

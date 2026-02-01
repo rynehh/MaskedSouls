@@ -6,6 +6,8 @@ async function OnBeforeProjectStart(runtime: IRuntime) {
     runtime.addEventListener("tick", () => Tick(runtime));
 }
 
+let debugTimer = 0; // Temporizador para el console.log
+
 let gameTime = 0;
 let gameHour = 0;
 const HOUR_DURATION = 60; 
@@ -287,6 +289,8 @@ function Tick(runtime: IRuntime) {
             }
         }
     }
+
+
     updateUI(runtime, gameTime, players);
 }
 
@@ -317,6 +321,7 @@ function getClosestEnemy(player: any, runtime: IRuntime) {
 }
 
 function updateUI(runtime: IRuntime, gameTime: number, players: any[]) {
+    // 1. UI de Tiempo
     const txtTime = runtime.objects.TxtTime ? runtime.objects.TxtTime.getFirstInstance() : null;
     if (txtTime) {
         const minutes = Math.floor(gameTime / 60);
@@ -324,40 +329,59 @@ function updateUI(runtime: IRuntime, gameTime: number, players: any[]) {
         txtTime.text = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
     }
 
-    let pIndex = 0;
+    // 2. UI por Jugador
     for (const p of players) {
         const player = p as any;
-        const currentID = pIndex; 
+        
+        // PROTECCIÓN 1: Si el jugador no tiene ID, usamos 0
+        const currentID = (player.instVars && player.instVars.PlayerID !== undefined) ? player.instVars.PlayerID : 0;
 
-        // Puntaje
+        // --- A. PUNTAJE (SCORE) ---
         const scoreTexts = runtime.objects.TxtPuntaje ? runtime.objects.TxtPuntaje.getAllInstances() : [];
-        const myScoreTxt = scoreTexts.find((t: any) => t.instVars.PlayerID === currentID);
-        if (myScoreTxt) myScoreTxt.text = "PTS: " + (player.instVars.Score || 0); 
+        
+        // PROTECCIÓN 2: Verificamos que 't.instVars' exista antes de leer el ID
+        // Esto evita el error rojo "Cannot read properties of undefined"
+        const myScoreTxt = scoreTexts.find((t: any) => t.instVars && t.instVars.PlayerID === currentID);
+        
+        if (myScoreTxt) {
+            myScoreTxt.text = "Pts: " + (player.instVars.Score || 0);
+        }
 
-        // Nombre Máscara
+        // --- B. NOMBRE MÁSCARA ---
         const maskTexts = runtime.objects.TxtNombreMascara ? runtime.objects.TxtNombreMascara.getAllInstances() : [];
-        const myMaskTxt = maskTexts.find((t: any) => t.instVars.PlayerID === currentID);
+        const myMaskTxt = maskTexts.find((t: any) => t.instVars && t.instVars.PlayerID === currentID);
+        
         if (myMaskTxt) {
             const currentMask = String(player.instVars.ActiveMask || "Normal");
             myMaskTxt.text = currentMask;
+            
+            // Colores opcionales
             if (currentMask === "Fuego") myMaskTxt.fontColor = [1, 0.2, 0.2];
             else if (currentMask === "Hielo") myMaskTxt.fontColor = [0.2, 0.8, 1];
             else myMaskTxt.fontColor = [1, 1, 1];
         }
 
+        // --- C. ICONO ---
         const iconMasks = runtime.objects.UI_Icono ? runtime.objects.UI_Icono.getAllInstances() : [];
-        const myIconMask = iconMasks.find((i: any) => i.instVars.PlayerID === currentID);
+        const myIconMask = iconMasks.find((i: any) => i.instVars && i.instVars.PlayerID === currentID);
+        
         if (myIconMask) {
              const currentMask = String(player.instVars.ActiveMask || "Normal");
-             myIconMask.animationFrame = MASK_FRAMES[currentMask] || 0;
+             // Verificamos que la tabla de máscaras exista
+             if (typeof MASK_FRAMES !== 'undefined') {
+                 myIconMask.animationFrame = MASK_FRAMES[currentMask] || 0;
+             }
         }
 
-        // Corazones
+        // --- D. CORAZONES (Sin blendMode) ---
         const allHearts = runtime.objects.CorazonUI ? runtime.objects.CorazonUI.getAllInstances() : [];
-        const myHearts = allHearts.filter((h: any) => h.instVars.PlayerID === currentID);
+        
+        // PROTECCIÓN 3: Filtramos solo corazones válidos con ID correcto
+        const myHearts = allHearts.filter((h: any) => h.instVars && h.instVars.PlayerID === currentID);
         
         if (myHearts.length > 0) {
             myHearts.sort((a, b) => a.x - b.x); 
+            
             const hp = Number(player.instVars.HP || 100);
             const maxHP = 100;
             const hpPerHeart = maxHP / myHearts.length;
@@ -367,19 +391,22 @@ function updateUI(runtime: IRuntime, gameTime: number, players: any[]) {
                 const thresholdHigh = (index + 1) * hpPerHeart;
                 const thresholdLow = index * hpPerHeart;
                 
+                // Forzamos modo normal para ver los gráficos claros
+                h.blendMode = "normal"; 
+
                 if (hp >= thresholdHigh) { 
-                    h.animationFrame = 0; h.blendMode = "normal"; 
+                    h.animationFrame = 0; // Lleno
                 } else if (hp <= thresholdLow) { 
-                    h.animationFrame = 2; h.blendMode = "multiply"; 
+                    h.animationFrame = 2;
+                    h.animationFrame = 3;
+                     // Vacío (¡DIBUJAR CORAZÓN GRIS AQUÍ!)
                 } else { 
-                    h.animationFrame = 1; h.blendMode = "normal"; 
+                    h.animationFrame = 1; // Medio
                 }                         
             });
         }
-        pIndex++;
     }
 }
-
 export function updatePlayerStats(Player: any, maskId: string) {
     Player.instVars.ActiveMask = maskId;
     switch (maskId) {
