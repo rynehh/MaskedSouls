@@ -8,6 +8,13 @@
 	"usedAddons": [
 		{
 			"type": "plugin",
+			"id": "Audio",
+			"name": "Audio",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
 			"id": "Keyboard",
 			"name": "Teclado",
 			"author": "Scirra",
@@ -175,7 +182,8 @@
 					"Exit",
 					"SingleP",
 					"MultiP",
-					"Options"
+					"Options",
+					"Hover_SP"
 				],
 				"subfolders": [],
 				"name": "Menu P"
@@ -245,7 +253,24 @@
 			"subfolders": []
 		},
 		"sound": {
-			"items": [],
+			"items": [
+				{
+					"name": "click1.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 282849497278723,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "click2.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 978580510244720,
+					"file-info": {
+						"purpose": "none"
+					}
+				}
+			],
 			"subfolders": []
 		},
 		"music": {

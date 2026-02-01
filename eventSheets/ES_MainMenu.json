@@ -87,6 +87,19 @@
 					"parameters": {
 						"object": "Button_SP"
 					}
+				},
+				{
+					"id": "layer-is-visible",
+					"objectClass": "System",
+					"sid": 980040359019129,
+					"parameters": {
+						"layer": "1"
+					}
+				},
+				{
+					"id": "trigger-once-while-true",
+					"objectClass": "System",
+					"sid": 254982772833461
 				}
 			],
 			"actions": [
@@ -97,6 +110,20 @@
 					"parameters": {
 						"animation": "\"Hover\"",
 						"from": "current-frame"
+					}
+				},
+				{
+					"id": "play",
+					"objectClass": "Hover_SP",
+					"sid": 679350826340355,
+					"parameters": {
+						"audio-file": {
+							"path": "click2"
+						},
+						"loop": "not-looping",
+						"volume": "0",
+						"stereo-pan": "0",
+						"tag-optional": "\"\""
 					}
 				}
 			],
@@ -146,6 +173,19 @@
 					"parameters": {
 						"object": "Button_SP"
 					}
+				},
+				{
+					"id": "layer-is-visible",
+					"objectClass": "System",
+					"sid": 368216010797466,
+					"parameters": {
+						"layer": "1"
+					}
+				},
+				{
+					"id": "trigger-once-while-true",
+					"objectClass": "System",
+					"sid": 355676214521639
 				}
 			],
 			"actions": [
@@ -156,6 +196,20 @@
 					"parameters": {
 						"animation": "\"Pressed\"",
 						"from": "current-frame"
+					}
+				},
+				{
+					"id": "play",
+					"objectClass": "Hover_SP",
+					"sid": 801412962473714,
+					"parameters": {
+						"audio-file": {
+							"path": "click1"
+						},
+						"loop": "not-looping",
+						"volume": "0",
+						"stereo-pan": "0",
+						"tag-optional": "\"\""
 					}
 				}
 			],
@@ -194,10 +248,10 @@
 				{
 					"id": "start-timer",
 					"objectClass": "Button_SP",
-					"sid": 380678647516985,
+					"sid": 657366129227748,
 					"behaviorType": "Timer",
 					"parameters": {
-						"duration": "3.0",
+						"duration": "4",
 						"type": "once",
 						"tag": "\"Start\""
 					}
@@ -249,6 +303,19 @@
 					"parameters": {
 						"object": "Exit"
 					}
+				},
+				{
+					"id": "layer-is-visible",
+					"objectClass": "System",
+					"sid": 413218336326917,
+					"parameters": {
+						"layer": "1"
+					}
+				},
+				{
+					"id": "trigger-once-while-true",
+					"objectClass": "System",
+					"sid": 784332992228677
 				}
 			],
 			"actions": [
@@ -259,6 +326,20 @@
 					"parameters": {
 						"animation": "\"Hover\"",
 						"from": "current-frame"
+					}
+				},
+				{
+					"id": "play",
+					"objectClass": "Hover_SP",
+					"sid": 163618869767844,
+					"parameters": {
+						"audio-file": {
+							"path": "click2"
+						},
+						"loop": "not-looping",
+						"volume": "0",
+						"stereo-pan": "0",
+						"tag-optional": "\"\""
 					}
 				}
 			],
@@ -333,6 +414,19 @@
 					"parameters": {
 						"object": "Button_MP"
 					}
+				},
+				{
+					"id": "layer-is-visible",
+					"objectClass": "System",
+					"sid": 329535948574466,
+					"parameters": {
+						"layer": "1"
+					}
+				},
+				{
+					"id": "trigger-once-while-true",
+					"objectClass": "System",
+					"sid": 652711460859733
 				}
 			],
 			"actions": [
@@ -343,6 +437,20 @@
 					"parameters": {
 						"animation": "\"Hover\"",
 						"from": "current-frame"
+					}
+				},
+				{
+					"id": "play",
+					"objectClass": "Hover_SP",
+					"sid": 311503189582209,
+					"parameters": {
+						"audio-file": {
+							"path": "click2"
+						},
+						"loop": "not-looping",
+						"volume": "0",
+						"stereo-pan": "0",
+						"tag-optional": "\"\""
 					}
 				}
 			],
@@ -392,6 +500,19 @@
 					"parameters": {
 						"object": "Button_MP"
 					}
+				},
+				{
+					"id": "layer-is-visible",
+					"objectClass": "System",
+					"sid": 422163595979035,
+					"parameters": {
+						"layer": "1"
+					}
+				},
+				{
+					"id": "trigger-once-while-true",
+					"objectClass": "System",
+					"sid": 697130079317279
 				}
 			],
 			"actions": [
@@ -402,6 +523,20 @@
 					"parameters": {
 						"animation": "\"Pressed\"",
 						"from": "current-frame"
+					}
+				},
+				{
+					"id": "play",
+					"objectClass": "Hover_SP",
+					"sid": 186730122306457,
+					"parameters": {
+						"audio-file": {
+							"path": "click1"
+						},
+						"loop": "not-looping",
+						"volume": "0",
+						"stereo-pan": "0",
+						"tag-optional": "\"\""
 					}
 				}
 			],
@@ -440,10 +575,10 @@
 				{
 					"id": "start-timer",
 					"objectClass": "Button_MP",
-					"sid": 479821044336958,
+					"sid": 621485157521817,
 					"behaviorType": "Timer",
 					"parameters": {
-						"duration": "3.0",
+						"duration": "4",
 						"type": "once",
 						"tag": "\"Start\""
 					}
