@@ -124,7 +124,8 @@
 						"HP": 10000,
 						"PlayerID": 2,
 						"ControlScheme": "",
-						"IsLocal": true
+						"IsLocal": true,
+						"Score": 0
 					},
 					"behaviors": {
 						"8Direction": {
@@ -195,7 +196,8 @@
 						"HP": 100,
 						"PlayerID": 1,
 						"ControlScheme": "",
-						"IsLocal": true
+						"IsLocal": true,
+						"Score": 0
 					},
 					"behaviors": {
 						"8Direction": {
@@ -237,59 +239,6 @@
 						"height": 28,
 						"originX": 0.5,
 						"originY": 0.5,
-						"color": [
-							1,
-							1,
-							1,
-							1
-						],
-						"angle": 0,
-						"zElevation": 0
-					}
-				},
-				{
-					"type": "TxtNombreMascara",
-					"properties": {
-						"text": "Jugador 1",
-						"enable-bbcode": true,
-						"font": "alagard",
-						"size": 30,
-						"line-height": 0,
-						"bold": false,
-						"italic": false,
-						"color": [
-							1,
-							1,
-							1,
-							1
-						],
-						"horizontal-alignment": "center",
-						"vertical-alignment": "center",
-						"wrapping": "word",
-						"text-direction": "ltr",
-						"icon-set": -1,
-						"initially-visible": true,
-						"origin": "top-left",
-						"read-aloud": false
-					},
-					"uid": 27,
-					"sid": 176540788585370,
-					"tags": "",
-					"instanceVariables": {},
-					"behaviors": {},
-					"instanceFolderItem": {
-						"sid": 176540788585370,
-						"expanded": true
-					},
-					"showing": true,
-					"locked": false,
-					"world": {
-						"x": 1531,
-						"y": 910,
-						"width": 206.08303051316784,
-						"height": 35.9952078315307,
-						"originX": 0,
-						"originY": 0,
 						"color": [
 							1,
 							1,
@@ -347,7 +296,9 @@
 					"uid": 14,
 					"sid": 121508702205167,
 					"tags": "",
-					"instanceVariables": {},
+					"instanceVariables": {
+						"PlayerID": 0
+					},
 					"behaviors": {},
 					"instanceFolderItem": {
 						"sid": 121508702205167,
@@ -356,8 +307,8 @@
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 1753,
-						"y": 1046,
+						"x": 1672,
+						"y": 959,
 						"width": 150,
 						"height": 135,
 						"originX": 2.5350877192982457,
@@ -375,7 +326,7 @@
 				{
 					"type": "TxtTime",
 					"properties": {
-						"text": "HOLA SALU2",
+						"text": "FPS:",
 						"enable-bbcode": true,
 						"font": "alagard",
 						"size": 32,
@@ -409,8 +360,8 @@
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 116,
-						"y": -237,
+						"x": 131,
+						"y": 941,
 						"width": 148.51836097690165,
 						"height": 117.23228516995351,
 						"originX": 0.5,
@@ -446,8 +397,8 @@
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 1448,
-						"y": 954,
+						"x": 1365,
+						"y": 873,
 						"width": 87,
 						"height": 95,
 						"originX": 0.5555555555555556,
@@ -518,7 +469,7 @@
 				{
 					"type": "TxtPuntaje",
 					"properties": {
-						"text": "Texto",
+						"text": "Score Jugador 1:",
 						"enable-bbcode": true,
 						"font": "alagard",
 						"size": 28,
@@ -543,7 +494,9 @@
 					"uid": 3,
 					"sid": 702411082486092,
 					"tags": "",
-					"instanceVariables": {},
+					"instanceVariables": {
+						"PlayerID": 0
+					},
 					"behaviors": {},
 					"instanceFolderItem": {
 						"sid": 702411082486092,
@@ -552,8 +505,8 @@
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 228,
-						"y": -286,
+						"x": 1283,
+						"y": 951,
 						"width": 798,
 						"height": 51,
 						"originX": 0,
@@ -569,6 +522,247 @@
 					}
 				},
 				{
+					"type": "TxtNombreMascara",
+					"properties": {
+						"text": "Jugador 1",
+						"enable-bbcode": true,
+						"font": "alagard",
+						"size": 30,
+						"line-height": 0,
+						"bold": false,
+						"italic": false,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"horizontal-alignment": "center",
+						"vertical-alignment": "center",
+						"wrapping": "word",
+						"text-direction": "ltr",
+						"icon-set": -1,
+						"initially-visible": true,
+						"origin": "top-left",
+						"read-aloud": false
+					},
+					"uid": 27,
+					"sid": 176540788585370,
+					"tags": "",
+					"instanceVariables": {
+						"PlayerID": 0
+					},
+					"behaviors": {},
+					"instanceFolderItem": {
+						"sid": 176540788585370,
+						"expanded": true
+					},
+					"showing": true,
+					"locked": false,
+					"world": {
+						"x": 1447,
+						"y": 829,
+						"width": 206.08303051316784,
+						"height": 35.9952078315307,
+						"originX": 0,
+						"originY": 0,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "TxtPuntaje",
+					"properties": {
+						"text": "Score Jugador 2:",
+						"enable-bbcode": true,
+						"font": "alagard",
+						"size": 28,
+						"line-height": 0,
+						"bold": false,
+						"italic": false,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"horizontal-alignment": "left",
+						"vertical-alignment": "top",
+						"wrapping": "word",
+						"text-direction": "ltr",
+						"icon-set": -1,
+						"initially-visible": true,
+						"origin": "top-left",
+						"read-aloud": false
+					},
+					"uid": 29,
+					"sid": 209311308542261,
+					"tags": "",
+					"instanceVariables": {
+						"PlayerID": 1
+					},
+					"behaviors": {},
+					"instanceFolderItem": {
+						"sid": 209311308542261,
+						"expanded": true
+					},
+					"showing": true,
+					"locked": false,
+					"world": {
+						"x": 77,
+						"y": 215,
+						"width": 798,
+						"height": 51,
+						"originX": 0,
+						"originY": 0,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "MarcoUI",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "Animation 1",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 11,
+					"sid": 160525027832230,
+					"tags": "",
+					"instanceVariables": {
+						"PlayerID": 1
+					},
+					"behaviors": {},
+					"instanceFolderItem": {
+						"sid": 160525027832230,
+						"expanded": true
+					},
+					"showing": true,
+					"locked": false,
+					"world": {
+						"x": 451,
+						"y": 205,
+						"width": 150,
+						"height": 135,
+						"originX": 2.5350877192982457,
+						"originY": 1.1443298969072164,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "TxtNombreMascara",
+					"properties": {
+						"text": "Jugador 1",
+						"enable-bbcode": true,
+						"font": "alagard",
+						"size": 30,
+						"line-height": 0,
+						"bold": false,
+						"italic": false,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"horizontal-alignment": "center",
+						"vertical-alignment": "center",
+						"wrapping": "word",
+						"text-direction": "ltr",
+						"icon-set": -1,
+						"initially-visible": true,
+						"origin": "top-left",
+						"read-aloud": false
+					},
+					"uid": 10,
+					"sid": 322091351791586,
+					"tags": "",
+					"instanceVariables": {
+						"PlayerID": 1
+					},
+					"behaviors": {},
+					"instanceFolderItem": {
+						"sid": 322091351791586,
+						"expanded": true
+					},
+					"showing": true,
+					"locked": false,
+					"world": {
+						"x": 230,
+						"y": 87,
+						"width": 206.08303051316784,
+						"height": 35.9952078315307,
+						"originX": 0,
+						"originY": 0,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "UI_Icono",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "Animation 1",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 12,
+					"sid": 728990367484400,
+					"tags": "",
+					"instanceVariables": {},
+					"behaviors": {},
+					"instanceFolderItem": {
+						"sid": 728990367484400,
+						"expanded": true
+					},
+					"showing": true,
+					"locked": false,
+					"world": {
+						"x": 149,
+						"y": 115,
+						"width": 87,
+						"height": 95,
+						"originX": 0.5555555555555556,
+						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 1
+					}
+				},
+				{
 					"type": "CorazonUI",
 					"properties": {
 						"initially-visible": true,
@@ -581,7 +775,7 @@
 					"sid": 710762283504343,
 					"tags": "",
 					"instanceVariables": {
-						"PlayerID": 1
+						"PlayerID": 0
 					},
 					"behaviors": {},
 					"instanceFolderItem": {
@@ -591,8 +785,8 @@
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 1569,
-						"y": 989,
+						"x": 1491,
+						"y": 901,
 						"width": 64,
 						"height": 58,
 						"originX": 0.5,
@@ -620,7 +814,7 @@
 					"sid": 381933318516452,
 					"tags": "",
 					"instanceVariables": {
-						"PlayerID": 1
+						"PlayerID": 0
 					},
 					"behaviors": {},
 					"instanceFolderItem": {
@@ -630,8 +824,8 @@
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 1639,
-						"y": 988,
+						"x": 1561,
+						"y": 900,
 						"width": 64,
 						"height": 58,
 						"originX": 0.5,
@@ -659,7 +853,7 @@
 					"sid": 796729446304210,
 					"tags": "",
 					"instanceVariables": {
-						"PlayerID": 1
+						"PlayerID": 0
 					},
 					"behaviors": {},
 					"instanceFolderItem": {
@@ -669,8 +863,8 @@
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 1708,
-						"y": 988,
+						"x": 1630,
+						"y": 900,
 						"width": 64,
 						"height": 58,
 						"originX": 0.5,
@@ -698,7 +892,7 @@
 					"sid": 445943430430242,
 					"tags": "",
 					"instanceVariables": {
-						"PlayerID": 1
+						"PlayerID": 0
 					},
 					"behaviors": {},
 					"instanceFolderItem": {
@@ -708,8 +902,8 @@
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 1775,
-						"y": 987,
+						"x": 1697,
+						"y": 899,
 						"width": 64,
 						"height": 58,
 						"originX": 0.5,
@@ -737,7 +931,7 @@
 					"sid": 710098440202810,
 					"tags": "",
 					"instanceVariables": {
-						"PlayerID": 1
+						"PlayerID": 0
 					},
 					"behaviors": {},
 					"instanceFolderItem": {
@@ -747,8 +941,203 @@
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 1843,
-						"y": 987,
+						"x": 1765,
+						"y": 899,
+						"width": 64,
+						"height": 58,
+						"originX": 0.5,
+						"originY": 0.47368421052631576,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 1
+					}
+				},
+				{
+					"type": "CorazonUI",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "Animation 1",
+						"initial-frame": 0,
+						"enable-collisions": false,
+						"live-preview": false
+					},
+					"uid": 13,
+					"sid": 922849994844453,
+					"tags": "",
+					"instanceVariables": {
+						"PlayerID": 1
+					},
+					"behaviors": {},
+					"instanceFolderItem": {
+						"sid": 922849994844453,
+						"expanded": true
+					},
+					"showing": true,
+					"locked": false,
+					"world": {
+						"x": 274,
+						"y": 159,
+						"width": 64,
+						"height": 58,
+						"originX": 0.5,
+						"originY": 0.47368421052631576,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 1
+					}
+				},
+				{
+					"type": "CorazonUI",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "Animation 1",
+						"initial-frame": 0,
+						"enable-collisions": false,
+						"live-preview": false
+					},
+					"uid": 18,
+					"sid": 569826058871698,
+					"tags": "",
+					"instanceVariables": {
+						"PlayerID": 1
+					},
+					"behaviors": {},
+					"instanceFolderItem": {
+						"sid": 569826058871698,
+						"expanded": true
+					},
+					"showing": true,
+					"locked": false,
+					"world": {
+						"x": 344,
+						"y": 158,
+						"width": 64,
+						"height": 58,
+						"originX": 0.5,
+						"originY": 0.47368421052631576,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 1
+					}
+				},
+				{
+					"type": "CorazonUI",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "Animation 1",
+						"initial-frame": 0,
+						"enable-collisions": false,
+						"live-preview": false
+					},
+					"uid": 23,
+					"sid": 144094023039516,
+					"tags": "",
+					"instanceVariables": {
+						"PlayerID": 1
+					},
+					"behaviors": {},
+					"instanceFolderItem": {
+						"sid": 144094023039516,
+						"expanded": true
+					},
+					"showing": true,
+					"locked": false,
+					"world": {
+						"x": 413,
+						"y": 158,
+						"width": 64,
+						"height": 58,
+						"originX": 0.5,
+						"originY": 0.47368421052631576,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 1
+					}
+				},
+				{
+					"type": "CorazonUI",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "Animation 1",
+						"initial-frame": 0,
+						"enable-collisions": false,
+						"live-preview": false
+					},
+					"uid": 28,
+					"sid": 140427154296954,
+					"tags": "",
+					"instanceVariables": {
+						"PlayerID": 1
+					},
+					"behaviors": {},
+					"instanceFolderItem": {
+						"sid": 140427154296954,
+						"expanded": true
+					},
+					"showing": true,
+					"locked": false,
+					"world": {
+						"x": 548,
+						"y": 157,
+						"width": 64,
+						"height": 58,
+						"originX": 0.5,
+						"originY": 0.47368421052631576,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 1
+					}
+				},
+				{
+					"type": "CorazonUI",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "Animation 1",
+						"initial-frame": 0,
+						"enable-collisions": false,
+						"live-preview": false
+					},
+					"uid": 25,
+					"sid": 842412453884599,
+					"tags": "",
+					"instanceVariables": {
+						"PlayerID": 1
+					},
+					"behaviors": {},
+					"instanceFolderItem": {
+						"sid": 842412453884599,
+						"expanded": true
+					},
+					"showing": true,
+					"locked": false,
+					"world": {
+						"x": 480,
+						"y": 157,
 						"width": 64,
 						"height": 58,
 						"originX": 0.5,
