@@ -124,7 +124,15 @@
 				"items": [
 					"Barril",
 					"Sprite2",
-					"Sprite3"
+					"Sprite3",
+					"Cajas",
+					"antorcha",
+					"escudo",
+					"velas",
+					"Botellas",
+					"ventana",
+					"varios",
+					"CofreLoot"
 				],
 				"subfolders": [],
 				"name": "Sprites Mapa"
