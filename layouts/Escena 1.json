@@ -185,7 +185,7 @@
 						"enable-collisions": true,
 						"live-preview": false
 					},
-					"uid": 14,
+					"uid": 4,
 					"sid": 896160532170395,
 					"tags": "",
 					"instanceVariables": {
@@ -237,6 +237,59 @@
 						"height": 28,
 						"originX": 0.5,
 						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "TxtNombreMascara",
+					"properties": {
+						"text": "Jugador 1",
+						"enable-bbcode": true,
+						"font": "alagard",
+						"size": 30,
+						"line-height": 0,
+						"bold": false,
+						"italic": false,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"horizontal-alignment": "center",
+						"vertical-alignment": "center",
+						"wrapping": "word",
+						"text-direction": "ltr",
+						"icon-set": -1,
+						"initially-visible": true,
+						"origin": "top-left",
+						"read-aloud": false
+					},
+					"uid": 27,
+					"sid": 176540788585370,
+					"tags": "",
+					"instanceVariables": {},
+					"behaviors": {},
+					"instanceFolderItem": {
+						"sid": 176540788585370,
+						"expanded": true
+					},
+					"showing": true,
+					"locked": false,
+					"world": {
+						"x": 1531,
+						"y": 910,
+						"width": 206.08303051316784,
+						"height": 35.9952078315307,
+						"originX": 0,
+						"originY": 0,
 						"color": [
 							1,
 							1,
@@ -303,12 +356,12 @@
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 1751.8794795015892,
-						"y": 154.12052049841083,
-						"width": 220.738417325787,
-						"height": 223.06197961342687,
-						"originX": 0.49473684210526314,
-						"originY": 0.5,
+						"x": 1753,
+						"y": 1046,
+						"width": 150,
+						"height": 135,
+						"originX": 2.5350877192982457,
+						"originY": 1.1443298969072164,
 						"color": [
 							1,
 							1,
@@ -356,8 +409,8 @@
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 170,
-						"y": 50,
+						"x": 116,
+						"y": -237,
 						"width": 148.51836097690165,
 						"height": 117.23228516995351,
 						"originX": 0.5,
@@ -393,65 +446,12 @@
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 1750,
-						"y": 157,
-						"width": 127.63197756103524,
-						"height": 127.63197756103524,
+						"x": 1448,
+						"y": 954,
+						"width": 87,
+						"height": 95,
 						"originX": 0.5555555555555556,
 						"originY": 0.5,
-						"color": [
-							1,
-							1,
-							1,
-							1
-						],
-						"angle": 0,
-						"zElevation": 0
-					}
-				},
-				{
-					"type": "TxtNombreMascara",
-					"properties": {
-						"text": "Texto",
-						"enable-bbcode": true,
-						"font": "alagard",
-						"size": 12,
-						"line-height": 0,
-						"bold": false,
-						"italic": false,
-						"color": [
-							1,
-							1,
-							1,
-							1
-						],
-						"horizontal-alignment": "center",
-						"vertical-alignment": "center",
-						"wrapping": "word",
-						"text-direction": "ltr",
-						"icon-set": -1,
-						"initially-visible": true,
-						"origin": "top-left",
-						"read-aloud": false
-					},
-					"uid": 18,
-					"sid": 161502562804097,
-					"tags": "",
-					"instanceVariables": {},
-					"behaviors": {},
-					"instanceFolderItem": {
-						"sid": 161502562804097,
-						"expanded": true
-					},
-					"showing": true,
-					"locked": false,
-					"world": {
-						"x": 1667,
-						"y": 271,
-						"width": 170.5810368888931,
-						"height": 35.9952078315307,
-						"originX": 0,
-						"originY": 0,
 						"color": [
 							1,
 							1,
@@ -552,8 +552,8 @@
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 73,
-						"y": 992,
+						"x": 228,
+						"y": -286,
 						"width": 798,
 						"height": 51,
 						"originX": 0,
@@ -580,7 +580,9 @@
 					"uid": 19,
 					"sid": 710762283504343,
 					"tags": "",
-					"instanceVariables": {},
+					"instanceVariables": {
+						"PlayerID": 1
+					},
 					"behaviors": {},
 					"instanceFolderItem": {
 						"sid": 710762283504343,
@@ -589,10 +591,10 @@
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 1299.9009656318856,
-						"y": 946.5463323926233,
-						"width": 104.78388443689877,
-						"height": 90.4951729227762,
+						"x": 1569,
+						"y": 989,
+						"width": 64,
+						"height": 58,
 						"originX": 0.5,
 						"originY": 0.47368421052631576,
 						"color": [
@@ -617,7 +619,9 @@
 					"uid": 20,
 					"sid": 381933318516452,
 					"tags": "",
-					"instanceVariables": {},
+					"instanceVariables": {
+						"PlayerID": 1
+					},
 					"behaviors": {},
 					"instanceFolderItem": {
 						"sid": 381933318516452,
@@ -626,10 +630,10 @@
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 1421.9009656318856,
-						"y": 946.5463323926233,
-						"width": 104.78388443689877,
-						"height": 90.4951729227762,
+						"x": 1639,
+						"y": 988,
+						"width": 64,
+						"height": 58,
 						"originX": 0.5,
 						"originY": 0.47368421052631576,
 						"color": [
@@ -654,7 +658,9 @@
 					"uid": 21,
 					"sid": 796729446304210,
 					"tags": "",
-					"instanceVariables": {},
+					"instanceVariables": {
+						"PlayerID": 1
+					},
 					"behaviors": {},
 					"instanceFolderItem": {
 						"sid": 796729446304210,
@@ -663,10 +669,10 @@
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 1534.9009656318856,
-						"y": 946.5463323926233,
-						"width": 104.78388443689877,
-						"height": 90.4951729227762,
+						"x": 1708,
+						"y": 988,
+						"width": 64,
+						"height": 58,
 						"originX": 0.5,
 						"originY": 0.47368421052631576,
 						"color": [
@@ -691,7 +697,9 @@
 					"uid": 22,
 					"sid": 445943430430242,
 					"tags": "",
-					"instanceVariables": {},
+					"instanceVariables": {
+						"PlayerID": 1
+					},
 					"behaviors": {},
 					"instanceFolderItem": {
 						"sid": 445943430430242,
@@ -700,10 +708,10 @@
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 1656.9009656318856,
-						"y": 946.5463323926233,
-						"width": 104.78388443689877,
-						"height": 90.4951729227762,
+						"x": 1775,
+						"y": 987,
+						"width": 64,
+						"height": 58,
 						"originX": 0.5,
 						"originY": 0.47368421052631576,
 						"color": [
@@ -728,7 +736,9 @@
 					"uid": 24,
 					"sid": 710098440202810,
 					"tags": "",
-					"instanceVariables": {},
+					"instanceVariables": {
+						"PlayerID": 1
+					},
 					"behaviors": {},
 					"instanceFolderItem": {
 						"sid": 710098440202810,
@@ -737,10 +747,10 @@
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 1769.9009656318856,
-						"y": 946.5463323926233,
-						"width": 104.78388443689877,
-						"height": 90.4951729227762,
+						"x": 1843,
+						"y": 987,
+						"width": 64,
+						"height": 58,
 						"originX": 0.5,
 						"originY": 0.47368421052631576,
 						"color": [

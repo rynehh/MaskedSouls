@@ -38,28 +38,45 @@ function Tick(runtime: IRuntime) {
     const keyboard = runtime.keyboard;
     const tilemap = runtime.objects.MapaDeTeselas.getFirstInstance();
 
+    // Variable para contar cuántos siguen vivos en este frame
+    let playersAliveCount = 0;
+
     // =================================================
-    // 0. CONTROL DE MÁSCARAS (mínimo 6)
+    // 0. CONTROL DE MÁSCARAS
     // =================================================
     if (runtime.objects.Mask.getAllInstances().length < 6) {
         spawnMaskReward(runtime);
     }
 
     // =================================================
-    // 1. JUGADORES – DISPARO Y COLISIONES
+    // 1. JUGADORES – LÓGICA PRINCIPAL
     // =================================================
     for (const p of players) {
         const player = p as any;
+        
+        // --- ESTADO DE VIDA ---
+        if (player.instVars.HP > 0) {
+            playersAliveCount++; // Contamos que este está vivo
+            player.opacity = 1;  
+        } else {
+            player.opacity = 0.3; // Fantasma
+        }
+
+
+
+
+
+
+
         const timer = player.behaviors.Timer;
         if (!timer) continue;
 
+        // --- FUNCION DE DISPARO ---
         const fireBullet = (angle: number) => {
             if (timer.isTimerRunning("fire")) return;
 
             const bullet = runtime.objects.Bullet_Type.createInstance(
-                "Layer 0",
-                player.x,
-                player.y
+                "Layer 0", player.x, player.y
             ) as any;
 
             bullet.angle = angle;
@@ -67,7 +84,7 @@ function Tick(runtime: IRuntime) {
 
             bullet.instVars.Damage = player.instVars.Damage || 10;
             bullet.instVars.IgnoreUID = player.uid;
-            bullet.instVars.OwnerUID = player.uid;
+            bullet.instVars.OwnerUID = player.uid; 
             bullet.instVars.ActiveMask = player.instVars.ActiveMask || "Normal";
 
             timer.startTimer(player.instVars.AttackSpeed || 0.5, "fire");
@@ -84,36 +101,23 @@ function Tick(runtime: IRuntime) {
             fireBullet(player.angle);
         }
 
-        // Balas enemigas → jugador
+        // --- COLISIONES (Recibir Daño) ---
         for (const b of runtime.objects.Enemy_Bullet.instances()) {
             const bullet = b as any;
-            if (tilemap && bullet.testOverlap(tilemap)) {
-                bullet.destroy();
-                continue;
-            }
+            if (tilemap && bullet.testOverlap(tilemap)) { bullet.destroy(); continue; }
+            if (bullet.isDestroyed) continue;
 
             if (bullet.testOverlap(player)) {
                 player.instVars.HP -= 10;
                 bullet.destroy();
-
                 player.colorRgb = [10, 0, 0];
                 setTimeout(() => player && (player.colorRgb = [1, 1, 1]), 100);
-
-                if (player.instVars.HP <= 0) {
-                    player.destroy();
-                    const txt = runtime.objects.TxtAnuncio.getFirstInstance();
-                    if (txt) {
-                        txt.text = "¡FIN DEL JUEGO!";
-                        txt.opacity = 1;
-                        txt.fontColor = [1, 0, 0];
-                    }
-                }
+                break;
             }
         }
-
-        // Recoger máscaras
-        const mask = runtime.objects.Mask.getAllInstances()
-            .find(m => player.testOverlap(m));
+        
+        // --- RECOGER MÁSCARAS ---
+        const mask = runtime.objects.Mask.getAllInstances().find(m => player.testOverlap(m));
         if (mask) {
             updatePlayerStats(player, (mask as any).instVars.MaskID);
             mask.destroy();
@@ -122,58 +126,92 @@ function Tick(runtime: IRuntime) {
     }
 
     // =================================================
-    // 2. TIEMPO Y OLEADAS
+    // 2. CHECK DE GAME OVER (FUERA DEL BUCLE)
+    // =================================================
+    // Si el contador de vivos es 0, mostramos el mensaje.
+    if (playersAliveCount === 0) {
+        const txt = runtime.objects.TxtAnuncio.getFirstInstance();
+        if (txt) {
+            txt.text = "¡FIN DEL JUEGO!";
+            txt.opacity = 1;
+            txt.fontColor = [1, 0, 0];
+        }
+    }
+
+    // =================================================
+    // 3. TIEMPO, OLEADAS Y RESURRECCIÓN
     // =================================================
     gameTime += runtime.dt;
     const currentHour = Math.floor(gameTime / HOUR_DURATION);
 
+    // Cambio de hora: Curar y REVIVIR
     if (currentHour > gameHour) {
         gameHour = currentHour;
         spawnMaskReward(runtime);
-        players.forEach(p => (p as any).instVars.HP += 20);
+        players.forEach(p => {
+            const pl = p as any;
+            pl.instVars.HP += 20; 
+            if(pl.instVars.HP > 100) pl.instVars.HP = 100;
+        });
+        
+        // Limpiamos mensaje de Game Over si revivieron
+        const txt = runtime.objects.TxtAnuncio.getFirstInstance();
+        if (txt && playersAliveCount > 0) txt.opacity = 0; 
     }
 
     const enemiesAlive = runtime.objects.Enemy.getAllInstances().length;
     const txtAnuncio = runtime.objects.TxtAnuncio.getFirstInstance();
-
-    switch (waveState) {
-        case "ESPERANDO":
-            waveTimer += runtime.dt;
-            if (txtAnuncio) {
-                txtAnuncio.text = `OLEADA ${waveCount}\nCOMIENZA EN ${Math.ceil(timeBetweenWaves - waveTimer)}`;
-                txtAnuncio.opacity = 1;
-            }
-            if (waveTimer >= timeBetweenWaves) {
-                enemiesToSpawn = 3 + gameHour * 2 + Math.floor(waveCount / 2);
-                waveState = "SPAWNEANDO";
-                waveTimer = 0;
-            }
-            break;
-
-        case "SPAWNEANDO":
-            spawnRateTimer += runtime.dt;
-            if (spawnRateTimer >= 0.5 && enemiesToSpawn > 0) {
-                const sp = getValidSpawnPoint(runtime);
-                if (sp) {
-                    runtime.objects.Enemy.createInstance("Layer 0", sp.x, sp.y);
-                    enemiesToSpawn--;
-                    spawnRateTimer = 0;
+    
+    // Solo mostramos texto de oleada si NO es Game Over
+    if (playersAliveCount > 0) {
+        switch (waveState) {
+            case "ESPERANDO":
+                waveTimer += runtime.dt;
+                if (txtAnuncio) {
+                    txtAnuncio.text = `OLEADA ${waveCount}\nCOMIENZA EN ${Math.ceil(timeBetweenWaves - waveTimer)}`;
+                    txtAnuncio.opacity = 1;
+                    txtAnuncio.fontColor = [1, 1, 1]; // Reset color por si estaba rojo
                 }
-            }
-            if (enemiesToSpawn <= 0) waveState = "PELEANDO";
-            break;
+                if (waveTimer >= timeBetweenWaves) {
+                    const baseEnemies = 3 + gameHour * 2 + Math.floor(waveCount / 2);
+                    // Más enemigos si hay 2 jugadores
+                    enemiesToSpawn = Math.floor(baseEnemies * (1 + (players.length - 1) * 0.5)); 
+                    waveState = "SPAWNEANDO";
+                    waveTimer = 0;
+                }
+                break;
 
-        case "PELEANDO":
-            if (enemiesAlive === 0) {
-                waveCount++;
-                waveState = "ESPERANDO";
-                waveTimer = 0;
-            }
-            break;
+            case "SPAWNEANDO":
+                spawnRateTimer += runtime.dt;
+                if (spawnRateTimer >= 0.5 && enemiesToSpawn > 0) {
+                    const sp = getValidSpawnPoint(runtime);
+                    if (sp) {
+                        runtime.objects.Enemy.createInstance("Layer 0", sp.x, sp.y);
+                        enemiesToSpawn--;
+                        spawnRateTimer = 0;
+                    }
+                }
+                if (enemiesToSpawn <= 0) waveState = "PELEANDO";
+                break;
+
+            case "PELEANDO":
+                if (txtAnuncio) txtAnuncio.opacity = 0; // Ocultar texto durante pelea
+                if (enemiesAlive === 0) {
+                    waveCount++;
+                    waveState = "ESPERANDO";
+                    waveTimer = 0;
+                    // Revivir un poco al pasar oleada
+                    players.forEach(p => {
+                        const pl = p as any;
+                        if (pl.instVars.HP <= 0) pl.instVars.HP = 50; 
+                    });
+                }
+                break;
+        }
     }
 
     // =================================================
-    // 3. IA DE ENEMIGOS
+    // 4. IA DE ENEMIGOS
     // =================================================
     const DISTANCIA_IDEAL = 400;
     const RANGO_DISPARO = 600;
@@ -187,6 +225,9 @@ function Tick(runtime: IRuntime) {
 
         for (const p of players) {
             const pl = p as any;
+            // Enemigos ignoran a muertos
+            if (pl.instVars.HP <= 0) continue; 
+
             const d = Math.hypot(pl.x - e.x, pl.y - e.y);
             if (d < minDist) {
                 minDist = d;
@@ -194,7 +235,7 @@ function Tick(runtime: IRuntime) {
             }
         }
 
-        if (!target) continue;
+        if (!target) continue; 
 
         const angle = Math.atan2(target.y - e.y, target.x - e.x);
         e.angle = minDist > DISTANCIA_IDEAL ? angle : angle + 1.57;
@@ -218,33 +259,56 @@ function Tick(runtime: IRuntime) {
 }
 
 
-
 export function updatePlayerStats(Player: any, maskId: string) {
+    // 1. Actualizar Stats del Jugador (Esto estaba bien)
     Player.instVars.ActiveMask = maskId;
     const runtime = Player.runtime;
+    
     switch (maskId) {
         case "Fuego": Player.instVars.AttackSpeed = 0.2; Player.instVars.Damage = 15; break;
         case "Hielo": Player.instVars.AttackSpeed = 0.5; Player.instVars.Damage = 30; break;
-        case "Nube": Player.instVars.AttackSpeed = 0.05; Player.instVars.Damage = 5; break;
-        case "Rayo": Player.instVars.AttackSpeed = 0.4; Player.instVars.Damage = 20; break;
+        case "Nube":  Player.instVars.AttackSpeed = 0.05; Player.instVars.Damage = 5; break;
+        case "Rayo":  Player.instVars.AttackSpeed = 0.4; Player.instVars.Damage = 20; break;
         case "Peste": Player.instVars.AttackSpeed = 0.6; Player.instVars.Damage = 10; break;
-        case "Luz": Player.instVars.AttackSpeed = 0.8; Player.instVars.Damage = 10; break;
-        default: Player.instVars.AttackSpeed = 0.8; Player.instVars.Damage = 10; Player.instVars.ActiveMask = "Normal";
+        case "Luz":   Player.instVars.AttackSpeed = 0.8; Player.instVars.Damage = 10; break;
+        default:      Player.instVars.AttackSpeed = 0.8; Player.instVars.Damage = 10; Player.instVars.ActiveMask = "Normal";
     }
-    const uiText = runtime.objects.TxtNombreMascara ? runtime.objects.TxtNombreMascara.getFirstInstance() : null;
+
+    // 2. LOGICA UI CORREGIDA PARA 2 JUGADORES
+    // Obtenemos el ID del jugador que recogió la máscara (1 o 2)a
+    const pID = Player.instVars.PlayerID;
+
+    // Buscamos TODOS los textos de máscara
+    const allTexts = runtime.objects.TxtNombreMascara.getAllInstances();
+
+    // Filtramos para encontrar SOLO el texto que tiene el mismo ID que el jugador
+    const uiText = allTexts.find((t: any) => t.instVars.PlayerID === pID);
+
     if (uiText) {
-        if (maskId === "Fuego") uiText.fontColor = [1, 0.2, 0.2];      
-        else if (maskId === "Hielo") uiText.fontColor = [0.2, 0.8, 1]; 
-        else if (maskId === "Peste") uiText.fontColor = [0.2, 1, 0.2]; 
-        else if (maskId === "Rayo") uiText.fontColor = [1, 1, 0];      
-        else uiText.fontColor = [1, 1, 1];                             
+        const txtObj = uiText as any;
+        
+        // Opcional: Actualizamos el texto para que diga el nombre de la máscara
+        txtObj.text = maskId.toUpperCase(); 
+
+        // Cambiamos el color según la máscara
+        if (maskId === "Fuego") txtObj.fontColor = [1, 0.2, 0.2];      
+        else if (maskId === "Hielo") txtObj.fontColor = [0.2, 0.8, 1]; 
+        else if (maskId === "Peste") txtObj.fontColor = [0.2, 1, 0.2]; 
+        else if (maskId === "Rayo")  txtObj.fontColor = [1, 1, 0];      
+        else if (maskId === "Luz")   txtObj.fontColor = [1, 0.9, 0.6]; // Color para Luz
+        else if (maskId === "Nube")  txtObj.fontColor = [0.8, 0.8, 0.8]; // Color para Nube
+        else txtObj.fontColor = [1, 1, 1];                             
     }
 }
 
+
 function getValidSpawnPoint(runtime: IRuntime) {
     const tilemap = runtime.objects.MapaDeTeselas.getFirstInstance() as any;
-    const player = runtime.objects.Player.getFirstInstance();
-    if (!tilemap || !player) return null;
+    // CAMBIO 1: Obtenemos todos los jugadores en lugar de solo el primero
+    const players = runtime.objects.Player.getAllInstances();
+    
+    // Si no hay mapa o no hay jugadores vivos, no hacemos nada
+    if (!tilemap || players.length === 0) return null;
 
     const MIN_DIST_SPAWN = 500; 
 
@@ -256,8 +320,25 @@ function getValidSpawnPoint(runtime: IRuntime) {
         if (tileID === 2) { 
             const realX = gridX * 32 + 16;
             const realY = gridY * 32 + 16;
-            const dist = Math.hypot(realX - player.x, realY - player.y);
-            if (dist > MIN_DIST_SPAWN) return { x: realX, y: realY };
+            
+            // CAMBIO 2: Lógica de validación para MULTIJUGADOR
+            let isSafe = true;
+
+            for (const p of players) {
+                const player = p as any;
+                const dist = Math.hypot(realX - player.x, realY - player.y);
+                
+                // Si está demasiado cerca de CUALQUIER jugador, el punto no es válido
+                if (dist < MIN_DIST_SPAWN) {
+                    isSafe = false;
+                    break; // Dejamos de comprobar, ya falló con uno
+                }
+            }
+
+            // Solo retornamos el punto si es seguro para TODOS los jugadores
+            if (isSafe) {
+                return { x: realX, y: realY };
+            }
         }
     }
     return null; 
@@ -305,3 +386,5 @@ function spawnMaskReward(runtime: IRuntime) {
     
     // console.log(`Spawn de Máscara: ${selectedMask}`);
 }
+
+
