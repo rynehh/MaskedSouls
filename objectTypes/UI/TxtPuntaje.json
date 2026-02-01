@@ -1,0 +1,10 @@
+{
+	"name": "TxtPuntaje",
+	"plugin-id": "Text",
+	"sid": 189178599879672,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": []
+}
