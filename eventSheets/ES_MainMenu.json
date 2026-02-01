@@ -40,11 +40,6 @@
 					}
 				},
 				{
-					"id": "destroy",
-					"objectClass": "ClicktoS",
-					"sid": 710727831159122
-				},
-				{
 					"id": "start-fade",
 					"objectClass": "Marco",
 					"sid": 112564762661969,
@@ -73,6 +68,24 @@
 					"objectClass": "Exit",
 					"sid": 963662734124246,
 					"behaviorType": "Fade"
+				},
+				{
+					"id": "start-fade",
+					"objectClass": "MultiP",
+					"sid": 811432945619310,
+					"behaviorType": "Fade"
+				},
+				{
+					"id": "start-fade",
+					"objectClass": "Options",
+					"sid": 720119697347439,
+					"behaviorType": "Fade"
+				},
+				{
+					"id": "start-fade",
+					"objectClass": "SingleP",
+					"sid": 548918060983675,
+					"behaviorType": "Fade"
 				}
 			],
 			"sid": 631215806070642
@@ -87,6 +100,24 @@
 					"parameters": {
 						"object": "Button_SP"
 					}
+				},
+				{
+					"id": "layer-is-visible",
+					"objectClass": "System",
+					"sid": 288833200227399,
+					"parameters": {
+						"layer": "1"
+					}
+				},
+				{
+					"id": "trigger-once-while-true",
+					"objectClass": "System",
+					"sid": 590721122265544
+				},
+				{
+					"id": "trigger-once-while-true",
+					"objectClass": "System",
+					"sid": 929173866840661
 				}
 			],
 			"actions": [
@@ -97,6 +128,20 @@
 					"parameters": {
 						"animation": "\"Hover\"",
 						"from": "current-frame"
+					}
+				},
+				{
+					"id": "play",
+					"objectClass": "Audio_Game",
+					"sid": 879927922231238,
+					"parameters": {
+						"audio-file": {
+							"path": "click1"
+						},
+						"loop": "not-looping",
+						"volume": "0",
+						"stereo-pan": "0",
+						"tag-optional": "\"\""
 					}
 				}
 			],
@@ -146,6 +191,19 @@
 					"parameters": {
 						"object": "Button_SP"
 					}
+				},
+				{
+					"id": "layer-is-visible",
+					"objectClass": "System",
+					"sid": 237433591931877,
+					"parameters": {
+						"layer": "1"
+					}
+				},
+				{
+					"id": "trigger-once-while-true",
+					"objectClass": "System",
+					"sid": 285930321540154
 				}
 			],
 			"actions": [
@@ -156,6 +214,20 @@
 					"parameters": {
 						"animation": "\"Pressed\"",
 						"from": "current-frame"
+					}
+				},
+				{
+					"id": "play",
+					"objectClass": "Audio_Game",
+					"sid": 189830023251898,
+					"parameters": {
+						"audio-file": {
+							"path": "click2"
+						},
+						"loop": "not-looping",
+						"volume": "0",
+						"stereo-pan": "0",
+						"tag-optional": "\"\""
 					}
 				}
 			],
@@ -194,10 +266,10 @@
 				{
 					"id": "start-timer",
 					"objectClass": "Button_SP",
-					"sid": 380678647516985,
+					"sid": 812965678224058,
 					"behaviorType": "Timer",
 					"parameters": {
-						"duration": "3.0",
+						"duration": ".5",
 						"type": "once",
 						"tag": "\"Start\""
 					}
@@ -218,9 +290,9 @@
 			"eventType": "block",
 			"conditions": [
 				{
-					"id": "is-timer-running",
+					"id": "on-timer",
 					"objectClass": "Button_SP",
-					"sid": 365849933291594,
+					"sid": 938915345130650,
 					"behaviorType": "Timer",
 					"parameters": {
 						"tag": "\"Start\""
@@ -249,6 +321,19 @@
 					"parameters": {
 						"object": "Exit"
 					}
+				},
+				{
+					"id": "layer-is-visible",
+					"objectClass": "System",
+					"sid": 837130915063209,
+					"parameters": {
+						"layer": "1"
+					}
+				},
+				{
+					"id": "trigger-once-while-true",
+					"objectClass": "System",
+					"sid": 775475749483672
 				}
 			],
 			"actions": [
@@ -259,6 +344,20 @@
 					"parameters": {
 						"animation": "\"Hover\"",
 						"from": "current-frame"
+					}
+				},
+				{
+					"id": "play",
+					"objectClass": "Audio_Game",
+					"sid": 552623759097990,
+					"parameters": {
+						"audio-file": {
+							"path": "click2"
+						},
+						"loop": "not-looping",
+						"volume": "0",
+						"stereo-pan": "0",
+						"tag-optional": "\"\""
 					}
 				}
 			],
@@ -333,16 +432,43 @@
 					"parameters": {
 						"object": "Button_MP"
 					}
+				},
+				{
+					"id": "layer-is-visible",
+					"objectClass": "System",
+					"sid": 227255079714167,
+					"parameters": {
+						"layer": "1"
+					}
+				},
+				{
+					"id": "trigger-once-while-true",
+					"objectClass": "System",
+					"sid": 519310921844294
 				}
 			],
 			"actions": [
 				{
 					"id": "set-animation",
 					"objectClass": "Button_MP",
-					"sid": 989940566229555,
+					"sid": 855047829891693,
 					"parameters": {
 						"animation": "\"Hover\"",
 						"from": "current-frame"
+					}
+				},
+				{
+					"id": "play",
+					"objectClass": "Audio_Game",
+					"sid": 178545651981464,
+					"parameters": {
+						"audio-file": {
+							"path": "click2"
+						},
+						"loop": "not-looping",
+						"volume": "0",
+						"stereo-pan": "0",
+						"tag-optional": "\"\""
 					}
 				}
 			],
@@ -392,6 +518,19 @@
 					"parameters": {
 						"object": "Button_MP"
 					}
+				},
+				{
+					"id": "layer-is-visible",
+					"objectClass": "System",
+					"sid": 296120507236591,
+					"parameters": {
+						"layer": "1"
+					}
+				},
+				{
+					"id": "trigger-once-while-true",
+					"objectClass": "System",
+					"sid": 989069493925448
 				}
 			],
 			"actions": [
@@ -402,6 +541,20 @@
 					"parameters": {
 						"animation": "\"Pressed\"",
 						"from": "current-frame"
+					}
+				},
+				{
+					"id": "play",
+					"objectClass": "Audio_Game",
+					"sid": 250035693441534,
+					"parameters": {
+						"audio-file": {
+							"path": "click1"
+						},
+						"loop": "not-looping",
+						"volume": "0",
+						"stereo-pan": "0",
+						"tag-optional": "\"\""
 					}
 				}
 			],
@@ -440,10 +593,10 @@
 				{
 					"id": "start-timer",
 					"objectClass": "Button_MP",
-					"sid": 479821044336958,
+					"sid": 891709429217034,
 					"behaviorType": "Timer",
 					"parameters": {
-						"duration": "3.0",
+						"duration": "0.5",
 						"type": "once",
 						"tag": "\"Start\""
 					}
@@ -464,9 +617,9 @@
 			"eventType": "block",
 			"conditions": [
 				{
-					"id": "is-timer-running",
+					"id": "on-timer",
 					"objectClass": "Button_MP",
-					"sid": 498367603768188,
+					"sid": 874373846943853,
 					"behaviorType": "Timer",
 					"parameters": {
 						"tag": "\"Start\""

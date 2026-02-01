@@ -6,6 +6,10 @@
 			"includeSheet": "mapa_procedural"
 		},
 		{
+			"eventType": "include",
+			"includeSheet": "Animaciones"
+		},
+		{
 			"eventType": "block",
 			"conditions": [
 				{
@@ -289,159 +293,6 @@
 			"eventType": "block",
 			"conditions": [
 				{
-					"id": "on-collision-with-another-object",
-					"objectClass": "Player",
-					"sid": 516745357689734,
-					"parameters": {
-						"object": "Mask"
-					}
-				}
-			],
-			"actions": [
-				{
-					"type": "script",
-					"language": "typescript",
-					"script": [
-						"const { updatePlayerStats } = await import(\"./main.js\");",
-						"",
-						"const players = runtime.objects.Player.getAllInstances();",
-						"const masks = runtime.objects.Mask.getAllInstances();",
-						"",
-						"for (const p of players) {",
-						"    const mask = masks.find(m => p.testOverlap(m));",
-						"    ",
-						"    if (mask) {",
-						"        updatePlayerStats(p, mask.instVars.MaskID);",
-						"        mask.destroy();",
-						"        console.log(`Jugador ${p.instVars.PlayerID} agarró mascara: ${mask.instVars.MaskID}`);",
-						"    }",
-						"}"
-					]
-				}
-			],
-			"sid": 370288435426745
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "on-collision-with-another-object",
-					"objectClass": "Bullet_Type",
-					"sid": 785304042229788,
-					"parameters": {
-						"object": "Enemy"
-					}
-				}
-			],
-			"actions": [
-				{
-					"type": "script",
-					"language": "typescript",
-					"script": [
-						"const bullets = runtime.objects.Bullet_Type.getAllInstances();",
-						"const enemies = runtime.objects.Enemy.getAllInstances();",
-						"",
-						"for (const b of bullets) {",
-						"    const enemy = enemies.find(e => b.testOverlap(e));",
-						"",
-						"    if (!enemy || b.instVars.IgnoreUID === enemy.uid) continue;",
-						"",
-						"    const maskType = b.instVars.ActiveMask || \"Normal\"; ",
-						"",
-						"    enemy.instVars.HP -= b.instVars.Damage;",
-						"    console.log(`[${maskType}] HPEnemy`, enemy.instVars.HP);",
-						"    b.destroy();",
-						"",
-						"    if (maskType === \"Fuego\") {",
-						"        enemy.behaviors.Timer.startTimer(3, \"burn\", \"regular\"); ",
-						"        enemy.instVars.BurnTicks = 6;",
-						"    } ",
-						"    else if (maskType === \"Hielo\") {",
-						"        enemy.instVars.IsFrozen = true;",
-						"        enemy.colorRgb = [100, 100, 255];",
-						"        enemy.behaviors.Timer.startTimer(3, \"Thaw\");",
-						"    }",
-						"    else if (maskType === \"Rayo\" && b.instVars.Bounces > 0) {",
-						"        const target = enemies",
-						"            .filter(e => e !== enemy) ",
-						"            .sort((a, bDist) => Math.hypot(a.x - enemy.x, a.y - enemy.y) - Math.hypot(bDist.x - enemy.x, bDist.y - enemy.y))[0];",
-						"        ",
-						"        if (target && Math.hypot(target.x - enemy.x, target.y - enemy.y) < 1000) {",
-						"            const angleToTarget = Math.atan2(target.y - enemy.y, target.x - enemy.x);",
-						"            const chain = runtime.objects.Bullet_Type.createInstance(\"Layer 0\", enemy.x, enemy.y) as any;",
-						"            ",
-						"            chain.angle = angleToTarget;",
-						"            if (chain.behaviors.Bullet) chain.behaviors.Bullet.angle = angleToTarget;",
-						"            ",
-						"            chain.instVars.IgnoreUID = enemy.uid;      ",
-						"            chain.instVars.Bounces = b.instVars.Bounces - 1; ",
-						"            chain.instVars.Damage = b.instVars.Damage;",
-						"            chain.instVars.ActiveMask = maskType; ",
-						"            chain.instVars.OwnerUID = b.instVars.OwnerUID; ",
-						"        }",
-						"    }",
-						"    else if (maskType === \"Peste\") {",
-						"        runtime.objects.VenomPool.createInstance(\"Layer 0\", enemy.x, enemy.y);",
-						"    }",
-						"    else if (maskType === \"Luz\") {",
-						"        const owner = runtime.objects.Player.getAllInstances().find(p => p.uid === b.instVars.OwnerUID);",
-						"        if (owner) {",
-						"             owner.instVars.HP = Math.min(1000, owner.instVars.HP + 5);",
-						"        }",
-						"    }",
-						"",
-						"    if (enemy.instVars.HP <= 0) enemy.destroy();",
-						"}"
-					]
-				}
-			],
-			"sid": 949545479637660
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "on-collision-with-another-object",
-					"objectClass": "Enemy_Bullet",
-					"sid": 528499721185937,
-					"parameters": {
-						"object": "Player"
-					}
-				}
-			],
-			"actions": [
-				{
-					"type": "script",
-					"language": "typescript",
-					"script": [
-						"const bullets = runtime.objects.Enemy_Bullet.getAllInstances();",
-						"const players = runtime.objects.Player.getAllInstances();",
-						"",
-						"for (const b of bullets) {",
-						"    const victim = players.find(p => b.testOverlap(p));",
-						"",
-						"    if (victim) {",
-						"        victim.instVars.HP -= b.instVars.Damage;",
-						"        b.destroy();",
-						"        console.log(`HP Player ${victim.instVars.PlayerID}:`, victim.instVars.HP);",
-						"",
-						"        if (victim.instVars.HP <= 0) {",
-						"            victim.destroy();",
-						"            if (runtime.objects.Player.getAllInstances().length === 0) {",
-						"                console.log(\"GAME OVER - Todos murieron\");",
-						"            }",
-						"        }",
-						"    }",
-						"}"
-					]
-				}
-			],
-			"sid": 285350013533534
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
 					"id": "on-timer",
 					"objectClass": "Enemy",
 					"sid": 689037994954928,
@@ -699,6 +550,33 @@
 					"sid": 783876143442938
 				}
 			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 878179982595947
+				}
+			],
+			"actions": [
+				{
+					"id": "play",
+					"objectClass": "Audio_Game",
+					"sid": 823197211318402,
+					"parameters": {
+						"audio-file": {
+							"path": "gamplay"
+						},
+						"loop": "looping",
+						"volume": "-10",
+						"stereo-pan": "0",
+						"tag-optional": "\"\""
+					}
+				}
+			],
+			"sid": 857578791814910
 		}
 	],
 	"sid": 570815279696549

@@ -1,0 +1,395 @@
+{
+	"name": "Animaciones",
+	"events": [
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "Player",
+					"sid": 368357269551348,
+					"parameters": {
+						"instance-variable": "PlayerID",
+						"comparison": 0,
+						"value": "1"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-blend-mode",
+					"objectClass": "Player",
+					"sid": 615970196847230,
+					"parameters": {
+						"blend-mode": "normal"
+					}
+				},
+				{
+					"id": "set-default-color",
+					"objectClass": "Player",
+					"sid": 987171368410792,
+					"parameters": {
+						"color": "rgbEx(255, 100,100)"
+					}
+				}
+			],
+			"sid": 465449446001811
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-speed",
+					"objectClass": "Player",
+					"sid": 369122751532642,
+					"behaviorType": "8Direction",
+					"parameters": {
+						"comparison": 3,
+						"speed": "0"
+					}
+				},
+				{
+					"id": "is-boolean-instance-variable-set",
+					"objectClass": "Player",
+					"sid": 728467039286862,
+					"parameters": {
+						"instance-variable": "IsAttacking"
+					},
+					"isInverted": true
+				},
+				{
+					"id": "is-boolean-instance-variable-set",
+					"objectClass": "Player",
+					"sid": 827580581035537,
+					"parameters": {
+						"instance-variable": "IsHurt"
+					},
+					"isInverted": true
+				}
+			],
+			"actions": [
+				{
+					"id": "set-animation",
+					"objectClass": "Player",
+					"sid": 242701050737933,
+					"parameters": {
+						"animation": "\"Idle\"",
+						"from": "beginning"
+					}
+				}
+			],
+			"sid": 820690436963404
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "is-moving",
+					"objectClass": "Player",
+					"sid": 557551686808414,
+					"behaviorType": "8Direction"
+				},
+				{
+					"id": "is-boolean-instance-variable-set",
+					"objectClass": "Player",
+					"sid": 277234544842213,
+					"parameters": {
+						"instance-variable": "IsAttacking"
+					},
+					"isInverted": true
+				},
+				{
+					"id": "is-boolean-instance-variable-set",
+					"objectClass": "Player",
+					"sid": 925294060222620,
+					"parameters": {
+						"instance-variable": "IsHurt"
+					},
+					"isInverted": true
+				}
+			],
+			"actions": [
+				{
+					"id": "set-animation",
+					"objectClass": "Player",
+					"sid": 136122363366319,
+					"parameters": {
+						"animation": "\"Walk\"",
+						"from": "beginning"
+					}
+				}
+			],
+			"sid": 779524575695100
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-click",
+					"objectClass": "Mouse",
+					"sid": 539143134763407,
+					"parameters": {
+						"mouse-button": "left",
+						"click-type": "clicked"
+					}
+				},
+				{
+					"id": "is-moving",
+					"objectClass": "Player",
+					"sid": 803002047622720,
+					"behaviorType": "8Direction"
+				},
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "Player",
+					"sid": 787337496963647,
+					"parameters": {
+						"instance-variable": "PlayerID",
+						"comparison": 0,
+						"value": "2"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-boolean-instvar",
+					"objectClass": "Player",
+					"sid": 382064275012697,
+					"parameters": {
+						"instance-variable": "IsAttacking",
+						"value": "true"
+					}
+				},
+				{
+					"id": "set-animation",
+					"objectClass": "Player",
+					"sid": 750548258228901,
+					"parameters": {
+						"animation": "\"At_Walk\"",
+						"from": "beginning"
+					}
+				}
+			],
+			"sid": 279401482919194
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-click",
+					"objectClass": "Mouse",
+					"sid": 432953058312413,
+					"parameters": {
+						"mouse-button": "left",
+						"click-type": "clicked"
+					}
+				},
+				{
+					"id": "compare-speed",
+					"objectClass": "Player",
+					"sid": 874182367405257,
+					"behaviorType": "8Direction",
+					"parameters": {
+						"comparison": 3,
+						"speed": "0"
+					}
+				},
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "Player",
+					"sid": 987955737610886,
+					"parameters": {
+						"instance-variable": "PlayerID",
+						"comparison": 0,
+						"value": "2"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-boolean-instvar",
+					"objectClass": "Player",
+					"sid": 509435043557475,
+					"parameters": {
+						"instance-variable": "IsAttacking",
+						"value": "true"
+					}
+				},
+				{
+					"id": "set-animation",
+					"objectClass": "Player",
+					"sid": 887974884440773,
+					"parameters": {
+						"animation": "\"At_Idle\"",
+						"from": "beginning"
+					}
+				}
+			],
+			"sid": 643754038507784
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-key-pressed",
+					"objectClass": "Keyboard",
+					"sid": 674538302936937,
+					"parameters": {
+						"key": 32
+					}
+				},
+				{
+					"id": "is-moving",
+					"objectClass": "Player",
+					"sid": 318150139482412,
+					"behaviorType": "8Direction"
+				},
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "Player",
+					"sid": 916647376706598,
+					"parameters": {
+						"instance-variable": "PlayerID",
+						"comparison": 0,
+						"value": "1"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-boolean-instvar",
+					"objectClass": "Player",
+					"sid": 583267814573052,
+					"parameters": {
+						"instance-variable": "IsAttacking",
+						"value": "true"
+					}
+				},
+				{
+					"id": "set-animation",
+					"objectClass": "Player",
+					"sid": 234584950104279,
+					"parameters": {
+						"animation": "\"At_Walk\"",
+						"from": "beginning"
+					}
+				},
+				{
+					"id": "wait",
+					"objectClass": "System",
+					"sid": 589698076481893,
+					"parameters": {
+						"seconds": "3",
+						"use-timescale": true
+					}
+				}
+			],
+			"sid": 310324945720935
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-key-pressed",
+					"objectClass": "Keyboard",
+					"sid": 967512008914524,
+					"parameters": {
+						"key": 32
+					}
+				},
+				{
+					"id": "compare-speed",
+					"objectClass": "Player",
+					"sid": 185601726770530,
+					"behaviorType": "8Direction",
+					"parameters": {
+						"comparison": 3,
+						"speed": "0"
+					}
+				},
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "Player",
+					"sid": 476124805225363,
+					"parameters": {
+						"instance-variable": "PlayerID",
+						"comparison": 0,
+						"value": "1"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-boolean-instvar",
+					"objectClass": "Player",
+					"sid": 151299026227732,
+					"parameters": {
+						"instance-variable": "IsAttacking",
+						"value": "true"
+					}
+				},
+				{
+					"id": "set-animation",
+					"objectClass": "Player",
+					"sid": 830388491098971,
+					"parameters": {
+						"animation": "\"At_Idle\"",
+						"from": "beginning"
+					}
+				}
+			],
+			"sid": 901254762275606
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-animation-finished",
+					"objectClass": "Player",
+					"sid": 514887717772192,
+					"parameters": {
+						"animation": "\"At_Walk\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-boolean-instvar",
+					"objectClass": "Player",
+					"sid": 625447277780817,
+					"parameters": {
+						"instance-variable": "IsAttacking",
+						"value": "false"
+					}
+				}
+			],
+			"sid": 166486396948060
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-animation-finished",
+					"objectClass": "Player",
+					"sid": 745327516057441,
+					"parameters": {
+						"animation": "\"At_Idle\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-boolean-instvar",
+					"objectClass": "Player",
+					"sid": 466055774630212,
+					"parameters": {
+						"instance-variable": "IsAttacking",
+						"value": "false"
+					}
+				}
+			],
+			"sid": 106382160365659
+		}
+	],
+	"sid": 735591337028373
+}

@@ -55,8 +55,8 @@
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 0,
-						"y": 0,
+						"x": 13,
+						"y": 11,
 						"width": 3840,
 						"height": 2160,
 						"originX": 0,
@@ -109,7 +109,7 @@
 					"type": "Player",
 					"properties": {
 						"initially-visible": true,
-						"initial-animation": "Animation 1",
+						"initial-animation": "Idle",
 						"initial-frame": 0,
 						"enable-collisions": true,
 						"live-preview": false
@@ -121,18 +121,21 @@
 						"CurrentMask": "default",
 						"AttackSpeed": 0.8,
 						"Damage": 10,
-						"HP": 100,
+						"HP": 200,
 						"PlayerID": 2,
 						"ControlScheme": "",
 						"IsLocal": true,
-						"Score": 0
+						"Score": 0,
+						"IsAttacking": false,
+						"IsHurt": false,
+						"IsDead": false
 					},
 					"behaviors": {
 						"8Direction": {
 							"properties": {
 								"max-speed": 60,
 								"acceleration": 60,
-								"deceleration": 500,
+								"deceleration": 200,
 								"directions": "dir-8",
 								"set-angle": "no",
 								"allow-sliding": false,
@@ -163,7 +166,7 @@
 					"world": {
 						"x": 1943,
 						"y": -124,
-						"width": 14,
+						"width": 21,
 						"height": 20,
 						"originX": 0.5,
 						"originY": 0.5,
@@ -181,7 +184,7 @@
 					"type": "Player",
 					"properties": {
 						"initially-visible": true,
-						"initial-animation": "Animation 1",
+						"initial-animation": "Idle",
 						"initial-frame": 0,
 						"enable-collisions": true,
 						"live-preview": false
@@ -193,18 +196,21 @@
 						"CurrentMask": "default",
 						"AttackSpeed": 0.8,
 						"Damage": 10,
-						"HP": 100,
+						"HP": 200,
 						"PlayerID": 1,
 						"ControlScheme": "",
 						"IsLocal": true,
-						"Score": 0
+						"Score": 0,
+						"IsAttacking": false,
+						"IsHurt": false,
+						"IsDead": false
 					},
 					"behaviors": {
 						"8Direction": {
 							"properties": {
 								"max-speed": 60,
 								"acceleration": 60,
-								"deceleration": 500,
+								"deceleration": 200,
 								"directions": "dir-8",
 								"set-angle": "no",
 								"allow-sliding": false,
@@ -235,7 +241,7 @@
 					"world": {
 						"x": 1993,
 						"y": -196,
-						"width": 14,
+						"width": 21,
 						"height": 20,
 						"originX": 0.5,
 						"originY": 0.5,
@@ -297,7 +303,7 @@
 					"sid": 121508702205167,
 					"tags": "",
 					"instanceVariables": {
-						"PlayerID": 0
+						"PlayerID": 1
 					},
 					"behaviors": {},
 					"instanceFolderItem": {
@@ -380,7 +386,7 @@
 					"type": "UI_Icono",
 					"properties": {
 						"initially-visible": true,
-						"initial-animation": "Animation 1",
+						"initial-animation": "Normal",
 						"initial-frame": 0,
 						"enable-collisions": true,
 						"live-preview": false
@@ -388,7 +394,9 @@
 					"uid": 17,
 					"sid": 978859493845514,
 					"tags": "",
-					"instanceVariables": {},
+					"instanceVariables": {
+						"PlayerID": 1
+					},
 					"behaviors": {},
 					"instanceFolderItem": {
 						"sid": 978859493845514,
@@ -401,8 +409,8 @@
 						"y": 873,
 						"width": 87,
 						"height": 95,
-						"originX": 0.5555555555555556,
-						"originY": 0.5,
+						"originX": 0.3888888888888889,
+						"originY": 0.4444444444444444,
 						"color": [
 							1,
 							1,
@@ -469,7 +477,7 @@
 				{
 					"type": "TxtPuntaje",
 					"properties": {
-						"text": "Score Jugador 1:",
+						"text": "Score Jugador 2:",
 						"enable-bbcode": true,
 						"font": "alagard",
 						"size": 28,
@@ -495,7 +503,7 @@
 					"sid": 702411082486092,
 					"tags": "",
 					"instanceVariables": {
-						"PlayerID": 0
+						"PlayerID": 1
 					},
 					"behaviors": {},
 					"instanceFolderItem": {
@@ -524,7 +532,7 @@
 				{
 					"type": "TxtNombreMascara",
 					"properties": {
-						"text": "Jugador 1",
+						"text": "Jugador 2",
 						"enable-bbcode": true,
 						"font": "alagard",
 						"size": 30,
@@ -550,7 +558,7 @@
 					"sid": 176540788585370,
 					"tags": "",
 					"instanceVariables": {
-						"PlayerID": 0
+						"PlayerID": 1
 					},
 					"behaviors": {},
 					"instanceFolderItem": {
@@ -579,7 +587,7 @@
 				{
 					"type": "TxtPuntaje",
 					"properties": {
-						"text": "Score Jugador 2:",
+						"text": "Score Jugador 1:",
 						"enable-bbcode": true,
 						"font": "alagard",
 						"size": 28,
@@ -605,7 +613,7 @@
 					"sid": 209311308542261,
 					"tags": "",
 					"instanceVariables": {
-						"PlayerID": 1
+						"PlayerID": 2
 					},
 					"behaviors": {},
 					"instanceFolderItem": {
@@ -644,7 +652,7 @@
 					"sid": 160525027832230,
 					"tags": "",
 					"instanceVariables": {
-						"PlayerID": 1
+						"PlayerID": 2
 					},
 					"behaviors": {},
 					"instanceFolderItem": {
@@ -699,7 +707,7 @@
 					"sid": 322091351791586,
 					"tags": "",
 					"instanceVariables": {
-						"PlayerID": 1
+						"PlayerID": 2
 					},
 					"behaviors": {},
 					"instanceFolderItem": {
@@ -729,7 +737,7 @@
 					"type": "UI_Icono",
 					"properties": {
 						"initially-visible": true,
-						"initial-animation": "Animation 1",
+						"initial-animation": "Normal",
 						"initial-frame": 0,
 						"enable-collisions": true,
 						"live-preview": false
@@ -737,7 +745,9 @@
 					"uid": 12,
 					"sid": 728990367484400,
 					"tags": "",
-					"instanceVariables": {},
+					"instanceVariables": {
+						"PlayerID": 2
+					},
 					"behaviors": {},
 					"instanceFolderItem": {
 						"sid": 728990367484400,
@@ -750,8 +760,8 @@
 						"y": 115,
 						"width": 87,
 						"height": 95,
-						"originX": 0.5555555555555556,
-						"originY": 0.5,
+						"originX": 0.3888888888888889,
+						"originY": 0.4444444444444444,
 						"color": [
 							1,
 							1,
@@ -766,7 +776,7 @@
 					"type": "CorazonUI",
 					"properties": {
 						"initially-visible": true,
-						"initial-animation": "Animation 1",
+						"initial-animation": "Default",
 						"initial-frame": 0,
 						"enable-collisions": false,
 						"live-preview": false
@@ -775,7 +785,7 @@
 					"sid": 710762283504343,
 					"tags": "",
 					"instanceVariables": {
-						"PlayerID": 0
+						"PlayerID": 1
 					},
 					"behaviors": {},
 					"instanceFolderItem": {
@@ -805,7 +815,7 @@
 					"type": "CorazonUI",
 					"properties": {
 						"initially-visible": true,
-						"initial-animation": "Animation 1",
+						"initial-animation": "Default",
 						"initial-frame": 0,
 						"enable-collisions": false,
 						"live-preview": false
@@ -814,7 +824,7 @@
 					"sid": 381933318516452,
 					"tags": "",
 					"instanceVariables": {
-						"PlayerID": 0
+						"PlayerID": 1
 					},
 					"behaviors": {},
 					"instanceFolderItem": {
@@ -844,7 +854,7 @@
 					"type": "CorazonUI",
 					"properties": {
 						"initially-visible": true,
-						"initial-animation": "Animation 1",
+						"initial-animation": "Default",
 						"initial-frame": 0,
 						"enable-collisions": false,
 						"live-preview": false
@@ -853,7 +863,7 @@
 					"sid": 796729446304210,
 					"tags": "",
 					"instanceVariables": {
-						"PlayerID": 0
+						"PlayerID": 1
 					},
 					"behaviors": {},
 					"instanceFolderItem": {
@@ -883,7 +893,7 @@
 					"type": "CorazonUI",
 					"properties": {
 						"initially-visible": true,
-						"initial-animation": "Animation 1",
+						"initial-animation": "Default",
 						"initial-frame": 0,
 						"enable-collisions": false,
 						"live-preview": false
@@ -892,7 +902,7 @@
 					"sid": 445943430430242,
 					"tags": "",
 					"instanceVariables": {
-						"PlayerID": 0
+						"PlayerID": 1
 					},
 					"behaviors": {},
 					"instanceFolderItem": {
@@ -922,7 +932,7 @@
 					"type": "CorazonUI",
 					"properties": {
 						"initially-visible": true,
-						"initial-animation": "Animation 1",
+						"initial-animation": "Default",
 						"initial-frame": 0,
 						"enable-collisions": false,
 						"live-preview": false
@@ -931,7 +941,7 @@
 					"sid": 710098440202810,
 					"tags": "",
 					"instanceVariables": {
-						"PlayerID": 0
+						"PlayerID": 1
 					},
 					"behaviors": {},
 					"instanceFolderItem": {
@@ -961,7 +971,7 @@
 					"type": "CorazonUI",
 					"properties": {
 						"initially-visible": true,
-						"initial-animation": "Animation 1",
+						"initial-animation": "Default",
 						"initial-frame": 0,
 						"enable-collisions": false,
 						"live-preview": false
@@ -970,7 +980,7 @@
 					"sid": 922849994844453,
 					"tags": "",
 					"instanceVariables": {
-						"PlayerID": 1
+						"PlayerID": 2
 					},
 					"behaviors": {},
 					"instanceFolderItem": {
@@ -1000,7 +1010,7 @@
 					"type": "CorazonUI",
 					"properties": {
 						"initially-visible": true,
-						"initial-animation": "Animation 1",
+						"initial-animation": "Default",
 						"initial-frame": 0,
 						"enable-collisions": false,
 						"live-preview": false
@@ -1009,7 +1019,7 @@
 					"sid": 569826058871698,
 					"tags": "",
 					"instanceVariables": {
-						"PlayerID": 1
+						"PlayerID": 2
 					},
 					"behaviors": {},
 					"instanceFolderItem": {
@@ -1039,7 +1049,7 @@
 					"type": "CorazonUI",
 					"properties": {
 						"initially-visible": true,
-						"initial-animation": "Animation 1",
+						"initial-animation": "Default",
 						"initial-frame": 0,
 						"enable-collisions": false,
 						"live-preview": false
@@ -1048,7 +1058,7 @@
 					"sid": 144094023039516,
 					"tags": "",
 					"instanceVariables": {
-						"PlayerID": 1
+						"PlayerID": 2
 					},
 					"behaviors": {},
 					"instanceFolderItem": {
@@ -1078,7 +1088,7 @@
 					"type": "CorazonUI",
 					"properties": {
 						"initially-visible": true,
-						"initial-animation": "Animation 1",
+						"initial-animation": "Default",
 						"initial-frame": 0,
 						"enable-collisions": false,
 						"live-preview": false
@@ -1087,7 +1097,7 @@
 					"sid": 140427154296954,
 					"tags": "",
 					"instanceVariables": {
-						"PlayerID": 1
+						"PlayerID": 2
 					},
 					"behaviors": {},
 					"instanceFolderItem": {
@@ -1117,7 +1127,7 @@
 					"type": "CorazonUI",
 					"properties": {
 						"initially-visible": true,
-						"initial-animation": "Animation 1",
+						"initial-animation": "Default",
 						"initial-frame": 0,
 						"enable-collisions": false,
 						"live-preview": false
@@ -1126,7 +1136,7 @@
 					"sid": 842412453884599,
 					"tags": "",
 					"instanceVariables": {
-						"PlayerID": 1
+						"PlayerID": 2
 					},
 					"behaviors": {},
 					"instanceFolderItem": {
@@ -1148,7 +1158,7 @@
 							1,
 							1
 						],
-						"angle": 0,
+						"angle": 0.0018204713119770732,
 						"zElevation": 1
 					}
 				}

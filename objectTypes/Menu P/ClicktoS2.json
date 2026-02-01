@@ -1,0 +1,16 @@
+{
+	"name": "ClicktoS2",
+	"plugin-id": "Text",
+	"sid": 825324118523669,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Sin",
+			"name": "Sine",
+			"sid": 917611191467295
+		}
+	],
+	"effectTypes": []
+}
