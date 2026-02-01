@@ -592,6 +592,113 @@
 				}
 			],
 			"sid": 216880227836587
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 551794033339101
+				}
+			],
+			"actions": [],
+			"sid": 600924287435987,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 303810462372414,
+							"parameters": {
+								"variable": "GameMode",
+								"comparison": 0,
+								"value": "1"
+							}
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "CorazonUI",
+							"sid": 465290979960204,
+							"parameters": {
+								"instance-variable": "PlayerID",
+								"comparison": 0,
+								"value": "1"
+							}
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "TxtPuntaje",
+							"sid": 771869660055370,
+							"parameters": {
+								"instance-variable": "PlayerID",
+								"comparison": 0,
+								"value": "1"
+							}
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "TxtNombreMascara",
+							"sid": 454276662498990,
+							"parameters": {
+								"instance-variable": "PlayerID",
+								"comparison": 0,
+								"value": "1"
+							}
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "MarcoUI",
+							"sid": 486822166371819,
+							"parameters": {
+								"instance-variable": "PlayerID",
+								"comparison": 0,
+								"value": "1"
+							}
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Player",
+							"sid": 642271498042408,
+							"parameters": {
+								"instance-variable": "PlayerID",
+								"comparison": 0,
+								"value": "1"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "destroy",
+							"objectClass": "Player",
+							"sid": 179760381711522
+						},
+						{
+							"id": "destroy",
+							"objectClass": "CorazonUI",
+							"sid": 786117569399482
+						},
+						{
+							"id": "destroy",
+							"objectClass": "MarcoUI",
+							"sid": 611877196602641
+						},
+						{
+							"id": "destroy",
+							"objectClass": "TxtPuntaje",
+							"sid": 676682446984398
+						},
+						{
+							"id": "destroy",
+							"objectClass": "TxtNombreMascara",
+							"sid": 811274649674103
+						}
+					],
+					"sid": 783876143442938
+				}
+			]
 		}
 	],
 	"sid": 570815279696549

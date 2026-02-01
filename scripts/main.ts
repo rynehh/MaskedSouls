@@ -493,6 +493,8 @@ function spawnMaskReward(runtime: IRuntime) {
     mask.animationFrame = MASK_FRAMES[selectedMask] || 0;
 }
 
+
+
 function createFloatingText(runtime: IRuntime, x: number, y: number, text: string) {
     // Función opcional si tienes un objeto de texto para feedback
     // console.log(text);

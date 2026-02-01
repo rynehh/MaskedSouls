@@ -2,6 +2,16 @@
 	"name": "ES_MainMenu",
 	"events": [
 		{
+			"eventType": "variable",
+			"name": "GameMode",
+			"type": "number",
+			"initialValue": "2",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 924305748296032
+		},
+		{
 			"eventType": "block",
 			"conditions": [
 				{
@@ -190,6 +200,15 @@
 						"duration": "3.0",
 						"type": "once",
 						"tag": "\"Start\""
+					}
+				},
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 656959685560997,
+					"parameters": {
+						"variable": "GameMode",
+						"value": "1"
 					}
 				}
 			],
@@ -427,6 +446,15 @@
 						"duration": "3.0",
 						"type": "once",
 						"tag": "\"Start\""
+					}
+				},
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 758112523462652,
+					"parameters": {
+						"variable": "GameMode",
+						"value": "2"
 					}
 				}
 			],
