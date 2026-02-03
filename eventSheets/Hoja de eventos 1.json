@@ -1,0 +1,615 @@
+{
+	"name": "Hoja de eventos 1",
+	"events": [
+		{
+			"eventType": "include",
+			"includeSheet": "mapa_procedural"
+		},
+		{
+			"eventType": "include",
+			"includeSheet": "Animaciones"
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "key-is-down",
+					"objectClass": "Keyboard",
+					"sid": 216739719348300,
+					"parameters": {
+						"key": 87
+					}
+				},
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "Player",
+					"sid": 613179386554457,
+					"parameters": {
+						"instance-variable": "PlayerID",
+						"comparison": 0,
+						"value": "0"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "simulate-control",
+					"objectClass": "Player",
+					"sid": 582631077202931,
+					"behaviorType": "8Direction",
+					"parameters": {
+						"control": "up"
+					}
+				}
+			],
+			"sid": 487892527433425
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "key-is-down",
+					"objectClass": "Keyboard",
+					"sid": 625391674897602,
+					"parameters": {
+						"key": 65
+					}
+				},
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "Player",
+					"sid": 740732199735421,
+					"parameters": {
+						"instance-variable": "PlayerID",
+						"comparison": 0,
+						"value": "0"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "simulate-control",
+					"objectClass": "Player",
+					"sid": 425316522829086,
+					"behaviorType": "8Direction",
+					"parameters": {
+						"control": "left"
+					}
+				},
+				{
+					"id": "set-mirrored",
+					"objectClass": "Player",
+					"sid": 821999916162595,
+					"parameters": {
+						"state": "mirrored"
+					}
+				}
+			],
+			"sid": 127490127698949
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "key-is-down",
+					"objectClass": "Keyboard",
+					"sid": 746657425834575,
+					"parameters": {
+						"key": 83
+					}
+				},
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "Player",
+					"sid": 434986625639872,
+					"parameters": {
+						"instance-variable": "PlayerID",
+						"comparison": 0,
+						"value": "0"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "simulate-control",
+					"objectClass": "Player",
+					"sid": 460148642340406,
+					"behaviorType": "8Direction",
+					"parameters": {
+						"control": "down"
+					}
+				}
+			],
+			"sid": 558039808486429
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "key-is-down",
+					"objectClass": "Keyboard",
+					"sid": 559845587039818,
+					"parameters": {
+						"key": 68
+					}
+				},
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "Player",
+					"sid": 113391577295066,
+					"parameters": {
+						"instance-variable": "PlayerID",
+						"comparison": 0,
+						"value": "0"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "simulate-control",
+					"objectClass": "Player",
+					"sid": 868284559643527,
+					"behaviorType": "8Direction",
+					"parameters": {
+						"control": "right"
+					}
+				},
+				{
+					"id": "set-mirrored",
+					"objectClass": "Player",
+					"sid": 463508586837659,
+					"parameters": {
+						"state": "not-mirrored"
+					}
+				}
+			],
+			"sid": 147990751973091
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "key-is-down",
+					"objectClass": "Keyboard",
+					"sid": 801019670032594,
+					"parameters": {
+						"key": 73
+					}
+				},
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "Player",
+					"sid": 872681174163222,
+					"parameters": {
+						"instance-variable": "PlayerID",
+						"comparison": 0,
+						"value": "1"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "simulate-control",
+					"objectClass": "Player",
+					"sid": 124710212966456,
+					"behaviorType": "8Direction",
+					"parameters": {
+						"control": "up"
+					}
+				}
+			],
+			"sid": 550125894356056
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "key-is-down",
+					"objectClass": "Keyboard",
+					"sid": 611236707289966,
+					"parameters": {
+						"key": 74
+					}
+				},
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "Player",
+					"sid": 640429604149911,
+					"parameters": {
+						"instance-variable": "PlayerID",
+						"comparison": 0,
+						"value": "1"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "simulate-control",
+					"objectClass": "Player",
+					"sid": 591176899941734,
+					"behaviorType": "8Direction",
+					"parameters": {
+						"control": "left"
+					}
+				},
+				{
+					"id": "set-mirrored",
+					"objectClass": "Player",
+					"sid": 137554727038709,
+					"parameters": {
+						"state": "mirrored"
+					}
+				}
+			],
+			"sid": 477944807872733
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "key-is-down",
+					"objectClass": "Keyboard",
+					"sid": 275116082828731,
+					"parameters": {
+						"key": 75
+					}
+				},
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "Player",
+					"sid": 637154735653621,
+					"parameters": {
+						"instance-variable": "PlayerID",
+						"comparison": 0,
+						"value": "1"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "simulate-control",
+					"objectClass": "Player",
+					"sid": 163976272844672,
+					"behaviorType": "8Direction",
+					"parameters": {
+						"control": "down"
+					}
+				}
+			],
+			"sid": 114825730640813
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "key-is-down",
+					"objectClass": "Keyboard",
+					"sid": 694277674009766,
+					"parameters": {
+						"key": 76
+					}
+				},
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "Player",
+					"sid": 497153025248445,
+					"parameters": {
+						"instance-variable": "PlayerID",
+						"comparison": 0,
+						"value": "1"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "simulate-control",
+					"objectClass": "Player",
+					"sid": 848081288019850,
+					"behaviorType": "8Direction",
+					"parameters": {
+						"control": "right"
+					}
+				},
+				{
+					"id": "set-mirrored",
+					"objectClass": "Player",
+					"sid": 112628609991894,
+					"parameters": {
+						"state": "not-mirrored"
+					}
+				}
+			],
+			"sid": 439964318600490
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-timer",
+					"objectClass": "Enemy",
+					"sid": 689037994954928,
+					"behaviorType": "Timer",
+					"parameters": {
+						"tag": "\"Thaw\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-enabled",
+					"objectClass": "Enemy",
+					"sid": 550391407629566,
+					"behaviorType": "8Direction",
+					"parameters": {
+						"state": "enabled"
+					}
+				},
+				{
+					"id": "set-boolean-instvar",
+					"objectClass": "Enemy",
+					"sid": 728602519853215,
+					"parameters": {
+						"instance-variable": "IsFrozen",
+						"value": "false"
+					}
+				}
+			],
+			"sid": 655156068806247
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-timer",
+					"objectClass": "Enemy",
+					"sid": 600089371788644,
+					"behaviorType": "Timer",
+					"parameters": {
+						"tag": "\"Burn\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "subtract-from-instvar",
+					"objectClass": "Enemy",
+					"sid": 194242153244390,
+					"parameters": {
+						"instance-variable": "HP",
+						"value": "3"
+					}
+				},
+				{
+					"id": "subtract-from-instvar",
+					"objectClass": "Enemy",
+					"sid": 252891812889862,
+					"parameters": {
+						"instance-variable": "BurnTicks",
+						"value": "1"
+					}
+				}
+			],
+			"sid": 266909098762248
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "Enemy",
+					"sid": 422212436681834,
+					"parameters": {
+						"instance-variable": "BurnTicks",
+						"comparison": 3,
+						"value": "0"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "stop-timer",
+					"objectClass": "Enemy",
+					"sid": 160127771833586,
+					"behaviorType": "Timer",
+					"parameters": {
+						"tag": "\"Burn\""
+					}
+				}
+			],
+			"sid": 636719864925108
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-collision-with-another-object",
+					"objectClass": "VenomPool",
+					"sid": 101317417509220,
+					"parameters": {
+						"object": "Enemy"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "start-timer",
+					"objectClass": "VenomPool",
+					"sid": 727810099351931,
+					"behaviorType": "Timer",
+					"parameters": {
+						"duration": "3",
+						"type": "once",
+						"tag": "\"Venom\""
+					}
+				}
+			],
+			"sid": 302203150977346
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-timer",
+					"objectClass": "VenomPool",
+					"sid": 589603572909845,
+					"behaviorType": "Timer",
+					"parameters": {
+						"tag": "\"Venom\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "subtract-from-instvar",
+					"objectClass": "Enemy",
+					"sid": 927723237119348,
+					"parameters": {
+						"instance-variable": "HP",
+						"value": "2"
+					}
+				},
+				{
+					"id": "destroy",
+					"objectClass": "VenomPool",
+					"sid": 559035869788748
+				}
+			],
+			"sid": 216880227836587
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 551794033339101
+				}
+			],
+			"actions": [],
+			"sid": 600924287435987,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 303810462372414,
+							"parameters": {
+								"variable": "GameMode",
+								"comparison": 0,
+								"value": "1"
+							}
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "CorazonUI",
+							"sid": 465290979960204,
+							"parameters": {
+								"instance-variable": "PlayerID",
+								"comparison": 0,
+								"value": "1"
+							}
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "TxtPuntaje",
+							"sid": 771869660055370,
+							"parameters": {
+								"instance-variable": "PlayerID",
+								"comparison": 0,
+								"value": "1"
+							}
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "TxtNombreMascara",
+							"sid": 454276662498990,
+							"parameters": {
+								"instance-variable": "PlayerID",
+								"comparison": 0,
+								"value": "1"
+							}
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "MarcoUI",
+							"sid": 486822166371819,
+							"parameters": {
+								"instance-variable": "PlayerID",
+								"comparison": 0,
+								"value": "1"
+							}
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Player",
+							"sid": 642271498042408,
+							"parameters": {
+								"instance-variable": "PlayerID",
+								"comparison": 0,
+								"value": "1"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "destroy",
+							"objectClass": "Player",
+							"sid": 179760381711522
+						},
+						{
+							"id": "destroy",
+							"objectClass": "CorazonUI",
+							"sid": 786117569399482
+						},
+						{
+							"id": "destroy",
+							"objectClass": "MarcoUI",
+							"sid": 611877196602641
+						},
+						{
+							"id": "destroy",
+							"objectClass": "TxtPuntaje",
+							"sid": 676682446984398
+						},
+						{
+							"id": "destroy",
+							"objectClass": "TxtNombreMascara",
+							"sid": 811274649674103
+						}
+					],
+					"sid": 783876143442938
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 878179982595947
+				}
+			],
+			"actions": [
+				{
+					"id": "play",
+					"objectClass": "Audio_Game",
+					"sid": 823197211318402,
+					"parameters": {
+						"audio-file": {
+							"path": "gamplay"
+						},
+						"loop": "looping",
+						"volume": "-10",
+						"stereo-pan": "0",
+						"tag-optional": "\"\""
+					}
+				}
+			],
+			"sid": 857578791814910
+		}
+	],
+	"sid": 570815279696549
+}

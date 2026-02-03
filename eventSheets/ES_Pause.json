@@ -1,0 +1,112 @@
+{
+	"name": "ES_Pause",
+	"events": [
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "cursor-is-over-object",
+					"objectClass": "Mouse",
+					"sid": 590990361931146,
+					"parameters": {
+						"object": "Exit_P"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-animation",
+					"objectClass": "Exit_P",
+					"sid": 399640996042164,
+					"parameters": {
+						"animation": "\"Hover\"",
+						"from": "current-frame"
+					}
+				}
+			],
+			"sid": 149008365971367
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "cursor-is-over-object",
+					"objectClass": "Mouse",
+					"sid": 235836355905409,
+					"parameters": {
+						"object": "Exit_P"
+					},
+					"isInverted": true
+				}
+			],
+			"actions": [
+				{
+					"id": "set-animation",
+					"objectClass": "Exit_P",
+					"sid": 496803826014961,
+					"parameters": {
+						"animation": "\"Idle\"",
+						"from": "current-frame"
+					}
+				}
+			],
+			"sid": 910636459171078
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-button-released",
+					"objectClass": "Mouse",
+					"sid": 826764444683698,
+					"parameters": {
+						"mouse-button": "left"
+					}
+				},
+				{
+					"id": "cursor-is-over-object",
+					"objectClass": "Mouse",
+					"sid": 840254093172985,
+					"parameters": {
+						"object": "Exit_P"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "go-to-layout",
+					"objectClass": "System",
+					"sid": 987494626922057,
+					"parameters": {
+						"layout": "L_MainMenu"
+					}
+				}
+			],
+			"sid": 736657902762522
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-button-released",
+					"objectClass": "Mouse",
+					"sid": 498300881428310,
+					"parameters": {
+						"mouse-button": "left"
+					}
+				},
+				{
+					"id": "cursor-is-over-object",
+					"objectClass": "Mouse",
+					"sid": 765026747966918,
+					"parameters": {
+						"object": "Play_P"
+					}
+				}
+			],
+			"actions": [],
+			"sid": 114940529419043
+		}
+	],
+	"sid": 635879668630634
+}

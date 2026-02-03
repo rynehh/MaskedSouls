@@ -1,0 +1,24 @@
+{
+	"name": "Audio_Game",
+	"plugin-id": "Audio",
+	"sid": 802403331941226,
+	"singleglobal-inst": {
+		"type": "Audio_Game",
+		"properties": {
+			"timescale-audio": "off",
+			"save-load": "all",
+			"play-in-background": false,
+			"latency-hint": "interactive",
+			"enable-multiple-tags": true,
+			"panning-model": "hrtf",
+			"distance-model": "inverse",
+			"listener-z-height": 600,
+			"reference-distance": 600,
+			"maximum-distance": 10000,
+			"roll-off-factor": 1
+		},
+		"uid": 46,
+		"sid": 138735937356433,
+		"tags": ""
+	}
+}

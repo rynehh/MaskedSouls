@@ -1,0 +1,671 @@
+{
+	"name": "ES_MainMenu",
+	"events": [
+		{
+			"eventType": "variable",
+			"name": "GameMode",
+			"type": "number",
+			"initialValue": "2",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 924305748296032
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-any-click",
+					"objectClass": "Mouse",
+					"sid": 734953475786788
+				},
+				{
+					"id": "layer-is-visible",
+					"objectClass": "System",
+					"sid": 490553009488508,
+					"parameters": {
+						"layer": "1"
+					},
+					"isInverted": true
+				}
+			],
+			"actions": [
+				{
+					"id": "set-layer-visible",
+					"objectClass": "System",
+					"sid": 856770496564532,
+					"parameters": {
+						"layer": "1",
+						"visibility": "visible"
+					}
+				},
+				{
+					"id": "start-fade",
+					"objectClass": "Marco",
+					"sid": 112564762661969,
+					"behaviorType": "Fade"
+				},
+				{
+					"id": "start-fade",
+					"objectClass": "Button_SP",
+					"sid": 220016766851276,
+					"behaviorType": "Fade"
+				},
+				{
+					"id": "start-fade",
+					"objectClass": "Button_OPC",
+					"sid": 341156858688384,
+					"behaviorType": "Fade"
+				},
+				{
+					"id": "start-fade",
+					"objectClass": "Button_MP",
+					"sid": 977617313744657,
+					"behaviorType": "Fade"
+				},
+				{
+					"id": "start-fade",
+					"objectClass": "Exit",
+					"sid": 963662734124246,
+					"behaviorType": "Fade"
+				},
+				{
+					"id": "start-fade",
+					"objectClass": "MultiP",
+					"sid": 811432945619310,
+					"behaviorType": "Fade"
+				},
+				{
+					"id": "start-fade",
+					"objectClass": "Options",
+					"sid": 720119697347439,
+					"behaviorType": "Fade"
+				},
+				{
+					"id": "start-fade",
+					"objectClass": "SingleP",
+					"sid": 548918060983675,
+					"behaviorType": "Fade"
+				},
+				{
+					"id": "wait",
+					"objectClass": "System",
+					"sid": 930610254086035,
+					"parameters": {
+						"seconds": "0.5",
+						"use-timescale": true
+					}
+				},
+				{
+					"id": "set-group-active",
+					"objectClass": "System",
+					"sid": 837747373105281,
+					"parameters": {
+						"group-name": "\"LogicaMenu\"",
+						"state": "activated"
+					}
+				}
+			],
+			"sid": 631215806070642
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "LogicaMenu",
+			"description": "",
+			"isActiveOnStart": false,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "cursor-is-over-object",
+							"objectClass": "Mouse",
+							"sid": 561473441255555,
+							"parameters": {
+								"object": "Button_SP"
+							}
+						},
+						{
+							"id": "layer-is-visible",
+							"objectClass": "System",
+							"sid": 507961020373734,
+							"parameters": {
+								"layer": "1"
+							}
+						},
+						{
+							"id": "trigger-once-while-true",
+							"objectClass": "System",
+							"sid": 220975421883483
+						},
+						{
+							"id": "trigger-once-while-true",
+							"objectClass": "System",
+							"sid": 702769585747627
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation",
+							"objectClass": "Button_SP",
+							"sid": 895180531410933,
+							"parameters": {
+								"animation": "\"Hover\"",
+								"from": "current-frame"
+							}
+						},
+						{
+							"id": "play",
+							"objectClass": "Audio_Game",
+							"sid": 492112948149032,
+							"parameters": {
+								"audio-file": {
+									"path": "click1"
+								},
+								"loop": "not-looping",
+								"volume": "0",
+								"stereo-pan": "0",
+								"tag-optional": "\"\""
+							}
+						}
+					],
+					"sid": 292690182828137
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "cursor-is-over-object",
+							"objectClass": "Mouse",
+							"sid": 975295295070827,
+							"parameters": {
+								"object": "Button_SP"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation",
+							"objectClass": "Button_SP",
+							"sid": 372196988223489,
+							"parameters": {
+								"animation": "\"Idle\"",
+								"from": "current-frame"
+							}
+						}
+					],
+					"sid": 137530322872717
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "mouse-button-is-down",
+							"objectClass": "Mouse",
+							"sid": 213145091879909,
+							"parameters": {
+								"mouse-button": "left"
+							}
+						},
+						{
+							"id": "cursor-is-over-object",
+							"objectClass": "Mouse",
+							"sid": 972017303126099,
+							"parameters": {
+								"object": "Button_SP"
+							}
+						},
+						{
+							"id": "layer-is-visible",
+							"objectClass": "System",
+							"sid": 918379863504243,
+							"parameters": {
+								"layer": "1"
+							}
+						},
+						{
+							"id": "trigger-once-while-true",
+							"objectClass": "System",
+							"sid": 943766767164795
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation",
+							"objectClass": "Button_SP",
+							"sid": 129273609211637,
+							"parameters": {
+								"animation": "\"Pressed\"",
+								"from": "current-frame"
+							}
+						},
+						{
+							"id": "play",
+							"objectClass": "Audio_Game",
+							"sid": 195895892944845,
+							"parameters": {
+								"audio-file": {
+									"path": "click2"
+								},
+								"loop": "not-looping",
+								"volume": "0",
+								"stereo-pan": "0",
+								"tag-optional": "\"\""
+							}
+						}
+					],
+					"sid": 893003387607968
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-button-released",
+							"objectClass": "Mouse",
+							"sid": 256411081447079,
+							"parameters": {
+								"mouse-button": "left"
+							}
+						},
+						{
+							"id": "cursor-is-over-object",
+							"objectClass": "Mouse",
+							"sid": 313302853484729,
+							"parameters": {
+								"object": "Button_SP"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation",
+							"objectClass": "Button_SP",
+							"sid": 127409206505247,
+							"parameters": {
+								"animation": "\"Idle\"",
+								"from": "current-frame"
+							}
+						},
+						{
+							"id": "start-timer",
+							"objectClass": "Button_SP",
+							"sid": 163751909537504,
+							"behaviorType": "Timer",
+							"parameters": {
+								"duration": ".5",
+								"type": "once",
+								"tag": "\"Start\""
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 670625248722142,
+							"parameters": {
+								"variable": "GameMode",
+								"value": "1"
+							}
+						}
+					],
+					"sid": 961451234225040
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-timer",
+							"objectClass": "Button_SP",
+							"sid": 576973768677354,
+							"behaviorType": "Timer",
+							"parameters": {
+								"tag": "\"Start\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "go-to-layout",
+							"objectClass": "System",
+							"sid": 645959401242385,
+							"parameters": {
+								"layout": "Escena 1"
+							}
+						}
+					],
+					"sid": 420573688900239
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "cursor-is-over-object",
+							"objectClass": "Mouse",
+							"sid": 672811231610963,
+							"parameters": {
+								"object": "Exit"
+							}
+						},
+						{
+							"id": "layer-is-visible",
+							"objectClass": "System",
+							"sid": 759505386575836,
+							"parameters": {
+								"layer": "1"
+							}
+						},
+						{
+							"id": "trigger-once-while-true",
+							"objectClass": "System",
+							"sid": 335752512867679
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation",
+							"objectClass": "Exit",
+							"sid": 438988044166971,
+							"parameters": {
+								"animation": "\"Hover\"",
+								"from": "current-frame"
+							}
+						},
+						{
+							"id": "play",
+							"objectClass": "Audio_Game",
+							"sid": 768064623640161,
+							"parameters": {
+								"audio-file": {
+									"path": "click2"
+								},
+								"loop": "not-looping",
+								"volume": "0",
+								"stereo-pan": "0",
+								"tag-optional": "\"\""
+							}
+						}
+					],
+					"sid": 653957975889626
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "cursor-is-over-object",
+							"objectClass": "Mouse",
+							"sid": 560796915850103,
+							"parameters": {
+								"object": "Exit"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation",
+							"objectClass": "Exit",
+							"sid": 130941470444122,
+							"parameters": {
+								"animation": "\"Idle\"",
+								"from": "current-frame"
+							}
+						}
+					],
+					"sid": 538078587195204
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-button-released",
+							"objectClass": "Mouse",
+							"sid": 315236043771997,
+							"parameters": {
+								"mouse-button": "left"
+							}
+						},
+						{
+							"id": "cursor-is-over-object",
+							"objectClass": "Mouse",
+							"sid": 289107906097830,
+							"parameters": {
+								"object": "Exit"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-layer-visible",
+							"objectClass": "System",
+							"sid": 314933859727200,
+							"parameters": {
+								"layer": "1",
+								"visibility": "invisible"
+							}
+						}
+					],
+					"sid": 688984484654260
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "cursor-is-over-object",
+							"objectClass": "Mouse",
+							"sid": 400748879068686,
+							"parameters": {
+								"object": "Button_MP"
+							}
+						},
+						{
+							"id": "layer-is-visible",
+							"objectClass": "System",
+							"sid": 430444874811061,
+							"parameters": {
+								"layer": "1"
+							}
+						},
+						{
+							"id": "trigger-once-while-true",
+							"objectClass": "System",
+							"sid": 144112980561090
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation",
+							"objectClass": "Button_MP",
+							"sid": 592424640673364,
+							"parameters": {
+								"animation": "\"Hover\"",
+								"from": "current-frame"
+							}
+						},
+						{
+							"id": "play",
+							"objectClass": "Audio_Game",
+							"sid": 987625879481944,
+							"parameters": {
+								"audio-file": {
+									"path": "click2"
+								},
+								"loop": "not-looping",
+								"volume": "0",
+								"stereo-pan": "0",
+								"tag-optional": "\"\""
+							}
+						}
+					],
+					"sid": 823300353960201
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "cursor-is-over-object",
+							"objectClass": "Mouse",
+							"sid": 890330646568287,
+							"parameters": {
+								"object": "Button_MP"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation",
+							"objectClass": "Button_MP",
+							"sid": 578551355766609,
+							"parameters": {
+								"animation": "\"Idle\"",
+								"from": "current-frame"
+							}
+						}
+					],
+					"sid": 636370767411058
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "mouse-button-is-down",
+							"objectClass": "Mouse",
+							"sid": 517240250736376,
+							"parameters": {
+								"mouse-button": "left"
+							}
+						},
+						{
+							"id": "cursor-is-over-object",
+							"objectClass": "Mouse",
+							"sid": 547885082344517,
+							"parameters": {
+								"object": "Button_MP"
+							}
+						},
+						{
+							"id": "layer-is-visible",
+							"objectClass": "System",
+							"sid": 695707275525024,
+							"parameters": {
+								"layer": "1"
+							}
+						},
+						{
+							"id": "trigger-once-while-true",
+							"objectClass": "System",
+							"sid": 522417953336361
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation",
+							"objectClass": "Button_MP",
+							"sid": 918052245715150,
+							"parameters": {
+								"animation": "\"Pressed\"",
+								"from": "current-frame"
+							}
+						},
+						{
+							"id": "play",
+							"objectClass": "Audio_Game",
+							"sid": 712592648290573,
+							"parameters": {
+								"audio-file": {
+									"path": "click1"
+								},
+								"loop": "not-looping",
+								"volume": "0",
+								"stereo-pan": "0",
+								"tag-optional": "\"\""
+							}
+						}
+					],
+					"sid": 242228976443776
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-button-released",
+							"objectClass": "Mouse",
+							"sid": 179426903470602,
+							"parameters": {
+								"mouse-button": "left"
+							}
+						},
+						{
+							"id": "cursor-is-over-object",
+							"objectClass": "Mouse",
+							"sid": 464426908232383,
+							"parameters": {
+								"object": "Button_MP"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation",
+							"objectClass": "Button_MP",
+							"sid": 101081350527849,
+							"parameters": {
+								"animation": "\"Idle\"",
+								"from": "current-frame"
+							}
+						},
+						{
+							"id": "start-timer",
+							"objectClass": "Button_MP",
+							"sid": 874440751470469,
+							"behaviorType": "Timer",
+							"parameters": {
+								"duration": "0.5",
+								"type": "once",
+								"tag": "\"Start\""
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 113063127137560,
+							"parameters": {
+								"variable": "GameMode",
+								"value": "2"
+							}
+						}
+					],
+					"sid": 299303045728749
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-timer",
+							"objectClass": "Button_MP",
+							"sid": 125257214695758,
+							"behaviorType": "Timer",
+							"parameters": {
+								"tag": "\"Start\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "go-to-layout",
+							"objectClass": "System",
+							"sid": 947883204272616,
+							"parameters": {
+								"layout": "Escena 1"
+							}
+						}
+					],
+					"sid": 497047159236172
+				}
+			],
+			"sid": 458001744241150
+		}
+	],
+	"sid": 787861920460954
+}

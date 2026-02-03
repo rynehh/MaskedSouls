@@ -1,0 +1,582 @@
+{
+	"projectFormatVersion": 1,
+	"savedWithRelease": 46602,
+	"name": "GJ_MaskedSouls",
+	"runtime": "c3",
+	"useWorker": "auto",
+	"bundleAddons": false,
+	"usedAddons": [
+		{
+			"type": "plugin",
+			"id": "Audio",
+			"name": "Audio",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "Keyboard",
+			"name": "Teclado",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "Mouse",
+			"name": "Mouse",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "Sprite",
+			"name": "Sprite",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "Text",
+			"name": "Texto",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "TextBox",
+			"name": "Entrada de texto",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "Tilemap",
+			"name": "Mapa de teselas",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "Bullet",
+			"name": "Bala",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "EightDir",
+			"name": "8 Direcciones",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "Fade",
+			"name": "Desvanecer",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "Sin",
+			"name": "Seno",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "Timer",
+			"name": "Temporizador",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "bound",
+			"name": "Restringido a la escena",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "destroy",
+			"name": "Destruir fuera de la escena",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "scrollto",
+			"name": "Desplazar hasta",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "solid",
+			"name": "Sólido",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "wrap",
+			"name": "Rodear",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "effect",
+			"id": "emboss",
+			"name": "Relieve",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "effect",
+			"id": "vignette",
+			"name": "Viñeta",
+			"author": "Brad Larson",
+			"bundled": false
+		}
+	],
+	"uniqueId": "52c1exxmk5p",
+	"objectTypes": {
+		"items": [
+			"MapaDeTeselas",
+			"Player",
+			"Bullet_Type",
+			"Mask",
+			"Mouse",
+			"Enemy",
+			"Keyboard",
+			"Enemy_Bullet",
+			"VenomPool",
+			"EntradaDeTexto",
+			"Audio_Game",
+			"Enemy2",
+			"txtTuto",
+			"Sprite_Tuto"
+		],
+		"subfolders": [
+			{
+				"items": [
+					"Barril",
+					"Sprite2",
+					"Sprite3",
+					"Cajas",
+					"antorcha",
+					"escudo",
+					"velas",
+					"Botellas",
+					"ventana",
+					"varios",
+					"CofreLoot"
+				],
+				"subfolders": [],
+				"name": "Sprites Mapa"
+			},
+			{
+				"items": [
+					"ClicktoS",
+					"Marco",
+					"Button_SP",
+					"Button_MP",
+					"Button_OPC",
+					"Exit",
+					"SingleP",
+					"MultiP",
+					"Options",
+					"BG",
+					"Title",
+					"ClicktoS2",
+					"Text_Options"
+				],
+				"subfolders": [],
+				"name": "Menu P"
+			},
+			{
+				"items": [
+					"Pausa_Player",
+					"Exit_P",
+					"Text",
+					"Play_P"
+				],
+				"subfolders": [],
+				"name": "Pause"
+			},
+			{
+				"items": [
+					"MarcoUI",
+					"TxtTime",
+					"UI_Icono",
+					"TxtNombreMascara",
+					"CorazonUI",
+					"TxtAnuncio",
+					"TxtPuntaje",
+					"Mask_Player"
+				],
+				"subfolders": [],
+				"name": "UI"
+			}
+		]
+	},
+	"functionsName": "Funciones",
+	"autosaveData": null,
+	"containers": [],
+	"families": {
+		"items": [],
+		"subfolders": []
+	},
+	"layouts": {
+		"items": [
+			"Escena 1",
+			"Template_Objects",
+			"L_MainMenu",
+			"L_Pause"
+		],
+		"subfolders": []
+	},
+	"eventSheets": {
+		"items": [
+			"Hoja de eventos 1",
+			"mapa_procedural",
+			"ES_MainMenu",
+			"ES_Pause",
+			"Animaciones"
+		],
+		"subfolders": []
+	},
+	"rootFileFolders": {
+		"script": {
+			"items": [
+				{
+					"name": "main.ts",
+					"type": "application/typescript",
+					"sid": 462665028540381,
+					"script-info": {
+						"purpose": "main"
+					}
+				}
+			],
+			"subfolders": []
+		},
+		"sound": {
+			"items": [
+				{
+					"name": "click1.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 593578483997425,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "click2.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 254877059867274,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "muertejugador.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 798832816919651,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "muerte enemigo.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 595489595024015,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "fuego.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 240125192373916,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "hielo.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 912099136643190,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "agua_.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 202032184755454,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "rayos golpe.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 115560465386441,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "rayos.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 761914601307767,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "gamplay.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 605014037875775,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "menú.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 869924329025807,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "ataque enemigo.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 294735907581162,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "caminar.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 649179249216224,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "daño2.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 204197453776178,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "efecto curar.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 468421840625463,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "muerte enemigos.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 220555983458245,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "recibir daño.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 970206286660340,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "recibirdañoenemigos.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 169095205256900,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "hielogolpe.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 290260008180219,
+					"file-info": {
+						"purpose": "none"
+					}
+				}
+			],
+			"subfolders": []
+		},
+		"music": {
+			"items": [],
+			"subfolders": []
+		},
+		"video": {
+			"items": [],
+			"subfolders": []
+		},
+		"font": {
+			"items": [
+				{
+					"name": "alagard.woff",
+					"type": "application/font-woff",
+					"sid": 279701383352365,
+					"file-info": {
+						"purpose": "none"
+					}
+				}
+			],
+			"subfolders": []
+		},
+		"icon": {
+			"items": [
+				{
+					"name": "icono-16.png",
+					"type": "image/png",
+					"sid": 762634939041666,
+					"icon-info": {
+						"purpose": "app-icon"
+					}
+				},
+				{
+					"name": "icono-32.png",
+					"type": "image/png",
+					"sid": 101889521551837,
+					"icon-info": {
+						"purpose": "app-icon"
+					}
+				},
+				{
+					"name": "icono-64.png",
+					"type": "image/png",
+					"sid": 533395737328827,
+					"icon-info": {
+						"purpose": "app-icon"
+					}
+				},
+				{
+					"name": "icono-128.png",
+					"type": "image/png",
+					"sid": 112719817827303,
+					"icon-info": {
+						"purpose": "app-icon"
+					}
+				},
+				{
+					"name": "icono-256.png",
+					"type": "image/png",
+					"sid": 647896854715496,
+					"icon-info": {
+						"purpose": "app-icon"
+					}
+				},
+				{
+					"name": "icono-512.png",
+					"type": "image/png",
+					"sid": 359636664338433,
+					"icon-info": {
+						"purpose": "app-icon"
+					}
+				},
+				{
+					"name": "logo-carga.png",
+					"type": "image/png",
+					"sid": 987008849927627,
+					"icon-info": {
+						"purpose": "loading-logo"
+					}
+				}
+			],
+			"subfolders": []
+		},
+		"general": {
+			"items": [],
+			"subfolders": []
+		}
+	},
+	"timelines": {
+		"items": [
+			"Línea de tiempo 1"
+		],
+		"subfolders": [
+			{
+				"items": [],
+				"subfolders": []
+			}
+		]
+	},
+	"flowcharts": {
+		"items": [
+			"Diagrama de flujo 1"
+		],
+		"subfolders": []
+	},
+	"properties": {
+		"description": "",
+		"version": "1.0.0.0",
+		"autoIncrementVersion": false,
+		"author": "",
+		"authorEmail": "",
+		"authorWebsite": "",
+		"appId": "",
+		"pixelRounding": true,
+		"zAxisScale": "regular",
+		"fov": 0.7853981633974483,
+		"useLoaderLayout": false,
+		"fullscreenMode": "letterbox-integer-scale",
+		"fullscreenQuality": "low",
+		"viewportFit": "auto",
+		"backgroundColor": [
+			0.11372549019607843,
+			0.10980392156862745,
+			0.16862745098039217,
+			0
+		],
+		"splashColor": [
+			1,
+			1,
+			1,
+			0
+		],
+		"useThemeColor": false,
+		"themeColor": [
+			1,
+			1,
+			1,
+			0
+		],
+		"orientations": "landscape",
+		"webgpu": "auto",
+		"multitexturing": "auto",
+		"gpuPreference": "high-performance",
+		"framerateMode": "vsync",
+		"sampling": "nearest",
+		"downscaling": "medium",
+		"renderingMode": "auto",
+		"anisotropicFiltering": "auto",
+		"zNear": 1,
+		"zFar": 10000,
+		"maxSpriteSheetSize": 2048,
+		"loaderStyle": "splash",
+		"preloadSounds": true,
+		"uidAllocationMode": "increment",
+		"cordovaiOSScheme": "app",
+		"cordovaAndroidScheme": "https",
+		"exportFileStructure": "folders",
+		"scriptsType": "module"
+	},
+	"viewportWidth": 1920,
+	"viewportHeight": 1080,
+	"firstLayout": "Escena 1"
+}
